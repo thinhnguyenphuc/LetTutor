@@ -17,6 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool logoVisible = true;
+  bool hidePass = true;
 
 
   @override
@@ -29,10 +30,20 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final passwordField = IconInputField(
-      textObscured: true,
+      textObscured: hidePass,
       iconData: Icons.vpn_key,
       hintText: Strings.password,
       autoFocus: false,
+      passField: true,
+      hidePassButton: IconButton(
+          icon: Icon(
+            hidePass ? Icons.visibility : Icons.visibility_off,
+          ),
+          onPressed: () {
+            setState(() {
+              hidePass = !hidePass;
+            });
+          }),
     );
 
     final rememberField = TextCheckbox(

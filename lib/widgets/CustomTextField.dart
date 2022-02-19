@@ -12,6 +12,8 @@ class IconInputField extends StatelessWidget {
   final double borderRadius;
   final TextEditingController? textEditingController;
   final bool autoFocus;
+  final bool passField;
+  final IconButton? hidePassButton;
   ///Create an rounded border input field with a prefix icon
   ///
   const IconInputField({Key? key,
@@ -26,31 +28,50 @@ class IconInputField extends StatelessWidget {
     this.iconColor = Colors.black,
     this.textEditingController,
     this.autoFocus = false,
+    this.passField = false,
+    this.hidePassButton,
   }):
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    final decoratePass = InputDecoration(
+        prefixIcon: Padding(
+          padding: prefixIconPadding,
+          child: Icon(
+            iconData,
+            color: iconColor,
+            size: iconSize,
+          ),
+        ),
+        suffixIcon: hidePassButton,
+        contentPadding: contentPadding,
+        hintText: hintText,
+        border:
+        OutlineInputBorder(borderRadius: BorderRadius.circular(borderRadius)));
+
+    final decorate = InputDecoration(
+        prefixIcon: Padding(
+          padding: prefixIconPadding,
+          child: Icon(
+            iconData,
+            color: iconColor,
+            size: iconSize,
+          ),
+        ),
+        contentPadding: contentPadding,
+        hintText: hintText,
+        border:
+        OutlineInputBorder(borderRadius: BorderRadius.circular(borderRadius)));
+
     return TextField(
       autofocus: autoFocus,
       controller: textEditingController,
       obscureText: textObscured,
       style: style,
-      decoration: InputDecoration(
-          prefixIcon: Padding(
-            padding: prefixIconPadding,
-            child: Icon(
-              iconData,
-              color: iconColor,
-              size: iconSize,
-            ),
-          ),
-          contentPadding: contentPadding,
-          hintText: hintText,
-          border:
-          OutlineInputBorder(borderRadius: BorderRadius.circular(borderRadius))),
+      decoration: passField?decoratePass:decorate,
     );
-
   }
 
 }
