@@ -16,6 +16,10 @@ class IconWithTextButton extends StatelessWidget {
   final Color iconColor;
   final EdgeInsetsGeometry iconPaddingInsets;
   final String imageIconPath;
+  final double buttonHeight;
+  final double buttonWidth;
+  final List<Color> gradientColor;
+  final bool hasGradientColor;
 
   /// Create a rounded button with an icon at the start
   ///
@@ -34,45 +38,71 @@ class IconWithTextButton extends StatelessWidget {
     this.iconColor = Colors.black,
     this.iconPaddingInsets = const EdgeInsets.only( top: 0, left: 0, right: 10, bottom: 0),
     this.imageIconPath = "",
+    this.buttonHeight = 50.0,
+    this.buttonWidth = 300.0,
+    this.gradientColor = const [Colors.blue, Colors.purple],
+    this.hasGradientColor = false,
   }):
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    final decorationGradient = BoxDecoration(
+      borderRadius: BorderRadius.circular(borderRadius),
+      gradient: LinearGradient(
+          colors: gradientColor,
+          begin: const FractionalOffset(0.0,0.0),
+          end: const FractionalOffset(0.7,0.0),
+          stops: const [0.0,1],
+          tileMode: TileMode.clamp),
+    );
+    const decoration = BoxDecoration();
+
     return Material(
         elevation: elevation,
         borderRadius: BorderRadius.circular(borderRadius),
         color: color,
-        child: MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            padding: padding,
-            onPressed: onPressedCallback,
-            child:
-            Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: iconData == null && imageIconPath.isEmpty ? const EdgeInsets.only(): iconPaddingInsets,
-                    child: iconData != null?
-                    Icon(
-                      iconData,
-                      color: iconColor,
-                      size: iconSize,
-                    ) : imageIconPath.isNotEmpty?
-                    Image(
-                      image: AssetImage(imageIconPath),
-                      height: iconSize,
-                    ): null,
-                  ),
-                  Expanded(
-                    child: Text(text,
-                      textAlign: textAlign,
-                      style: textStyle,
-                    ),
+        child:
+        SizedBox(
+          width: buttonWidth,
+          height: buttonHeight,
+          child: Container(
+              decoration: hasGradientColor?decorationGradient:decoration,
+              child: MaterialButton(
+                  minWidth: MediaQuery.of(context).size.width,
+                  height: buttonHeight,
+                  padding: padding,
+                  onPressed: onPressedCallback,
+                  child:
+                  Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: iconData == null && imageIconPath.isEmpty ? const EdgeInsets.only(): iconPaddingInsets,
+                          child: iconData != null?
+                          Icon(
+                            iconData,
+                            color: iconColor,
+                            size: iconSize,
+                          ) : imageIconPath.isNotEmpty?
+                          Image(
+                            image: AssetImage(imageIconPath),
+                            height: iconSize,
+                          ): null,
+                        ),
+                        Expanded(
+                          child: Text(text,
+                            textAlign: textAlign,
+                            style: textStyle,
+                          ),
+                        )
+                      ]
                   )
-                ]
-            )
+              )
+          )
         )
+
     );
   }
 }
