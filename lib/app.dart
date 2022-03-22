@@ -1,7 +1,7 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/resources/Strings.dart';
+import 'package:project/resources/routes.dart';
 import 'package:project/views/Login.dart';
 import 'package:project/views/Splash.dart';
 
@@ -11,12 +11,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.light(),
       title: Strings.appName,
-      initialRoute: '/',
+      initialRoute: "/",
       routes: {
         '/': (context) => const SplashScreen(),
-        '/login': (context) => const LoginPage(),
+        Routes.login: (context) => const LoginPage(),
+        Routes.signUp: (context) => const SplashScreen(),
       },
     );
   }

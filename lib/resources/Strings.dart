@@ -1,5 +1,5 @@
 class Strings {
-  static String appName = "Connect Gamer";
+  static String appName = "LetTutor";
   static String userName = "Username";
   static String password = "Password";
   static String login = "Log In";

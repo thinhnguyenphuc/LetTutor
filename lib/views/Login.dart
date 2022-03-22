@@ -1,4 +1,3 @@
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter/material.dart';
 import 'package:project/resources/Strings.dart';
 import 'package:project/widgets/CustomButton.dart';
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
       linkText: Strings.forgotPassword,
       fontSize: 15,
       onLinkClickedCallback: () {
-        Navigator.pushNamed(context, "/forgotPass");
+        Navigator.pushNamed(context,'/login');
       },
     );
 

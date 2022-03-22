@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'Login.dart';
+import 'package:project/views/FirtsScreen.dart';
 
 class SplashScreen  extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,8 +13,8 @@ class SplashScreen  extends StatelessWidget {
             duration: 2000,
             splash: Image.asset('assets/images/logo.png'),
             splashIconSize: 200,
-            nextScreen: const LoginPage(),
+            nextScreen: const FirstScreen(),
             splashTransition: SplashTransition.fadeTransition,
-            backgroundColor: Colors.white));
+            backgroundColor: Colors.greenAccent));
   }
 }
