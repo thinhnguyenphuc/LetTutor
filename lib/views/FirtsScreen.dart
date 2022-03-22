@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project/resources/Strings.dart';
 import 'package:project/resources/routes.dart';
+import 'package:project/views/Login.dart';
 import 'package:project/widgets/CustomButton.dart';
+
+import 'Register.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);
@@ -53,7 +56,7 @@ class _FirstPageState extends State<FirstScreen> {
       gradientColor: const [Colors.pink, Colors.purple],
       textStyle: style.copyWith(color: Colors.white),
       onPressedCallback: () {
-        Navigator.pushNamed(context, Routes.login);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
       },
     );
 
@@ -68,7 +71,7 @@ class _FirstPageState extends State<FirstScreen> {
       color: Colors.white,
       textStyle: style.copyWith(color: Colors.white),
       onPressedCallback: () {
-        Navigator.pushNamed(context, Routes.signUp);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterPage()));
       },
     );
 
