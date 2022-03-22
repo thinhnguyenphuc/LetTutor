@@ -12,9 +12,9 @@ class SplashScreen  extends StatelessWidget {
         home: AnimatedSplashScreen(
             duration: 2000,
             splash: Image.asset('assets/images/logo.png'),
-            splashIconSize: 200,
+            splashIconSize: 500,
             nextScreen: const FirstScreen(),
             splashTransition: SplashTransition.fadeTransition,
-            backgroundColor: Colors.greenAccent));
+            backgroundColor: Colors.black54));
   }
 }

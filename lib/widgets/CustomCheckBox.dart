@@ -39,7 +39,7 @@ class _TextCheckboxState extends State<TextCheckbox> {
         Row(
             children: <Widget>[
               Checkbox(
-                checkColor: Colors.white,
+                checkColor: Colors.blue,
                 fillColor: widget.fillColor ?? MaterialStateProperty.resolveWith(getColor),
                 value: _isChecked,
                 onChanged: (bool? value) {
@@ -65,6 +65,6 @@ class _TextCheckboxState extends State<TextCheckbox> {
     if (states.any(interactiveStates.contains)) {
       return Colors.white;
     }
-    return Colors.black;
+    return Colors.white;
   }
 }

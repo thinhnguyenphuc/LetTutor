@@ -5,6 +5,7 @@ import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,12 +16,22 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  bool logoVisible = true;
   bool hidePass = true;
 
   @override
   Widget build(BuildContext context) {
-    const logoField = Image(image: AssetImage('assets/images/logo.png'));
+    final logoField =
+        KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
+      return AnimatedContainer(
+        width: !isKeyboardVisible
+            ? MediaQuery.of(context).size.width / 1.25
+            : MediaQuery.of(context).size.width / 2,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn,
+        child: Image.asset("assets/images/logo.png"),
+      );
+    });
+
     final usernameField = IconInputField(
       iconData: Icons.person,
       hintText: Strings.userName,
@@ -36,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
       hidePassButton: IconButton(
           icon: Icon(
             hidePass ? Icons.visibility : Icons.visibility_off,
+            color: Colors.white,
           ),
           onPressed: () {
             setState(() {
@@ -45,15 +57,16 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final rememberField = TextCheckbox(
-      textStyle: style.copyWith(color: Colors.black, fontSize: 15),
+      textStyle: style.copyWith(color: Colors.white, fontSize: 15),
       text: Strings.rememberMe,
     );
 
     final forgotPasswordField = PartialLinkText(
       linkText: Strings.forgotPassword,
+      color: Colors.white,
       fontSize: 15,
       onLinkClickedCallback: () {
-        Navigator.pushNamed(context,'/login');
+        Navigator.pushNamed(context, '/login');
       },
     );
 
@@ -71,38 +84,26 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    final loginGoogleButton = IconWithTextButton(
-      text: Strings.googleLogin,
-      textAlign: TextAlign.center,
-      buttonWidth: 160,
-      color: Colors.red,
-      gradientColor: const [Colors.transparent],
-      borderRadius: 50,
-      iconSize: 20,
-      iconData: FontAwesomeIcons.google,
-      textStyle:
-      style.copyWith(color: Colors.white),
-      onPressedCallback: () {
+    final loginGoogleButton = IconButton(
+      onPressed: () {
         Navigator.pushNamed(context, "/homepage");
       },
+      icon: const FaIcon(FontAwesomeIcons.google),
+      color: Colors.red,
+      iconSize: 30,
     );
 
-    final loginFacebookButton = IconWithTextButton(
-      text: Strings.facebookLogin,
-      textAlign: TextAlign.center,
-      buttonWidth: 160,
-      borderRadius: 50,
-      iconSize: 20,
-      iconData: Icons.facebook,
-      color: Colors.blue,
-      textStyle:
-      style.copyWith(color: Colors.white),
-      onPressedCallback: () {
+    final loginFacebookButton = IconButton(
+      onPressed: () {
         Navigator.pushNamed(context, "/homepage");
       },
+      icon: const FaIcon(FontAwesomeIcons.facebook),
+      color: Colors.blue,
+      iconSize: 30,
     );
 
     final signupTextField = PartialLinkText(
+      color: Colors.white,
       normalText: Strings.toSignUpNormalText,
       linkText: Strings.signUp,
       fontSize: 18,
@@ -110,7 +111,6 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushNamed(context, "/signUp");
       },
     );
-
 
     return Scaffold(
         backgroundColor: Colors.black,
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
           },
           child: Center(
             child: Container(
-              color: Colors.white,
+              color: const Color(0xFF262626),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -129,18 +129,14 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const SizedBox(height: 30.0),
-                        Visibility(visible: logoVisible, child: logoField)
-                      ],
+                      children: <Widget>[logoField],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        const SizedBox(height: 30.0),
                         usernameField,
                         const SizedBox(height: 20.0),
-                        passwordField
+                        passwordField,
                       ],
                     ),
                     Column(
@@ -167,36 +163,22 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(10.0, 50, 10.0, 0),
-                            child: loginGoogleButton,
-
+                          padding: const EdgeInsets.fromLTRB(10.0, 50, 10.0, 0),
+                          child: loginGoogleButton,
                         ),
                         Padding(
-                          padding:
-                          const EdgeInsets.fromLTRB(10, 50, 10.0, 0),
+                          padding: const EdgeInsets.fromLTRB(10, 50, 10.0, 0),
                           child: loginFacebookButton,
                         ),
                       ],
                     ),
-                    const Expanded(
-                        child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Divider(
-                        color: Colors.black,
-                        height: 0,
-                        thickness: 1,
-                        indent: 150,
-                        endIndent: 150,
-                      ),
-                    )),
                     Expanded(
                         child: Align(
                             alignment: Alignment.bottomCenter,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[signupTextField],
-                            )))
+                            ))),
                   ],
                 ),
               ),

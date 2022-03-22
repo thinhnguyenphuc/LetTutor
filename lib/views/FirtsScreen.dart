@@ -1,6 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:project/resources/Strings.dart';
-import 'package:project/resources/routes.dart';
 import 'package:project/views/Login.dart';
 import 'package:project/widgets/CustomButton.dart';
 
@@ -15,7 +16,6 @@ class FirstScreen extends StatefulWidget {
 
 class _FirstPageState extends State<FirstScreen> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
 
   final welcomeText = Column(
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +40,6 @@ class _FirstPageState extends State<FirstScreen> {
     ],
   );
 
-
   @override
   Widget build(BuildContext context) {
     const logoField = Image(image: AssetImage('assets/images/logo.png'));
@@ -53,10 +52,11 @@ class _FirstPageState extends State<FirstScreen> {
       iconSize: 20,
       hasGradientColor: true,
       color: Colors.white,
-      gradientColor: const [Colors.pink, Colors.purple],
+      gradientColor: const [Colors.brown, Colors.blueGrey],
       textStyle: style.copyWith(color: Colors.white),
       onPressedCallback: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
       },
     );
 
@@ -67,11 +67,12 @@ class _FirstPageState extends State<FirstScreen> {
       borderRadius: 50,
       iconSize: 20,
       hasGradientColor: true,
-      gradientColor: const [Colors.purple, Colors.pinkAccent],
+      gradientColor: const [Colors.blueGrey, Colors.grey],
       color: Colors.white,
       textStyle: style.copyWith(color: Colors.white),
       onPressedCallback: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const RegisterPage()));
       },
     );
 
@@ -81,9 +82,9 @@ class _FirstPageState extends State<FirstScreen> {
           TextSpan(
             text: ' Design and copyright by ',
           ),
-          TextSpan(text: 'ThinhNguyen', style: TextStyle(
-              fontFamily: 'Roboto',
-              fontSize: 15)),
+          TextSpan(
+              text: 'ThinhNguyen',
+              style: TextStyle(fontFamily: 'Roboto', fontSize: 15)),
         ],
       ),
     );
@@ -95,57 +96,60 @@ class _FirstPageState extends State<FirstScreen> {
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
           },
-          child: Center(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Colors.lightBlue,
-                      Colors.lightBlueAccent,
-                      Colors.greenAccent,
-                      Colors.green,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0.0, 0.3, 0.6, 1.0],
-                    tileMode: TileMode.clamp),
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.3), BlendMode.dstATop),
+                image: const AssetImage("assets/images/background.jpg"),
+                fit: BoxFit.cover,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const SizedBox(height: 30.0),
-                        logoField,
-                        welcomeText
+            ),
+            child: Center(
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.black,
+                        Colors.black12,
+                        Colors.black26,
+                        Colors.black54,
                       ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(50.0, 100, 50.0, 0),
-                            child: loginButton),
-                        Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(50.0, 20, 50.0, 0),
-                            child: signUpButton),
-                      ],
-                    ),
-                    Expanded(
-                        child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                signatureText
-                              ],
-                            )))
-                  ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [0.0, 0.3, 0.6, 1.0],
+                      tileMode: TileMode.clamp),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const <Widget>[
+                              logoField
+                            ],
+                          ))),
+                      Expanded(child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      50.0, 100, 50.0, 0),
+                                  child: loginButton),
+                              Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      50.0, 20, 50.0, 0),
+                                  child: signUpButton),
+                            ],
+                          ))),
+                    ],
+                  ),
                 ),
               ),
             ),
