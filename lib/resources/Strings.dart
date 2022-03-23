@@ -2,6 +2,7 @@ class Strings {
   static String appName = "LetTutor";
   static String userName = "Username";
   static String password = "Password";
+  static String rePassword = "Enter password again";
   static String login = "Log In";
   static String signUp = "Register";
   static String facebookLogin = "Facebook";
@@ -10,4 +11,7 @@ class Strings {
   static String toLoginNormalText = "Already have an account?";
   static String forgotPassword = "Forgot password?";
   static String rememberMe = "Remember me";
+  static String email = "Email";
+  static String search = "Search";
+  static String tutor = "Tutor";
 }

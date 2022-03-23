@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/resources/Strings.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:project/widgets/HeroAnimation.dart';
+
+import 'Homepage.dart';
+import 'Register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,17 +24,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final logoField =
-        KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
-      return AnimatedContainer(
-        width: !isKeyboardVisible
-            ? MediaQuery.of(context).size.width / 1.25
-            : MediaQuery.of(context).size.width / 2,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.fastOutSlowIn,
-        child: Image.asset("assets/images/logo.png"),
-      );
-    });
+    final logoField = IconHero(
+      tag: 'logo',
+      child: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
+        return AnimatedContainer(
+          width: !isKeyboardVisible
+              ? MediaQuery.of(context).size.width / 1.25
+              : MediaQuery.of(context).size.width / 2,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastOutSlowIn,
+          child: Image.asset("assets/images/logo.png"),
+        );
+      }),
+    );
 
     final usernameField = IconInputField(
       iconData: Icons.person,
@@ -73,14 +79,14 @@ class _LoginPageState extends State<LoginPage> {
     final loginButton = IconWithTextButton(
       text: Strings.login,
       textAlign: TextAlign.center,
-      buttonWidth: 200,
+      buttonWidth: MediaQuery.of(context).size.width/2,
       borderRadius: 50,
       iconSize: 20,
       hasGradientColor: true,
       textStyle:
           style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
       onPressedCallback: () {
-        Navigator.pushNamed(context, "/homepage");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
       },
     );
 
@@ -108,7 +114,8 @@ class _LoginPageState extends State<LoginPage> {
       linkText: Strings.signUp,
       fontSize: 18,
       onLinkClickedCallback: () {
-        Navigator.pushNamed(context, "/signUp");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const RegisterPage()));
       },
     );
 
@@ -152,32 +159,43 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(50.0, 20, 50.0, 0),
-                            child: loginButton),
+                            padding: EdgeInsets.fromLTRB(
+                                50.0,
+                                MediaQuery.of(context).size.height / 20,
+                                50.0,
+                                0),
+                            child: IconHero(
+                              tag: 'login',
+                              onTap: () {},
+                              child: loginButton,
+                            )),
                         forgotPasswordField
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10.0, 50, 10.0, 0),
-                          child: loginGoogleButton,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 50, 10.0, 0),
-                          child: loginFacebookButton,
-                        ),
                       ],
                     ),
                     Expanded(
                         child: Align(
                             alignment: Alignment.bottomCenter,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[signupTextField],
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                signupTextField,
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10.0, 0, 5.0, 30),
+                                      child: loginGoogleButton,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 0, 5.0, 30),
+                                      child: loginFacebookButton,
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ))),
                   ],
                 ),

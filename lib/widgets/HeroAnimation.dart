@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class IconHero extends StatelessWidget {
   const IconHero({
     Key? key,
-    required this.onTap,
+    this.onTap,
     required this.tag,
     required this.child
   }) : super(key: key);
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String tag;
   final Widget child;
 
@@ -19,10 +19,10 @@ class IconHero extends StatelessWidget {
         tag: tag,
         child: Material(
           color: Colors.transparent,
-          child: InkWell(
+          child: onTap !=null ? InkWell(
             onTap: onTap,
             child: child,
-          ),
+          ) : child,
         ),
       ),
     );

@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:project/resources/Strings.dart';
 import 'package:project/views/Login.dart';
 import 'package:project/widgets/CustomButton.dart';
+import 'package:project/widgets/HeroAnimation.dart';
 
 import 'Register.dart';
 
@@ -17,77 +16,49 @@ class FirstScreen extends StatefulWidget {
 class _FirstPageState extends State<FirstScreen> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
-  final welcomeText = Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: const [
-      Text.rich(
-        TextSpan(style: TextStyle(fontSize: 20), text: 'WELCOME TO'),
-      ),
-      Text.rich(
-        TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-                text: ' LET TUTOR ',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30)),
-            TextSpan(text: 'APP', style: TextStyle(fontSize: 30)),
-          ],
-        ),
-      ),
-    ],
-  );
-
   @override
   Widget build(BuildContext context) {
-    const logoField = Image(image: AssetImage('assets/images/logo.png'));
+    const logoField = IconHero(
+      tag: 'logo',
+      child: Image(image: AssetImage('assets/images/logo.png')),
+    );
 
-    final loginButton = IconWithTextButton(
-      text: Strings.login,
-      textAlign: TextAlign.center,
-      buttonWidth: 200,
-      borderRadius: 50,
-      iconSize: 20,
-      hasGradientColor: true,
-      color: Colors.white,
-      gradientColor: const [Colors.brown, Colors.blueGrey],
-      textStyle: style.copyWith(color: Colors.white),
-      onPressedCallback: () {
+    final loginButton = IconHero(
+      tag: 'login',
+      onTap: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const LoginPage()));
       },
-    );
-
-    final signUpButton = IconWithTextButton(
-      text: Strings.signUp,
-      textAlign: TextAlign.center,
-      buttonWidth: 200,
-      borderRadius: 50,
-      iconSize: 20,
-      hasGradientColor: true,
-      gradientColor: const [Colors.blueGrey, Colors.grey],
-      color: Colors.white,
-      textStyle: style.copyWith(color: Colors.white),
-      onPressedCallback: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const RegisterPage()));
-      },
-    );
-
-    const signatureText = Text.rich(
-      TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-            text: ' Design and copyright by ',
-          ),
-          TextSpan(
-              text: 'ThinhNguyen',
-              style: TextStyle(fontFamily: 'Roboto', fontSize: 15)),
-        ],
+      child: IconWithTextButton(
+        text: Strings.login,
+        textAlign: TextAlign.center,
+        buttonWidth: 200,
+        borderRadius: 50,
+        iconSize: 20,
+        hasGradientColor: true,
+        color: Colors.white,
+        gradientColor: const [Colors.brown, Colors.blueGrey],
+        textStyle: style.copyWith(color: Colors.white),
       ),
     );
+
+    final signUpButton = IconHero(
+        tag: 'register',
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const RegisterPage()));
+        },
+        child: IconWithTextButton(
+          text: Strings.signUp,
+          textAlign: TextAlign.center,
+          buttonWidth: 200,
+          borderRadius: 50,
+          iconSize: 20,
+          hasGradientColor: true,
+          gradientColor: const [Colors.blueGrey, Colors.grey],
+          color: Colors.white,
+          textStyle: style.copyWith(color: Colors.white),
+        ));
 
     return Scaffold(
         backgroundColor: Colors.black,
@@ -125,29 +96,29 @@ class _FirstPageState extends State<FirstScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Expanded(child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: const <Widget>[
-                              logoField
-                            ],
-                          ))),
-                      Expanded(child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      50.0, 100, 50.0, 0),
-                                  child: loginButton),
-                              Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      50.0, 20, 50.0, 0),
-                                  child: signUpButton),
-                            ],
-                          ))),
+                      Expanded(
+                          child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const <Widget>[logoField],
+                              ))),
+                      Expanded(
+                          child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          50.0, 100, 50.0, 0),
+                                      child: loginButton),
+                                  Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          50.0, 20, 50.0, 0),
+                                      child: signUpButton),
+                                ],
+                              ))),
                     ],
                   ),
                 ),

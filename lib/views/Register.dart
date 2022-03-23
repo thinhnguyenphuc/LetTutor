@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:project/resources/Strings.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project/widgets/HeroAnimation.dart';
+
+import 'Login.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -15,12 +18,30 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  bool logoVisible = true;
   bool hidePass = true;
 
   @override
   Widget build(BuildContext context) {
-    const logoField = Image(image: AssetImage('assets/images/logo.png'));
+    final logoField = IconHero(
+      tag: "logo",
+      child: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
+        return AnimatedContainer(
+          width: !isKeyboardVisible
+              ? MediaQuery.of(context).size.width / 1.5
+              : MediaQuery.of(context).size.width / 2,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastOutSlowIn,
+          child: Image.asset("assets/images/logo.png"),
+        );
+      })
+    );
+
+    final emailField = IconInputField(
+      iconData: Icons.email,
+      hintText: Strings.email,
+      autoFocus: false,
+    );
+
     final usernameField = IconInputField(
       iconData: Icons.person,
       hintText: Strings.userName,
@@ -36,6 +57,25 @@ class _RegisterPageState extends State<RegisterPage> {
       hidePassButton: IconButton(
           icon: Icon(
             hidePass ? Icons.visibility : Icons.visibility_off,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            setState(() {
+              hidePass = !hidePass;
+            });
+          }),
+    );
+
+    final rePasswordField = IconInputField(
+      textObscured: hidePass,
+      iconData: Icons.vpn_key,
+      hintText: Strings.rePassword,
+      autoFocus: false,
+      passField: true,
+      hidePassButton: IconButton(
+          icon: Icon(
+            hidePass ? Icons.visibility : Icons.visibility_off,
+            color: Colors.white,
           ),
           onPressed: () {
             setState(() {
@@ -45,20 +85,21 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     final rememberField = TextCheckbox(
-      textStyle: style.copyWith(color: Colors.black, fontSize: 15),
+      textStyle: style.copyWith(color: Colors.white, fontSize: 15),
       text: Strings.rememberMe,
     );
 
     final forgotPasswordField = PartialLinkText(
       linkText: Strings.forgotPassword,
+      color: Colors.white,
       fontSize: 15,
       onLinkClickedCallback: () {
-        Navigator.pushNamed(context,'/login');
+        Navigator.pushNamed(context, '/login');
       },
     );
 
-    final loginButton = IconWithTextButton(
-      text: Strings.login,
+    final registerButton = IconWithTextButton(
+      text: Strings.signUp,
       textAlign: TextAlign.center,
       buttonWidth: 200,
       borderRadius: 50,
@@ -71,48 +112,19 @@ class _RegisterPageState extends State<RegisterPage> {
       },
     );
 
-    final loginGoogleButton = IconWithTextButton(
-      text: Strings.googleLogin,
-      textAlign: TextAlign.center,
-      buttonWidth: 160,
-      color: Colors.red,
-      gradientColor: const [Colors.transparent],
-      borderRadius: 50,
-      iconSize: 20,
-      iconData: FontAwesomeIcons.google,
-      textStyle:
-      style.copyWith(color: Colors.white),
-      onPressedCallback: () {
-        Navigator.pushNamed(context, "/homepage");
-      },
-    );
-
-    final loginFacebookButton = IconWithTextButton(
-      text: Strings.facebookLogin,
-      textAlign: TextAlign.center,
-      buttonWidth: 160,
-      borderRadius: 50,
-      iconSize: 20,
-      iconData: Icons.facebook,
-      color: Colors.blue,
-      textStyle:
-      style.copyWith(color: Colors.white),
-      onPressedCallback: () {
-        Navigator.pushNamed(context, "/homepage");
-      },
-    );
-
-    final signupTextField = PartialLinkText(
-      normalText: Strings.toSignUpNormalText,
-      linkText: Strings.signUp,
+    final loginTextField = PartialLinkText(
+      color: Colors.white,
+      normalText: Strings.toLoginNormalText,
+      linkText: Strings.login,
       fontSize: 18,
       onLinkClickedCallback: () {
-        Navigator.pushNamed(context, "/signUp");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
       },
     );
 
-
-    return Scaffold(
+    return
+      Scaffold(
         backgroundColor: Colors.black,
         resizeToAvoidBottomInset: false,
         body: GestureDetector(
@@ -121,35 +133,26 @@ class _RegisterPageState extends State<RegisterPage> {
           },
           child: Center(
             child: Container(
-              color: Colors.white,
+              color: const Color(0xFF262626),
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const SizedBox(height: 30.0),
-                        Visibility(visible: logoVisible, child: logoField)
-                      ],
+                      children: <Widget>[logoField],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        const SizedBox(height: 30.0),
+                        emailField,
+                        const SizedBox(height: 10.0),
                         usernameField,
-                        const SizedBox(height: 20.0),
-                        passwordField
-                      ],
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              rememberField,
-                            ])
+                        const SizedBox(height: 10.0),
+                        passwordField,
+                        const SizedBox(height: 10.0),
+                        rePasswordField,
                       ],
                     ),
                     Column(
@@ -157,46 +160,24 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: <Widget>[
                         Padding(
                             padding:
-                            const EdgeInsets.fromLTRB(50.0, 20, 50.0, 0),
-                            child: loginButton),
-                        forgotPasswordField
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding:
-                          const EdgeInsets.fromLTRB(10.0, 50, 10.0, 0),
-                          child: loginGoogleButton,
+                            const EdgeInsets.fromLTRB(50.0, 50, 50.0, 0),
+                            child: IconHero(
+                              tag: 'register',
+                              onTap: () {
 
-                        ),
-                        Padding(
-                          padding:
-                          const EdgeInsets.fromLTRB(10, 50, 10.0, 0),
-                          child: loginFacebookButton,
-                        ),
+                              },
+                              child: registerButton,
+                            )),
                       ],
                     ),
-                    const Expanded(
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Divider(
-                            color: Colors.black,
-                            height: 0,
-                            thickness: 1,
-                            indent: 150,
-                            endIndent: 150,
-                          ),
-                        )),
+                    const Spacer(),
                     Expanded(
                         child: Align(
                             alignment: Alignment.bottomCenter,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[signupTextField],
-                            )))
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[loginTextField],
+                            ))),
                   ],
                 ),
               ),

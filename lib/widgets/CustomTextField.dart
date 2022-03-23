@@ -20,7 +20,7 @@ class IconInputField extends StatelessWidget {
   const IconInputField({
     Key? key,
     this.style = const TextStyle(
-        fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.white),
+        fontFamily: 'Montserrat', fontSize: 16.0, color: Colors.white),
     this.textObscured = false,
     this.prefixIconPadding =
         const EdgeInsets.only(top: 10, left: 0, right: 0, bottom: 10),
