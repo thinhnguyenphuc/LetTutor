@@ -2,8 +2,8 @@ class Tutor {
   final int id;
   final String imagePath;
   final String name;
-  final String countryName;
-  final int ratingStar;
+  final String countryCode;
+  final double ratingStar;
   final List<String> skill;
   final String description;
 
@@ -11,7 +11,7 @@ class Tutor {
       {required this.id,
       required this.name,
       required this.imagePath,
-      required this.countryName,
+      required this.countryCode,
       required this.ratingStar,
       required this.skill,
       required this.description});
@@ -20,7 +20,7 @@ class Tutor {
       : id = json["id"],
         name = json["name"],
         imagePath = json["imagePath"],
-        countryName = json["countryName"],
+        countryCode = json["countryCode"],
         ratingStar = json["ratingStar"],
         skill = json["skill"],
         description = json["description"];
@@ -30,7 +30,7 @@ class Tutor {
       'id': id,
       'name': name,
       'imagePath:': imagePath,
-      'countryName': countryName,
+      'countryCode': countryCode,
       'ratingStar': ratingStar,
       'skill': skill,
       'description': description
