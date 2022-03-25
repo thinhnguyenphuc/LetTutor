@@ -14,4 +14,6 @@ class Strings {
   static String email = "Email";
   static String search = "Search";
   static String tutor = "Tutor";
+  static String noUpcoming = "You have no upcoming lesson, click below to book";
+  static String bookLesson = "Book a lesson";
 }

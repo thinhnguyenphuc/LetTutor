@@ -3,7 +3,6 @@ import '../models/tutorModel.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../resources/CountryList.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class TutorViewItem extends StatelessWidget {
   final Tutor tutor;
