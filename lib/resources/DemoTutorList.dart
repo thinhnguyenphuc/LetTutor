@@ -63,3 +63,17 @@ final tutor5 = Tutor(
     "Hello everyone! I'm Tokuda from Japan and I'm teaching English for about 5 years. In my courses, you'll be able to learn how to improve your English basic skills",
     imagePath: "https://sandbox.api.lettutor.com/avatar/45f8709e-2e84-46f2-b238-817a85cc2b29avatar1641220343303.jpg");
 
+final List<String> skillList = [
+    'All',
+    'English for Business',
+    'English for kids',
+    'Conversation',
+    'STATERS',
+    'MOVERS',
+    'FLYERS',
+    'KET',
+    'PET',
+    'IELTS',
+    'TOEFL',
+    'TOEIC'
+];

@@ -17,12 +17,18 @@ class TutorViewItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(10.0),
-        ),
-        color: Colors.white,
-      ),
+          border: Border.all(color: Colors.grey),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 4,
+              offset: Offset(2, 4), // Shadow position
+            ),
+          ]),
       child: Column(
         children: [
           Row(

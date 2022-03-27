@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/tutorModel.dart';
 import '../resources/DemoTutorList.dart';
 import '../resources/Strings.dart';
+import '../viewModels/TutorViewModels.dart';
 import '../widgets/CustomAppBar.dart';
 import 'TutorViewItem.dart';
 
@@ -14,21 +15,14 @@ class TutorScreen extends StatefulWidget {
 
 class _TutorScreenPageState extends State<TutorScreen> {
   TextEditingController searchController = TextEditingController();
-  final List<Tutor> tutorList = [
-    tutor0,
-    tutor1,
-    tutor2,
-    tutor3,
-    tutor4,
-    tutor5
-  ];
-
+  String skillSort = "";
   @override
   Widget build(BuildContext context) {
+    final List<Tutor> tutorList = getTutorList(skillSort);
     final tutorListView = ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: tutorList.length,
+      itemCount: getTutorList(skillSort).length,
       itemBuilder: (context, position) {
         final Tutor _tutor = tutorList[position];
         return Padding(
@@ -43,7 +37,6 @@ class _TutorScreenPageState extends State<TutorScreen> {
     return Scaffold(
         backgroundColor: Colors.white12,
         resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar(),
         body: GestureDetector(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -122,11 +115,11 @@ class _TutorScreenPageState extends State<TutorScreen> {
                                       children: [
                                         const Icon(
                                           Icons.date_range,
-                                          color: Colors.white,
+                                          color: Colors.blueGrey,
                                         ),
                                         Text(Strings.bookLesson,
                                             style: const TextStyle(
-                                                color: Colors.white))
+                                                color: Colors.blueGrey))
                                       ],
                                     ),
                                     style: ButtonStyle(
@@ -135,10 +128,10 @@ class _TutorScreenPageState extends State<TutorScreen> {
                                                 (Set<MaterialState> states) {
                                           if (states.contains(
                                               MaterialState.pressed)) {
-                                            return Colors.black54;
+                                            return Colors.white54;
                                           }
                                           return Colors
-                                              .black12; // Use the component's default.
+                                              .white; // Use the component's default.
                                         }),
                                         shape: MaterialStateProperty.all<
                                                 RoundedRectangleBorder>(
@@ -153,6 +146,59 @@ class _TutorScreenPageState extends State<TutorScreen> {
                             ]),
                           ])
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(5,10,5,5),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 4,
+                    child: Column(
+                      children: [
+                        Text(Strings.findTutor,
+                            style: const TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.w800,)),
+                        Row(children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              child: Flex(
+                                direction: Axis.horizontal,
+                                children: [
+                                  Flexible(
+                                    child: Wrap(
+                                      children: <Widget>[
+                                        for (String skill in skillList)
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
+                                            child: InkWell(
+                                              onTap:(){
+                                                setState(() {
+                                                  skillSort = skill;
+                                                });
+                                              },
+                                              child: Container(
+                                                padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                                                margin: const EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                  color: skill == skillSort ? Colors.blue.shade100:Colors.grey.shade200,
+                                                  borderRadius: BorderRadius.circular(20),
+                                                ),
+                                                child: Text(skill),
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ],
+                    ),
                   ),
                 ),
                 tutorListView

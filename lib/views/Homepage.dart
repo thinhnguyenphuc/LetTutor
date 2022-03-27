@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project/widgets/HeroAnimation.dart';
 
+import '../widgets/CustomAppBar.dart';
 import 'TutorViewPage.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     void _onItemTapped(int index) {
@@ -20,6 +22,7 @@ class _HomePageState extends State<HomePage> {
         _selectedIndex = index;
       });
     }
+
     const List<Widget> _pages = <Widget>[
       TutorScreen(),
       Icon(
@@ -31,13 +34,21 @@ class _HomePageState extends State<HomePage> {
         size: 150,
       ),
     ];
+
+    final logo = IconHero(
+      tag: 'logo',
+      child: Image.asset('assets/images/logo.png',
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width/2,
+          height: MediaQuery.of(context).size.height / 5),
+    );
     return Scaffold(
-      backgroundColor: const Color(0xFF262626),
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
+      appBar: CustomAppBar(logo),
       body: Center(
         child: _pages.elementAt(_selectedIndex), //New
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -66,7 +77,8 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.black,
           ),
         ],
-        currentIndex: _selectedIndex, //New
+        currentIndex: _selectedIndex,
+        //New
         onTap: _onItemTapped,
         selectedItemColor: Colors.amberAccent,
         unselectedIconTheme: const IconThemeData(

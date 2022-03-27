@@ -16,4 +16,5 @@ class Strings {
   static String tutor = "Tutor";
   static String noUpcoming = "You have no upcoming lesson, click below to book";
   static String bookLesson = "Book a lesson";
+  static String findTutor = "Group tutor by skill";
 }
