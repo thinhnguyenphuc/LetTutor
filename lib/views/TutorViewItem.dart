@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/tutorModel.dart';
+import '../models/TutorModel.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../resources/CountryList.dart';
@@ -11,7 +11,7 @@ class TutorViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var countryName = CountrySingleton().countryHashMap[tutor.countryCode];
+    var countryName = CountrySingleton().countryHashMap[tutor.country];
     final localNameView =
         countryName != null ? Text(countryName) : const Text("Null");
     return Container(
@@ -42,7 +42,7 @@ class TutorViewItem extends StatelessWidget {
                       radius: 45,
                       child: ClipOval(
                         child: Image.network(
-                          tutor.imagePath,
+                          tutor.avatar,
                           width: 70,
                           height: 70,
                           fit: BoxFit.cover,
@@ -66,7 +66,7 @@ class TutorViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Flag.fromString(
-                        tutor.countryCode,
+                        tutor.country,
                         height: 20,
                         width: 20,
                       ),
@@ -77,7 +77,7 @@ class TutorViewItem extends StatelessWidget {
                   Row(children: [
                     RatingBar.builder(
                       itemSize: 15,
-                      initialRating: tutor.ratingStar,
+                      initialRating: 5,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
@@ -103,7 +103,7 @@ class TutorViewItem extends StatelessWidget {
                     Flexible(
                       child: Wrap(
                         children: <Widget>[
-                          for (String skill in tutor.skill)
+                          for (String skill in tutor.specialties.split(","))
                             Padding(
                               padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
                               child: Container(
@@ -130,7 +130,7 @@ class TutorViewItem extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width / 1.1,
-                  child: Text(tutor.description,
+                  child: Text(tutor.bio,
                       style: TextStyle(color: Colors.grey.shade700)),
                 ),
               ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/tutorModel.dart';
+import '../models/TutorModel.dart';
 import '../resources/DemoTutorList.dart';
-import '../resources/Strings.dart';
-import '../viewModels/TutorViewModels.dart';
-import '../widgets/CustomAppBar.dart';
-import 'TutorViewItem.dart';
+import '../resources/strings.dart';
 
+import '../view_models/TutorViewModel.dart';
+import 'TutorViewItem.dart';
+import 'package:provider/provider.dart';
 class TutorScreen extends StatefulWidget {
   const TutorScreen({Key? key}) : super(key: key);
 
@@ -14,17 +14,25 @@ class TutorScreen extends StatefulWidget {
 }
 
 class _TutorScreenPageState extends State<TutorScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<TutorViewModel>(context, listen: false).getTutorList();
+  }
+
   TextEditingController searchController = TextEditingController();
   String skillSort = "";
   @override
   Widget build(BuildContext context) {
-    final List<Tutor> tutorList = getTutorList(skillSort);
-    final tutorListView = ListView.builder(
+    final tutorListOnProvider = Provider.of<TutorViewModel>(context);
+    final tutorListView = tutorListOnProvider.tutorList.isNotEmpty?
+    ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: getTutorList(skillSort).length,
+      itemCount: tutorListOnProvider.tutorList.length,
       itemBuilder: (context, position) {
-        final Tutor _tutor = tutorList[position];
+        final Tutor _tutor = tutorListOnProvider.tutorList[position];
         return Padding(
           padding: const EdgeInsets.all(5.0),
           child: TutorViewItem(
@@ -32,6 +40,13 @@ class _TutorScreenPageState extends State<TutorScreen> {
           ),
         );
       },
+    ):
+    const Center(
+      child: SizedBox(
+        height: 100,
+        width: 100,
+        child: CircularProgressIndicator(),
+      ),
     );
 
     return Scaffold(

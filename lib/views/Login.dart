@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project/resources/Strings.dart';
+import 'package:project/resources/strings.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
-
+import '../view_models/LoginViewModel.dart';
 import 'Homepage.dart';
 import 'Register.dart';
 
@@ -21,9 +21,39 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool hidePass = true;
+  LoginViewModel loginViewModel = LoginViewModel();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    Future<void> loginUsers() async {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Processing Data'),
+        backgroundColor: Colors.green.shade300,
+      ));
+
+      //get response from ApiClient
+      bool res = await loginViewModel.login(
+        usernameController.text,
+        passwordController.text,
+      );
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      if (res) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                const HomePage()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text('Error:'),
+          backgroundColor: Colors.red.shade300,
+        ));
+      }
+    };
+
     final logoField = IconHero(
       tag: 'logo',
       child: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
@@ -39,12 +69,14 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final usernameField = IconInputField(
+      textEditingController: usernameController,
       iconData: Icons.person,
       hintText: Strings.userName,
       autoFocus: false,
     );
 
     final passwordField = IconInputField(
+      textEditingController: passwordController,
       textObscured: hidePass,
       iconData: Icons.vpn_key,
       hintText: Strings.password,
@@ -79,15 +111,13 @@ class _LoginPageState extends State<LoginPage> {
     final loginButton = IconWithTextButton(
       text: Strings.login,
       textAlign: TextAlign.center,
-      buttonWidth: MediaQuery.of(context).size.width/2,
+      buttonWidth: MediaQuery.of(context).size.width / 2,
       borderRadius: 50,
       iconSize: 20,
       hasGradientColor: true,
       textStyle:
           style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-      onPressedCallback: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-      },
+      onPressedCallback: loginUsers,
     );
 
     final loginGoogleButton = IconButton(

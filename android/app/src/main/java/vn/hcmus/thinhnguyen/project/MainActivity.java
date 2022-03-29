@@ -1,4 +1,4 @@
-package com.example.project;
+package vn.hcmus.thinhnguyen.project;
 
 import io.flutter.embedding.android.FlutterActivity;
 
