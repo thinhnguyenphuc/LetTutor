@@ -1,14 +1,13 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 
-import '../models/User.dart';
-import '../models/TutorModel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import 'api_urls.dart';
+import '../models/TutorModel.dart';
+import '../models/User.dart';
 
 class ApiServices {
-  static String token ="";
+  static String token = "";
 
   Future<List<Tutor>> fetchTutor() {
     return http.post(Uri.parse("https://sandbox.api.lettutor.com/tutor/search"),
@@ -38,11 +37,13 @@ class ApiServices {
     var auth = {};
     auth['email'] = username;
     auth['password'] = password;
-    return http.post(Uri.parse("https://sandbox.api.lettutor.com/auth/login"),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(auth)).then((http.Response response) {
+    return http
+        .post(Uri.parse("https://sandbox.api.lettutor.com/auth/login"),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(auth))
+        .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 

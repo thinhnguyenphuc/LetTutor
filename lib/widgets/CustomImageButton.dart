@@ -8,14 +8,14 @@ class ClickableImage extends StatelessWidget {
   final BoxFit imageFit;
 
   ///Create an image that can be clicked on like a button
-  const ClickableImage({Key? key,
+  const ClickableImage({
+    Key? key,
     this.imagePath = "",
     this.imageWidth = 24,
     this.imageHeight = 24,
     this.onClickedCallback,
     this.imageFit = BoxFit.contain,
-  }):
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

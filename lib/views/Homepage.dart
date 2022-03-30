@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       tag: 'logo',
       child: Image.asset('assets/images/logo.png',
           fit: BoxFit.cover,
-          width: MediaQuery.of(context).size.width/2,
+          width: MediaQuery.of(context).size.width / 2,
           height: MediaQuery.of(context).size.height / 5),
     );
     return Scaffold(

@@ -6,7 +6,8 @@ class TextCheckbox extends StatefulWidget {
   final String text;
   final TextStyle textStyle;
 
-  const TextCheckbox({Key? key,
+  const TextCheckbox({
+    Key? key,
     this.defaultCheckboxValue = false,
     this.fillColor,
     this.text = "",
@@ -17,11 +18,9 @@ class TextCheckbox extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _TextCheckboxState();
   }
-
 }
 
 class _TextCheckboxState extends State<TextCheckbox> {
-
   late bool _isChecked;
 
   @override
@@ -33,27 +32,26 @@ class _TextCheckboxState extends State<TextCheckbox> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return  Material(
+    return Material(
         color: Colors.transparent,
-        child:
-        Row(
-            children: <Widget>[
-              Checkbox(
-                checkColor: Colors.blue,
-                fillColor: widget.fillColor ?? MaterialStateProperty.resolveWith(getColor),
-                value: _isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    _isChecked = value!;
-                  });
-                },
-              ),
-              Text(widget.text, textAlign: TextAlign.center,
-                style: widget.textStyle,
-              )
-            ]
-        )
-    );
+        child: Row(children: <Widget>[
+          Checkbox(
+            checkColor: Colors.blue,
+            fillColor:
+                widget.fillColor ?? MaterialStateProperty.resolveWith(getColor),
+            value: _isChecked,
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked = value!;
+              });
+            },
+          ),
+          Text(
+            widget.text,
+            textAlign: TextAlign.center,
+            style: widget.textStyle,
+          )
+        ]));
   }
 
   Color getColor(Set<MaterialState> states) {

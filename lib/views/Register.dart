@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:project/resources/strings.dart';
+import 'package:project/resources/Strings.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
@@ -23,18 +23,17 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final logoField = IconHero(
-      tag: "logo",
-      child: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
-        return AnimatedContainer(
-          width: !isKeyboardVisible
-              ? MediaQuery.of(context).size.width / 1.5
-              : MediaQuery.of(context).size.width / 2,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.fastOutSlowIn,
-          child: Image.asset("assets/images/logo.png"),
-        );
-      })
-    );
+        tag: "logo",
+        child: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
+          return AnimatedContainer(
+            width: !isKeyboardVisible
+                ? MediaQuery.of(context).size.width / 1.5
+                : MediaQuery.of(context).size.width / 2,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.fastOutSlowIn,
+            child: Image.asset("assets/images/logo.png"),
+          );
+        }));
 
     final emailField = IconInputField(
       iconData: Icons.email,
@@ -106,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
       iconSize: 20,
       hasGradientColor: true,
       textStyle:
-      style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+          style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
       onPressedCallback: () {
         Navigator.pushNamed(context, "/homepage");
       },
@@ -123,8 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
       },
     );
 
-    return
-      Scaffold(
+    return Scaffold(
         backgroundColor: Colors.black,
         resizeToAvoidBottomInset: false,
         body: GestureDetector(
@@ -160,12 +158,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: <Widget>[
                         Padding(
                             padding:
-                            const EdgeInsets.fromLTRB(50.0, 50, 50.0, 0),
+                                const EdgeInsets.fromLTRB(50.0, 50, 50.0, 0),
                             child: IconHero(
                               tag: 'register',
-                              onTap: () {
-
-                              },
+                              onTap: () {},
                               child: registerButton,
                             )),
                       ],

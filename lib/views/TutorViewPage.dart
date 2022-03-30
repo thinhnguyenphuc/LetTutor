@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../models/TutorModel.dart';
 import '../resources/DemoTutorList.dart';
-import '../resources/strings.dart';
-
+import '../resources/Strings.dart';
 import '../view_models/TutorViewModel.dart';
 import 'TutorViewItem.dart';
-import 'package:provider/provider.dart';
+
 class TutorScreen extends StatefulWidget {
   const TutorScreen({Key? key}) : super(key: key);
 
@@ -23,31 +24,32 @@ class _TutorScreenPageState extends State<TutorScreen> {
 
   TextEditingController searchController = TextEditingController();
   String skillSort = "";
+
   @override
   Widget build(BuildContext context) {
     final tutorListOnProvider = Provider.of<TutorViewModel>(context);
-    final tutorListView = tutorListOnProvider.tutorList.isNotEmpty?
-    ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: tutorListOnProvider.tutorList.length,
-      itemBuilder: (context, position) {
-        final Tutor _tutor = tutorListOnProvider.tutorList[position];
-        return Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: TutorViewItem(
-            tutor: _tutor,
-          ),
-        );
-      },
-    ):
-    const Center(
-      child: SizedBox(
-        height: 100,
-        width: 100,
-        child: CircularProgressIndicator(),
-      ),
-    );
+    final tutorListView = tutorListOnProvider.tutorList.isNotEmpty
+        ? ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: tutorListOnProvider.tutorList.length,
+            itemBuilder: (context, position) {
+              final Tutor _tutor = tutorListOnProvider.tutorList[position];
+              return Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TutorViewItem(
+                  tutor: _tutor,
+                ),
+              );
+            },
+          )
+        : const Center(
+            child: SizedBox(
+              height: 100,
+              width: 100,
+              child: CircularProgressIndicator(),
+            ),
+          );
 
     return Scaffold(
         backgroundColor: Colors.white12,
@@ -164,7 +166,7 @@ class _TutorScreenPageState extends State<TutorScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5,10,5,5),
+                  padding: const EdgeInsets.fromLTRB(5, 10, 5, 5),
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 4,
@@ -172,7 +174,9 @@ class _TutorScreenPageState extends State<TutorScreen> {
                       children: [
                         Text(Strings.findTutor,
                             style: const TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.w800,)),
+                              fontSize: 30,
+                              fontWeight: FontWeight.w800,
+                            )),
                         Row(children: [
                           Padding(
                             padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
@@ -186,19 +190,25 @@ class _TutorScreenPageState extends State<TutorScreen> {
                                       children: <Widget>[
                                         for (String skill in skillList)
                                           Padding(
-                                            padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
+                                            padding: const EdgeInsets.fromLTRB(
+                                                2, 0, 2, 5),
                                             child: InkWell(
-                                              onTap:(){
+                                              onTap: () {
                                                 setState(() {
                                                   skillSort = skill;
                                                 });
                                               },
                                               child: Container(
-                                                padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        10, 5, 10, 5),
                                                 margin: const EdgeInsets.all(2),
                                                 decoration: BoxDecoration(
-                                                  color: skill == skillSort ? Colors.blue.shade100:Colors.grey.shade200,
-                                                  borderRadius: BorderRadius.circular(20),
+                                                  color: skill == skillSort
+                                                      ? Colors.blue.shade100
+                                                      : Colors.grey.shade200,
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
                                                 ),
                                                 child: Text(skill),
                                               ),

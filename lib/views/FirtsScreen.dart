@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/resources/strings.dart';
+import 'package:project/resources/Strings.dart';
 import 'package:project/views/Login.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/HeroAnimation.dart';

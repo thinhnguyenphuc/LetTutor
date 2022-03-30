@@ -8,7 +8,13 @@ class Routes {
   static const friendList = "/friend-list";
   static const personalAccountInfo = "/personal-account-info";
 
-  static const bottomNav = [posts, chatList, search, friendList, personalAccountInfo];
+  static const bottomNav = [
+    posts,
+    chatList,
+    search,
+    friendList,
+    personalAccountInfo
+  ];
 
   static const chatPage = "/chat";
 }

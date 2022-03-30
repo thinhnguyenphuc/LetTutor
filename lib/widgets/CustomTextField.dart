@@ -43,8 +43,8 @@ class IconInputField extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(borderRadius)));
 
     final enabledBorder = OutlineInputBorder(
-    borderSide: BorderSide(color: iconColor),
-    borderRadius: BorderRadius.all(Radius.circular(borderRadius)));
+        borderSide: BorderSide(color: iconColor),
+        borderRadius: BorderRadius.all(Radius.circular(borderRadius)));
 
     final decoratePass = InputDecoration(
       prefixIcon: Padding(
@@ -61,7 +61,6 @@ class IconInputField extends StatelessWidget {
       hintStyle: const TextStyle(color: Colors.grey),
       focusedBorder: focusBorder,
       enabledBorder: enabledBorder,
-
     );
 
     final decorate = InputDecoration(

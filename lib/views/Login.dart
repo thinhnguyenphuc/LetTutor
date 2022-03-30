@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project/resources/strings.dart';
+import 'package:project/resources/Strings.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
+
 import '../view_models/LoginViewModel.dart';
 import 'Homepage.dart';
 import 'Register.dart';
@@ -27,7 +28,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     Future<void> loginUsers() async {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text('Processing Data'),
@@ -42,17 +42,16 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       if (res) {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                const HomePage()));
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: const Text('Error:'),
           backgroundColor: Colors.red.shade300,
         ));
       }
-    };
+    }
+
+    ;
 
     final logoField = IconHero(
       tag: 'logo',

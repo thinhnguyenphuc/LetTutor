@@ -42,7 +42,7 @@ class IconWithTextButton extends StatelessWidget {
     this.iconSize = 24,
     this.iconColor = Colors.black,
     this.iconPaddingInsets =
-    const EdgeInsets.only(top: 0, left: 0, right: 10, bottom: 0),
+        const EdgeInsets.only(top: 0, left: 0, right: 10, bottom: 0),
     this.imageIconPath = "",
     this.buttonHeight = 48.0,
     this.buttonWidth = 300.0,
@@ -84,16 +84,16 @@ class IconWithTextButton extends StatelessWidget {
                             : iconPaddingInsets,
                         child: iconData != null
                             ? Icon(
-                          iconData,
-                          color: iconColor,
-                          size: iconSize,
-                        )
+                                iconData,
+                                color: iconColor,
+                                size: iconSize,
+                              )
                             : imageIconPath.isNotEmpty
-                            ? Image(
-                          image: AssetImage(imageIconPath),
-                          height: iconSize,
-                        )
-                            : null,
+                                ? Image(
+                                    image: AssetImage(imageIconPath),
+                                    height: iconSize,
+                                  )
+                                : null,
                       ),
                       Expanded(
                         child: Text(
@@ -108,7 +108,6 @@ class IconWithTextButton extends StatelessWidget {
 
 ///Button that looks like an input field
 class InputFieldButton extends StatelessWidget {
-
   final String? hintText;
   final EdgeInsets? contentPadding;
   final Widget? prefixIcon;
@@ -121,7 +120,8 @@ class InputFieldButton extends StatelessWidget {
   final void Function(String)? onSubmitted;
   final void Function(String)? onChanged;
 
-  const InputFieldButton({Key? key,
+  const InputFieldButton({
+    Key? key,
     this.hintText,
     this.contentPadding,
     this.prefixIcon,
@@ -151,16 +151,14 @@ class InputFieldButton extends StatelessWidget {
           ),
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
-          hintText:  hintText,
+          hintText: hintText,
           hintStyle: const TextStyle(
               fontSize: 15,
               color: Colors.grey,
               fontStyle: FontStyle.italic,
-              height: 3
-          ),
+              height: 3),
         ),
       ),
     );
   }
-
 }

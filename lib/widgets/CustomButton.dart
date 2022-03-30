@@ -24,37 +24,41 @@ class IconWithTextButton extends StatelessWidget {
   /// Create a rounded button with an icon at the start
   ///
   /// if iconData has a value, imageIconPath will be ignored whether it has a value or not
-  const IconWithTextButton({Key? key,
+  const IconWithTextButton({
+    Key? key,
     this.text = "",
     this.elevation = 10,
     this.borderRadius = 15.0,
     this.color = const Color.fromARGB(255, 4, 148, 124),
     this.padding = const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
     this.textAlign = TextAlign.center,
-    this.textStyle = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
+    this.textStyle = const TextStyle(
+        fontFamily: 'Montserrat',
+        fontSize: 20.0,
+        color: Colors.white,
+        fontWeight: FontWeight.bold),
     this.onPressedCallback,
     this.iconData,
     this.iconSize = 24,
     this.iconColor = Colors.black,
-    this.iconPaddingInsets = const EdgeInsets.only( top: 0, left: 0, right: 10, bottom: 0),
+    this.iconPaddingInsets =
+        const EdgeInsets.only(top: 0, left: 0, right: 10, bottom: 0),
     this.imageIconPath = "",
     this.buttonHeight = 50.0,
     this.buttonWidth = 300.0,
     this.gradientColor = const [Colors.blue, Colors.purple],
     this.hasGradientColor = false,
-  }):
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final decorationGradient = BoxDecoration(
       borderRadius: BorderRadius.circular(borderRadius),
       gradient: LinearGradient(
           colors: gradientColor,
-          begin: const FractionalOffset(0.0,0.0),
-          end: const FractionalOffset(0.7,0.0),
-          stops: const [0.0,1],
+          begin: const FractionalOffset(0.0, 0.0),
+          end: const FractionalOffset(0.7, 0.0),
+          stops: const [0.0, 1],
           tileMode: TileMode.clamp),
     );
     const decoration = BoxDecoration();
@@ -63,46 +67,41 @@ class IconWithTextButton extends StatelessWidget {
         elevation: elevation,
         borderRadius: BorderRadius.circular(borderRadius),
         color: color,
-        child:
-        SizedBox(
-          width: buttonWidth,
-          height: buttonHeight,
-          child: Container(
-              decoration: hasGradientColor?decorationGradient:decoration,
-              child: MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width,
-                  height: buttonHeight,
-                  padding: padding,
-                  onPressed: onPressedCallback,
-                  child:
-                  Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: iconData == null && imageIconPath.isEmpty ? const EdgeInsets.only(): iconPaddingInsets,
-                          child: iconData != null?
-                          Icon(
-                            iconData,
-                            color: iconColor,
-                            size: iconSize,
-                          ) : imageIconPath.isNotEmpty?
-                          Image(
-                            image: AssetImage(imageIconPath),
-                            height: iconSize,
-                          ): null,
+        child: SizedBox(
+            width: buttonWidth,
+            height: buttonHeight,
+            child: Container(
+                decoration: hasGradientColor ? decorationGradient : decoration,
+                child: MaterialButton(
+                    minWidth: MediaQuery.of(context).size.width,
+                    height: buttonHeight,
+                    padding: padding,
+                    onPressed: onPressedCallback,
+                    child: Row(mainAxisSize: MainAxisSize.max, children: [
+                      Padding(
+                        padding: iconData == null && imageIconPath.isEmpty
+                            ? const EdgeInsets.only()
+                            : iconPaddingInsets,
+                        child: iconData != null
+                            ? Icon(
+                                iconData,
+                                color: iconColor,
+                                size: iconSize,
+                              )
+                            : imageIconPath.isNotEmpty
+                                ? Image(
+                                    image: AssetImage(imageIconPath),
+                                    height: iconSize,
+                                  )
+                                : null,
+                      ),
+                      Expanded(
+                        child: Text(
+                          text,
+                          textAlign: textAlign,
+                          style: textStyle,
                         ),
-                        Expanded(
-                          child: Text(text,
-                            textAlign: textAlign,
-                            style: textStyle,
-                          ),
-                        )
-                      ]
-                  )
-              )
-          )
-        )
-
-    );
+                      )
+                    ])))));
   }
 }
