@@ -9,6 +9,7 @@ import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
 import '../view_models/LoginViewModel.dart';
+import 'ForgetPassScreen.dart';
 import 'Homepage.dart';
 import 'Register.dart';
 
@@ -30,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Future<void> loginUsers() async {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Processing Data'),
+        content: const Text('Processing Data',textAlign: TextAlign.center,),
         backgroundColor: Colors.green.shade300,
       ));
 
@@ -50,8 +51,6 @@ class _LoginPageState extends State<LoginPage> {
         ));
       }
     }
-
-    ;
 
     final logoField = IconHero(
       tag: 'logo',
@@ -103,7 +102,8 @@ class _LoginPageState extends State<LoginPage> {
       color: Colors.white,
       fontSize: 15,
       onLinkClickedCallback: () {
-        Navigator.pushNamed(context, '/login');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ForgetPassPage()));
       },
     );
 
@@ -214,12 +214,12 @@ class _LoginPageState extends State<LoginPage> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          10.0, 0, 5.0, 30),
+                                          10.0, 0, 5.0, 25),
                                       child: loginGoogleButton,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          10, 0, 5.0, 30),
+                                          10, 0, 5.0, 25),
                                       child: loginFacebookButton,
                                     ),
                                   ],

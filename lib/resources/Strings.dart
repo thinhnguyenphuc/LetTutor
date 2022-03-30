@@ -17,4 +17,7 @@ class Strings {
   static String noUpcoming = "You have no upcoming lesson, click below to book";
   static String bookLesson = "Book a lesson";
   static String findTutor = "Group tutor by skill";
+  static String sendResetLink = "Send reset link";
+  static String resetPassword = "Reset Password";
+  static String resetPasswordContent = "Please enter your email address to search for your account";
 }
