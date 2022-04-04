@@ -26,27 +26,23 @@ class _LoginPageState extends State<LoginPage> {
   LoginViewModel loginViewModel = LoginViewModel();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool isButtonDisabled = false;
   @override
   Widget build(BuildContext context) {
     Future<void> loginUsers() async {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Processing Data',textAlign: TextAlign.center,),
-        backgroundColor: Colors.green.shade300,
-      ));
-
-      //get response from ApiClient
-      bool res = await loginViewModel.login(
+      isButtonDisabled = true;
+      String res = await loginViewModel.login(
         usernameController.text,
         passwordController.text,
       );
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      if (res) {
+      if (res == "SUCCESS") {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
       } else {
+        isButtonDisabled = false;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text('Error:'),
+          content: Text(res, textAlign: TextAlign.center,),
           backgroundColor: Colors.red.shade300,
         ));
       }
@@ -116,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
       hasGradientColor: true,
       textStyle:
           style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-      onPressedCallback: loginUsers,
+      onPressedCallback: isButtonDisabled ? null: loginUsers,
     );
 
     final loginGoogleButton = IconButton(

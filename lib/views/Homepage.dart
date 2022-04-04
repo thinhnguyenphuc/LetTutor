@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project/views/ScheduleViewPage.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
 import '../widgets/CustomAppBar.dart';
@@ -25,10 +26,7 @@ class _HomePageState extends State<HomePage> {
 
     const List<Widget> _pages = <Widget>[
       TutorScreen(),
-      Icon(
-        Icons.camera,
-        size: 150,
-      ),
+      ScheduleScreen(),
       Icon(
         Icons.chat,
         size: 150,
@@ -42,49 +40,52 @@ class _HomePageState extends State<HomePage> {
           width: MediaQuery.of(context).size.width / 2,
           height: MediaQuery.of(context).size.height / 5),
     );
-    return Scaffold(
-      backgroundColor: Colors.white,
-      resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(logo),
-      body: Center(
-        child: _pages.elementAt(_selectedIndex), //New
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.chalkboardTeacher),
-            label: 'Tutor',
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
-            label: 'Schedule',
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'History',
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book_outlined),
-            label: 'Courses',
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Setting',
-            backgroundColor: Colors.black,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        //New
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.amberAccent,
-        unselectedIconTheme: const IconThemeData(
-          color: Colors.grey,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        appBar: CustomAppBar(logo),
+        body: Center(
+          child: _pages.elementAt(_selectedIndex), //New
         ),
-        type: BottomNavigationBarType.shifting,
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.chalkboardTeacher),
+              label: 'Tutor',
+              backgroundColor: Colors.black,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.schedule),
+              label: 'Schedule',
+              backgroundColor: Colors.black,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.history),
+              label: 'History',
+              backgroundColor: Colors.black,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book_outlined),
+              label: 'Courses',
+              backgroundColor: Colors.black,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Setting',
+              backgroundColor: Colors.black,
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          //New
+          onTap: _onItemTapped,
+          selectedItemColor: Colors.amberAccent,
+          unselectedIconTheme: const IconThemeData(
+            color: Colors.grey,
+          ),
+          type: BottomNavigationBarType.shifting,
+        ),
       ),
     );
   }

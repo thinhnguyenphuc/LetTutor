@@ -33,7 +33,7 @@ class ApiServices {
     });
   }
 
-  Future<bool> login(String username, String password) {
+  Future<String> login(String username, String password) {
     var auth = {};
     auth['email'] = username;
     auth['password'] = password;
@@ -51,15 +51,14 @@ class ApiServices {
         if (kDebugMode) {
           print(response.reasonPhrase);
         }
-        throw FetchDataException(
-            "StatusCode:$statusCode, Error:${response.reasonPhrase}");
+        return "$statusCode "+ response.reasonPhrase.toString();
+      } else {
+        const JsonDecoder _decoder = JsonDecoder();
+        final userContainer = _decoder.convert(jsonBody);
+        final User user = User.fromJson(userContainer);
+        token = user.tokens.access.token;
+        return "SUCCESS";
       }
-
-      const JsonDecoder _decoder = JsonDecoder();
-      final userContainer = _decoder.convert(jsonBody);
-      final User user = User.fromJson(userContainer);
-      token = user.tokens.access.token;
-      return true;
     });
   }
 }
