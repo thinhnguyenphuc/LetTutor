@@ -1,3 +1,4 @@
+
 # FinalProject
  
 Milestone 1:
@@ -15,3 +16,6 @@ Milestone 2:
 
 Yêu cầu tiến độ 2 (Final project). Xây dựng đồ án cuối kì đầy đủ các luồng chạy offline. Tạo branch offline-app và làm trên branch này.
 Sinh viên sau khi hoàn thành, quay video toàn bộ luồng ứng dụng và đính kèm link video vào file Readme.txt trong project.
+
+# LetTutor
+
