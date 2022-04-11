@@ -20,4 +20,7 @@ class Strings {
   static String sendResetLink = "Send reset link";
   static String resetPassword = "Reset Password";
   static String resetPasswordContent = "Please enter your email address to search for your account";
+  static String passwordAndRePasswordNotMatch = "Password and RePassword not match";
+  static String userNameEmpty = "User name is empty";
+  static String sendEmailToConfirmation = "An email is send to your email address to confirm your account";
 }

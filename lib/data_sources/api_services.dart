@@ -3,14 +3,16 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
 import '../models/User.dart';
 
 class ApiServices {
   static String token = "";
+  static String baseUrl = "https://sandbox.api.lettutor.com";
 
   Future<List<Tutor>> fetchTutor() {
-    return http.post(Uri.parse("https://sandbox.api.lettutor.com/tutor/search"),
+    return http.post(Uri.parse("$baseUrl/tutor/search"),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
@@ -33,12 +35,43 @@ class ApiServices {
     });
   }
 
-  Future<String> login(String username, String password) {
+  Future<ServiceMessage> login(String username, String password) {
     var auth = {};
     auth['email'] = username;
     auth['password'] = password;
     return http
-        .post(Uri.parse("https://sandbox.api.lettutor.com/auth/login"),
+        .post(Uri.parse("$baseUrl/auth/login"),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(auth))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+      if (statusCode != 200) {
+        const JsonDecoder _decoder = JsonDecoder();
+        final userContainer = _decoder.convert(jsonBody);
+        final ServiceMessage serviceMessage =
+        ServiceMessage.fromJson(userContainer);
+
+        return serviceMessage;
+      }
+      else {
+        const JsonDecoder _decoder = JsonDecoder();
+        final userContainer = _decoder.convert(jsonBody);
+        final User user = User.fromJson(userContainer);
+        token = user.tokens.access.token;
+        return ServiceMessage(statusCode: 200, message: "SUCCESS");
+      }
+    });
+  }
+
+  Future<ServiceMessage> register(String email, String password) {
+    var auth = {};
+    auth['email'] = email;
+    auth['password'] = password;
+    return http
+        .post(Uri.parse("$baseUrl/auth/register"),
             headers: {
               'Content-Type': 'application/json',
             },
@@ -47,17 +80,14 @@ class ApiServices {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
-      if (statusCode != 200) {
-        if (kDebugMode) {
-          print(response.reasonPhrase);
-        }
-        return "$statusCode "+ response.reasonPhrase.toString();
+      if(statusCode == 201) {
+        return ServiceMessage(statusCode: 201, message: "CREATED");
       } else {
         const JsonDecoder _decoder = JsonDecoder();
-        final userContainer = _decoder.convert(jsonBody);
-        final User user = User.fromJson(userContainer);
-        token = user.tokens.access.token;
-        return "SUCCESS";
+        final messageContainer = _decoder.convert(jsonBody);
+        final ServiceMessage serviceMessage =
+        ServiceMessage.fromJson(messageContainer);
+        return serviceMessage;
       }
     });
   }

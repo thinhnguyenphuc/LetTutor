@@ -8,6 +8,8 @@ import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
+import '../Utils.dart';
+import '../models/ServiceMessageModel.dart';
 import '../view_models/LoginViewModel.dart';
 import 'ForgetPassScreen.dart';
 import 'Homepage.dart';
@@ -23,7 +25,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool hidePass = true;
-  LoginViewModel loginViewModel = LoginViewModel();
+  final LoginViewModel _loginViewModel = LoginViewModel();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isButtonDisabled = false;
@@ -31,20 +33,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Future<void> loginUsers() async {
       isButtonDisabled = true;
-      String res = await loginViewModel.login(
+      ServiceMessage res = await _loginViewModel.login(
         usernameController.text,
         passwordController.text,
       );
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      if (res == "SUCCESS") {
+      if (res.message == "SUCCESS") {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
       } else {
         isButtonDisabled = false;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(res, textAlign: TextAlign.center,),
-          backgroundColor: Colors.red.shade300,
-        ));
+        Utils.showSnackBar(context,res.message,  Colors.red.shade300);
       }
     }
 
