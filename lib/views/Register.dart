@@ -1,12 +1,15 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:project/resources/Strings.dart';
 import 'package:project/widgets/CustomButton.dart';
-import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
+import '../Utils.dart';
+import '../models/ServiceMessageModel.dart';
+import '../view_models/RegisterViewModel.dart';
 import 'Login.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -19,9 +22,29 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   TextStyle style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool hidePass = true;
-
+  final RegisterViewModel _registerViewModel = RegisterViewModel();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _rePasswordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+
+    Future<void> registerUser() async {
+      ServiceMessage res = await _registerViewModel.register(
+        _emailController.text,
+        _passwordController.text,
+      );
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      if (res.statusCode == 201) {
+        Utils.showSnackBar(context,Strings.sendEmailToConfirmation,  Colors.lightGreenAccent.shade100);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const LoginPage()));
+      } else {
+        Utils.showSnackBar(context,res.message,  Colors.red.shade300);
+      }
+    }
+
     final logoField = IconHero(
         tag: "logo",
         child: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
@@ -39,12 +62,14 @@ class _RegisterPageState extends State<RegisterPage> {
       iconData: Icons.email,
       hintText: Strings.email,
       autoFocus: false,
+      textEditingController: _emailController,
     );
 
     final usernameField = IconInputField(
       iconData: Icons.person,
       hintText: Strings.userName,
       autoFocus: false,
+      textEditingController: _usernameController,
     );
 
     final passwordField = IconInputField(
@@ -53,6 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
       hintText: Strings.password,
       autoFocus: false,
       passField: true,
+      textEditingController: _passwordController,
       hidePassButton: IconButton(
           icon: Icon(
             hidePass ? Icons.visibility : Icons.visibility_off,
@@ -71,6 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
       hintText: Strings.rePassword,
       autoFocus: false,
       passField: true,
+      textEditingController: _rePasswordController,
       hidePassButton: IconButton(
           icon: Icon(
             hidePass ? Icons.visibility : Icons.visibility_off,
@@ -83,20 +110,6 @@ class _RegisterPageState extends State<RegisterPage> {
           }),
     );
 
-    final rememberField = TextCheckbox(
-      textStyle: style.copyWith(color: Colors.white, fontSize: 15),
-      text: Strings.rememberMe,
-    );
-
-    final forgotPasswordField = PartialLinkText(
-      linkText: Strings.forgotPassword,
-      color: Colors.white,
-      fontSize: 15,
-      onLinkClickedCallback: () {
-        Navigator.pushNamed(context, '/login');
-      },
-    );
-
     final registerButton = IconWithTextButton(
       text: Strings.signUp,
       textAlign: TextAlign.center,
@@ -107,7 +120,20 @@ class _RegisterPageState extends State<RegisterPage> {
       textStyle:
           style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
       onPressedCallback: () {
-        Navigator.pushNamed(context, "/homepage");
+        FocusManager.instance.primaryFocus?.unfocus();
+        if(_usernameController.text.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(Strings.userNameEmpty, textAlign: TextAlign.center,),
+            backgroundColor: Colors.red.shade300,
+          ));
+        } else if(_passwordController.text != _rePasswordController.text){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(Strings.passwordAndRePasswordNotMatch, textAlign: TextAlign.center,),
+            backgroundColor: Colors.red.shade300,
+          ));
+        }else {
+          registerUser();
+        }
       },
     );
 
