@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/Schedule.dart';
 import '../resources/Strings.dart';
+import '../view_models/ScheduleViewModel.dart';
+import 'ScheduleViewItem.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({Key? key}) : super(key: key);
@@ -11,10 +14,39 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenPageState extends State<ScheduleScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ScheduleViewModel>(context, listen: false).getScheduleList();
+  }
 
   @override
   Widget build(BuildContext context) {
-
+    final scheduleListOnProvider = Provider.of<ScheduleViewModel>(context);
+    final scheduleListView = scheduleListOnProvider.schedules.isNotEmpty
+        ? ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: scheduleListOnProvider.schedules.length,
+            itemBuilder: (context, position) {
+              final Schedule _schedule =
+                  scheduleListOnProvider.schedules[position];
+              return Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: ScheduleViewItem(
+                  schedule: _schedule,
+                ),
+              );
+            },
+          )
+        : const Center(
+            child: SizedBox(
+              height: 100,
+              width: 100,
+              child: CircularProgressIndicator(),
+            ),
+          );
     return Scaffold(
         backgroundColor: Colors.white12,
         resizeToAvoidBottomInset: false,
@@ -34,8 +66,8 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
                         color: Colors.black,
                       ),
                       borderRadius: const BorderRadius.all(Radius.circular(
-                          5.0) //                 <--- border radius here
-                      ),
+                              5.0) //                 <--- border radius here
+                          ),
                       color: Colors.blueGrey.shade500),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +82,7 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
                                 children: [
                                   Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 1.1,
+                                        MediaQuery.of(context).size.width / 1.1,
                                     padding: const EdgeInsets.all(16.0),
                                     child: Column(
                                       children: const <Widget>[
@@ -70,7 +102,7 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
                                 children: [
                                   Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 1.1,
+                                        MediaQuery.of(context).size.width / 1.1,
                                     padding: const EdgeInsets.fromLTRB(
                                         16.0, 0, 16, 16),
                                     child: Column(
@@ -107,18 +139,18 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
                                         backgroundColor: MaterialStateProperty
                                             .resolveWith<Color>(
                                                 (Set<MaterialState> states) {
-                                              if (states.contains(
-                                                  MaterialState.pressed)) {
-                                                return Colors.white54;
-                                              }
-                                              return Colors
-                                                  .white; // Use the component's default.
-                                            }),
+                                          if (states.contains(
+                                              MaterialState.pressed)) {
+                                            return Colors.white54;
+                                          }
+                                          return Colors
+                                              .white; // Use the component's default.
+                                        }),
                                         shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
+                                                RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(28.0),
+                                                    BorderRadius.circular(28.0),
                                                 side: const BorderSide(
                                                     color: Colors.blue)))),
                                   )
@@ -129,6 +161,7 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
                     ],
                   ),
                 ),
+                scheduleListView
               ],
             ),
           ),

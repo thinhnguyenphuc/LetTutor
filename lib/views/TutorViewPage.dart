@@ -34,7 +34,7 @@ class _TutorScreenPageState extends State<TutorScreen> {
             shrinkWrap: true,
             itemCount: tutorListOnProvider.tutorList.length,
             itemBuilder: (context, position) {
-              final Tutor _tutor = tutorListOnProvider.tutorList[position];
+              final TutorInfo _tutor = tutorListOnProvider.tutorList[position];
               return Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: TutorViewItem(

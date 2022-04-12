@@ -6,7 +6,7 @@ import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
 
 class TutorViewItem extends StatelessWidget {
-  final Tutor tutor;
+  final TutorInfo tutor;
 
   const TutorViewItem({Key? key, required this.tutor}) : super(key: key);
 
