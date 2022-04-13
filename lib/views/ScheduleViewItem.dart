@@ -5,16 +5,24 @@ import 'package:intl/intl.dart';
 import '../models/Schedule.dart';
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
+import '../resources/Strings.dart';
 
-class ScheduleViewItem extends StatelessWidget {
+class ScheduleViewItem extends StatefulWidget {
   final Schedule schedule;
 
   const ScheduleViewItem({Key? key, required this.schedule}) : super(key: key);
 
   @override
+  _ScheduleViewItemState createState() => _ScheduleViewItemState();
+}
+
+class _ScheduleViewItemState extends State<ScheduleViewItem> {
+  bool onClickRequest = true;
+
+  @override
   Widget build(BuildContext context) {
-    var time = schedule.scheduleDetailInfo.scheduleInfo.date;
-    TutorInfo tutor = schedule.scheduleDetailInfo.scheduleInfo.tutorInfo;
+    var time = widget.schedule.scheduleDetailInfo.scheduleInfo.date;
+    TutorInfo tutor = widget.schedule.scheduleDetailInfo.scheduleInfo.tutorInfo;
     var countryName = CountrySingleton().countryHashMap[tutor.country];
     final localNameView =
         countryName != null ? Text(countryName) : const Text("Null");
@@ -129,21 +137,58 @@ class ScheduleViewItem extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-              child: Row(
+              child: Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(children: [
-                        Text(
-                            "Lesson Time: " +
-                                schedule.scheduleDetailInfo.startPeriod +
-                                " - " +
-                                schedule.scheduleDetailInfo.endPeriod,
-                            style: const TextStyle(fontSize: 25)),
-                      ]),
-                    ],
-                  ),
+                  Row(children: [
+                    Text(
+                        "Lesson Time: " +
+                            widget.schedule.scheduleDetailInfo.startPeriod +
+                            " - " +
+                            widget.schedule.scheduleDetailInfo.endPeriod,
+                        style: const TextStyle(fontSize: 25)),
+                  ]),
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5.0)),
+                      ),
+                      margin: const EdgeInsets.only(top: 10),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(onClickRequest
+                                    ? Icons.keyboard_arrow_down
+                                    : Icons.keyboard_arrow_right),
+                                onPressed: () {
+                                  setState(() {
+                                    onClickRequest = !onClickRequest;
+                                  });
+                                },
+                              ),
+                              Text("Request for lesson"),
+                              const Spacer(),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text("Edit Request"),
+                              ),
+                            ],
+                          ),
+                          Visibility(
+                            visible: onClickRequest,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10,10,10,10),
+                              child: Text(widget.schedule.studentRequest != null
+                                  ? widget.schedule.studentRequest!
+                                  : Strings.emptyStudentRequests,
+                                style: TextStyle(fontSize: 20, color: Colors.grey),),
+                            ),
+                          ),
+                        ],
+                      )),
                 ],
               ),
             ),

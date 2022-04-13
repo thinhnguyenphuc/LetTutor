@@ -24,14 +24,14 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     final scheduleListOnProvider = Provider.of<ScheduleViewModel>(context);
-    final scheduleListView = scheduleListOnProvider.schedules.isNotEmpty
+    final scheduleListView = scheduleListOnProvider.nextSchedule.isNotEmpty
         ? ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: scheduleListOnProvider.schedules.length,
+            itemCount: scheduleListOnProvider.nextSchedule.length,
             itemBuilder: (context, position) {
               final Schedule _schedule =
-                  scheduleListOnProvider.schedules[position];
+                  scheduleListOnProvider.nextSchedule[position];
               return Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: ScheduleViewItem(
