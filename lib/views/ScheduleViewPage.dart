@@ -166,10 +166,6 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-            elevation: 0.0,
-            child: const Icon(Icons.message_sharp),
-            backgroundColor: Colors.blue,
-            onPressed: () {}));
+    );
   }
 }

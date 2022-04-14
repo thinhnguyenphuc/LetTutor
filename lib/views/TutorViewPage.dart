@@ -231,10 +231,6 @@ class _TutorScreenPageState extends State<TutorScreen> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-            elevation: 0.0,
-            child: const Icon(Icons.message_sharp),
-            backgroundColor: Colors.blue,
-            onPressed: () {}));
+    );
   }
 }

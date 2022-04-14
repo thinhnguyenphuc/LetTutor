@@ -86,6 +86,11 @@ class _HomePageState extends State<HomePage> {
           ),
           type: BottomNavigationBarType.shifting,
         ),
+          floatingActionButton: FloatingActionButton(
+              elevation: 0.0,
+              child: const Icon(Icons.message_sharp),
+              backgroundColor: Colors.grey,
+              onPressed: () {})
       ),
     );
   }

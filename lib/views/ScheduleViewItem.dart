@@ -33,7 +33,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
           borderRadius: const BorderRadius.all(
             Radius.circular(10.0),
           ),
-          color: Colors.white,
+          color: Colors.green.shade200,
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,
@@ -156,6 +156,8 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                       ),
                       margin: const EdgeInsets.only(top: 10),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
@@ -180,11 +182,15 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                           Visibility(
                             visible: onClickRequest,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10,10,10,10),
-                              child: Text(widget.schedule.studentRequest != null
-                                  ? widget.schedule.studentRequest!
-                                  : Strings.emptyStudentRequests,
-                                style: TextStyle(fontSize: 20, color: Colors.grey),),
+                              padding:
+                                  const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Text(
+                                widget.schedule.studentRequest != null
+                                    ? widget.schedule.studentRequest!
+                                    : Strings.emptyStudentRequests,
+                                style:
+                                    TextStyle(fontSize: 20, color: Colors.grey),
+                              ),
                             ),
                           ),
                         ],
