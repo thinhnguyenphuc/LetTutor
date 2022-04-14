@@ -95,7 +95,7 @@ class ApiServices {
 
   Future<List<Schedule>> fetchSchedule() {
     return http
-        .get(Uri.parse("$baseUrl/booking/list/student"),
+        .get(Uri.parse("$baseUrl/booking/list"),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
@@ -113,8 +113,31 @@ class ApiServices {
       } else {
         const JsonDecoder _decoder = JsonDecoder();
         final dataContainer = _decoder.convert(jsonBody);
-        final List schedules = dataContainer['data']['rows'];
-        return schedules.map((contactRaw) => Schedule.fromJson(contactRaw)).toList();
+        final int count = dataContainer['data']['count'];
+        return http
+            .get(Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+          )
+            .then((http.Response response) {
+          final String jsonBody = response.body;
+          final int statusCode = response.statusCode;
+
+          if (statusCode != 200) {
+            if (kDebugMode) {
+              print(response.reasonPhrase);
+            }
+            throw FetchDataException(
+                "StatusCode:$statusCode, Error:${response.body}");
+          } else {
+            const JsonDecoder _decoder = JsonDecoder();
+            final dataContainer = _decoder.convert(jsonBody);
+            final List schedules = dataContainer['data']['rows'];
+            return schedules.map((contactRaw) => Schedule.fromJson(contactRaw)).toList();
+          }
+        });
       }
     });
   }

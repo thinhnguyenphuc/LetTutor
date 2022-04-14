@@ -24,6 +24,20 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     final scheduleListOnProvider = Provider.of<ScheduleViewModel>(context);
+    final totalLearnedTime = scheduleListOnProvider.totalLearnedTime.isNotEmpty? Text("Total lesson time is "+scheduleListOnProvider.totalLearnedTime,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 30,
+        )) : const Center(
+      child: SizedBox(
+        height: 50,
+        width: 50,
+        child: CircularProgressIndicator(),
+      ),
+    );
+
     final scheduleListView = scheduleListOnProvider.nextSchedule.isNotEmpty
         ? ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
@@ -85,14 +99,8 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
                                         MediaQuery.of(context).size.width / 1.1,
                                     padding: const EdgeInsets.all(16.0),
                                     child: Column(
-                                      children: const <Widget>[
-                                        Text("Total lesson time is ",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 30,
-                                            )),
+                                      children: <Widget>[
+                                        totalLearnedTime
                                       ],
                                     ),
                                   ),
