@@ -4,7 +4,7 @@ import '../data_sources/api_services.dart';
 import '../models/TutorModel.dart';
 
 class TutorViewModel with ChangeNotifier {
-  List<Tutor> tutorList = [];
+  List<TutorInfo> tutorList = [];
 
   getTutorList() async {
     tutorList = await ApiServices().fetchTutor();

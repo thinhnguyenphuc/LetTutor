@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/Schedule.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
 import '../models/User.dart';
@@ -11,7 +12,7 @@ class ApiServices {
   static String token = "";
   static String baseUrl = "https://sandbox.api.lettutor.com";
 
-  Future<List<Tutor>> fetchTutor() {
+  Future<List<TutorInfo>> fetchTutor() {
     return http.post(Uri.parse("$baseUrl/tutor/search"),
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ class ApiServices {
       const JsonDecoder _decoder = JsonDecoder();
       final tutorContainer = _decoder.convert(jsonBody);
       final List tutors = tutorContainer['rows'];
-      return tutors.map((contactRaw) => Tutor.fromJson(contactRaw)).toList();
+      return tutors.map((contactRaw) => TutorInfo.fromJson(contactRaw)).toList();
     });
   }
 
@@ -88,6 +89,32 @@ class ApiServices {
         final ServiceMessage serviceMessage =
         ServiceMessage.fromJson(messageContainer);
         return serviceMessage;
+      }
+    });
+  }
+
+  Future<List<Schedule>> fetchSchedule() {
+    return http
+        .get(Uri.parse("$baseUrl/booking/list/student"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },)
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200) {
+        if (kDebugMode) {
+          print(response.reasonPhrase);
+        }
+        throw FetchDataException(
+            "StatusCode:$statusCode, Error:${response.body}");
+      } else {
+        const JsonDecoder _decoder = JsonDecoder();
+        final dataContainer = _decoder.convert(jsonBody);
+        final List schedules = dataContainer['data']['rows'];
+        return schedules.map((contactRaw) => Schedule.fromJson(contactRaw)).toList();
       }
     });
   }

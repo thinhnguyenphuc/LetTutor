@@ -1,18 +1,18 @@
 import 'dart:convert';
 
-List<Tutor> tutorFromJson(String str) =>
-    List<Tutor>.from(json.decode(str).map((x) => Tutor.fromJson(x)));
+List<TutorInfo> tutorFromJson(String str) =>
+    List<TutorInfo>.from(json.decode(str).map((x) => TutorInfo.fromJson(x)));
 
-String tutorToJson(List<Tutor> data) =>
+String tutorToJson(List<TutorInfo> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Tutor {
-  Tutor({
+class TutorInfo {
+  TutorInfo({
     required this.level,
     required this.email,
-    required this.google,
-    required this.facebook,
-    required this.apple,
+    this.google,
+    this.facebook,
+    this.apple,
     required this.avatar,
     required this.name,
     required this.country,
@@ -21,14 +21,14 @@ class Tutor {
     required this.birthday,
     required this.requestPassword,
     required this.isActivated,
-    required this.isPhoneActivated,
-    required this.requireNote,
+    this.isPhoneActivated,
+    this.requireNote,
     required this.timezone,
-    required this.phoneAuth,
+    this.phoneAuth,
     required this.isPhoneAuthActivated,
     required this.createdAt,
     required this.updatedAt,
-    required this.deletedAt,
+    this.deletedAt,
     required this.feedbacks,
     required this.schedules,
     required this.id,
@@ -38,13 +38,13 @@ class Tutor {
     required this.education,
     required this.experience,
     required this.profession,
-    required this.accent,
+    this.accent,
     required this.targetStudent,
     required this.interests,
     required this.languages,
-    required this.specialties,
-    required this.resume,
-    required this.isNative,
+    this.specialties = "",
+    this.resume,
+    this.isNative,
     required this.price,
   });
 
@@ -87,7 +87,7 @@ class Tutor {
   final dynamic isNative;
   final int price;
 
-  factory Tutor.fromJson(Map<String, dynamic> json) => Tutor(
+  factory TutorInfo.fromJson(Map<String, dynamic> json) => TutorInfo(
         level: json["level"],
         email: json["email"],
         google: json["google"],
@@ -109,24 +109,24 @@ class Tutor {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"],
-        feedbacks: List<Feedback>.from(
-            json["feedbacks"].map((x) => Feedback.fromJson(x))),
-        schedules: List<dynamic>.from(json["schedules"].map((x) => x)),
+        feedbacks: json["feedbacks"]!=null ? List<Feedback>.from(
+            json["feedbacks"].map((x) => Feedback.fromJson(x))) : [],
+        schedules: json["schedules"]!=null ?List<dynamic>.from(json["schedules"].map((x) => x)) : [],
         id: json["id"],
-        userId: json["userId"],
-        video: json["video"],
-        bio: json["bio"],
-        education: json["education"],
-        experience: json["experience"],
-        profession: json["profession"],
-        accent: json["accent"],
-        targetStudent: json["targetStudent"],
-        interests: json["interests"],
-        languages: json["languages"],
-        specialties: json["specialties"],
-        resume: json["resume"],
-        isNative: json["isNative"],
-        price: json["price"],
+        userId: json["userId"] ?? "",
+        video: json["video"] ?? "",
+        bio: json["bio"] ?? "",
+        education: json["education"] ?? "",
+        experience: json["experience"] ?? "",
+        profession: json["profession"] ?? "",
+        accent: json["accent"] ?? "",
+        targetStudent: json["targetStudent"] ?? "",
+        interests: json["interests"] ?? "",
+        languages: json["languages"] ?? "",
+        specialties: json["specialties"] ?? "",
+        resume: json["resume"] ?? "",
+        isNative: json["isNative"] ?? "",
+        price: json["price"]?? 0,
       );
 
   Map<String, dynamic> toJson() => {
