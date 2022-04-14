@@ -60,7 +60,7 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 3,
+                  height: MediaQuery.of(context).size.height / 4,
                   decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.black,

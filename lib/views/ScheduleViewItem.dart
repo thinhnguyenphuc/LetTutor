@@ -49,7 +49,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.1,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   child: Text(DateFormat.yMMMEd("en_US").format(time),
                       style: TextStyle(
                           color: Colors.grey.shade700,

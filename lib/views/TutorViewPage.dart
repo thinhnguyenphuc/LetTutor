@@ -52,185 +52,63 @@ class _TutorScreenPageState extends State<TutorScreen> {
           );
 
     return Scaffold(
-        backgroundColor: Colors.white12,
-        resizeToAvoidBottomInset: false,
-        body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: SingleChildScrollView(
-            physics: const ScrollPhysics(),
-            child: Column(
-              children: [
-                Container(
+      backgroundColor: Colors.white12,
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SingleChildScrollView(
+          physics: const ScrollPhysics(),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                child: SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 3,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
-                          ),
-                      color: Colors.blueGrey.shade500),
+                  height: MediaQuery.of(context).size.height / 13,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.1,
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Column(
-                                      children: const <Widget>[
-                                        Text("Total lesson time is ",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 30,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                      Text(Strings.findTutor,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                          )),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: skillList.length,
+                          itemBuilder: (context, position) {
+                            return Container(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                              margin: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                color: skillList[position] == skillSort
+                                    ? Colors.blue.shade100
+                                    : Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.1,
-                                    padding: const EdgeInsets.fromLTRB(
-                                        16.0, 0, 16, 16),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(Strings.noUpcoming,
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                              child: TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    skillSort = skillList[position];
+                                  });
+                                },
+                                child: Text(skillList[position]),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.date_range,
-                                          color: Colors.blueGrey,
-                                        ),
-                                        Text(Strings.bookLesson,
-                                            style: const TextStyle(
-                                                color: Colors.blueGrey))
-                                      ],
-                                    ),
-                                    style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty
-                                            .resolveWith<Color>(
-                                                (Set<MaterialState> states) {
-                                          if (states.contains(
-                                              MaterialState.pressed)) {
-                                            return Colors.white54;
-                                          }
-                                          return Colors
-                                              .white; // Use the component's default.
-                                        }),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(28.0),
-                                                side: const BorderSide(
-                                                    color: Colors.blue)))),
-                                  )
-                                ],
-                              ),
-                            ]),
-                          ])
+                            );
+                          },
+                          scrollDirection: Axis.horizontal,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 10, 5, 5),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 4,
-                    child: Column(
-                      children: [
-                        Text(Strings.findTutor,
-                            style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w800,
-                            )),
-                        Row(children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width / 1.2,
-                              child: Flex(
-                                direction: Axis.horizontal,
-                                children: [
-                                  Flexible(
-                                    child: Wrap(
-                                      children: <Widget>[
-                                        for (String skill in skillList)
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                2, 0, 2, 5),
-                                            child: InkWell(
-                                              onTap: () {
-                                                setState(() {
-                                                  skillSort = skill;
-                                                });
-                                              },
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        10, 5, 10, 5),
-                                                margin: const EdgeInsets.all(2),
-                                                decoration: BoxDecoration(
-                                                  color: skill == skillSort
-                                                      ? Colors.blue.shade100
-                                                      : Colors.grey.shade200,
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Text(skill),
-                                              ),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ]),
-                      ],
-                    ),
-                  ),
-                ),
-                tutorListView
-              ],
-            ),
+              ),
+              tutorListView
+            ],
           ),
         ),
+      ),
     );
   }
 }
