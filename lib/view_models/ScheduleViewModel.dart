@@ -6,19 +6,22 @@ import '../models/Schedule.dart';
 class ScheduleViewModel with ChangeNotifier {
   List<Schedule> schedules = [];
   List<Schedule> nextSchedule = [];
+  List<Schedule> historySchedule = [];
   String totalLearnedTime = "";
 
   getScheduleList() async {
     int totalLearnTime = 0;
     schedules = await ApiServices().fetchSchedule();
     DateTime now = DateTime.now();
-    if(schedules.isNotEmpty){
+    if (schedules.isNotEmpty) {
       nextSchedule = [];
-      for(Schedule schedule in schedules){
-        if(schedule.scheduleDetailInfo.scheduleInfo.date.isAfter(now)){
+      for (Schedule schedule in schedules) {
+        if (schedule.scheduleDetailInfo.scheduleInfo.date.isAfter(now)) {
           nextSchedule.add(schedule);
         } else {
-          totalLearnTime += schedule.scheduleDetailInfo.endPeriodTimestamp - schedule.scheduleDetailInfo.startPeriodTimestamp;
+          historySchedule.add(schedule);
+          totalLearnTime += schedule.scheduleDetailInfo.endPeriodTimestamp -
+              schedule.scheduleDetailInfo.startPeriodTimestamp;
         }
       }
     }
@@ -26,9 +29,9 @@ class ScheduleViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  String _calTotalLearnedTime(int totalLearnedTime){
-    int hours = (totalLearnedTime/1000)~/3600;
-    double minutes = (totalLearnedTime/1000)%3600/60;
+  String _calTotalLearnedTime(int totalLearnedTime) {
+    int hours = (totalLearnedTime / 1000) ~/ 3600;
+    double minutes = (totalLearnedTime / 1000) % 3600 / 60;
     return "$hours hours $minutes minutes";
   }
 }
