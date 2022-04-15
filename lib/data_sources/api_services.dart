@@ -141,6 +141,27 @@ class ApiServices {
       }
     });
   }
+
+  Future<ServiceMessage> updateStudentRequest(String bookedId, String request) {
+    var request = {};
+    request['studentRequest'] = request;
+    return http
+        .post(Uri.parse("$baseUrl/booking/student-request/:$bookedId"),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(request))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if(statusCode == 200) {
+        return ServiceMessage(statusCode: 200, message: "SUCCESS");
+      } else {
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
+      }
+    });
+  }
 }
 
 class FetchDataException implements Exception {

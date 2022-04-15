@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../data_sources/api_services.dart';
 import '../models/Schedule.dart';
+import '../models/ServiceMessageModel.dart';
 
 class ScheduleViewModel with ChangeNotifier {
   List<Schedule> schedules = [];
   List<Schedule> nextSchedule = [];
   List<Schedule> historySchedule = [];
   String totalLearnedTime = "";
+  ServiceMessage updateStudentRequestStatus = ServiceMessage(statusCode: 0, message: "");
 
   getScheduleList() async {
     int totalLearnTime = 0;
@@ -26,6 +28,11 @@ class ScheduleViewModel with ChangeNotifier {
       }
     }
     totalLearnedTime = _calTotalLearnedTime(totalLearnTime);
+    notifyListeners();
+  }
+
+  updateStudentRequest(bookedId, request) async{
+    updateStudentRequestStatus = await ApiServices().updateStudentRequest(bookedId, request);
     notifyListeners();
   }
 
