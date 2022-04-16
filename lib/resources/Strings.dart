@@ -29,4 +29,6 @@ class Strings {
   static String upcomingLesson = "Upcoming Lesson";
   static String lessonList = "Lesson List";
   static String lessonHistory = "Lesson History";
+  static String whyTakeThisCourse = "Why take this course";
+  static String whatWillYouBeAbleTodo = "What will you be able to do";
 }
