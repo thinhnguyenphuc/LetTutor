@@ -26,4 +26,7 @@ class Strings {
   static String emptyStudentRequests = "Currently there are no requests for this class. Please write down any requests for the teacher";
   static String courses = "Courses";
   static String ebook = "EBook";
+  static String upcomingLesson = "Upcoming Lesson";
+  static String lessonList = "Lesson List";
+  static String lessonHistory = "Lesson History";
 }

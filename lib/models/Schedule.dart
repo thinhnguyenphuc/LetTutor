@@ -61,8 +61,8 @@ class Schedule {
     recordUrl: json["recordUrl"],
     isDeleted: json["isDeleted"],
     scheduleDetailInfo: ScheduleDetailInfo.fromJson(json["scheduleDetailInfo"]),
-    showRecordUrl: json["showRecordUrl"],
-    studentMaterials: List<dynamic>.from(json["studentMaterials"].map((x) => x)),
+    showRecordUrl: json["showRecordUrl"]?? false,
+    studentMaterials: json["studentMaterials"] != null ? List<dynamic>.from(json["studentMaterials"].map((x) => x)) : [],
   );
 
   Map<String, dynamic> toJson() => {
