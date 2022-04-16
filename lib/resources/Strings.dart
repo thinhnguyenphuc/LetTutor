@@ -24,4 +24,6 @@ class Strings {
   static String userNameEmpty = "User name is empty";
   static String sendEmailToConfirmation = "An email is send to your email address to confirm your account";
   static String emptyStudentRequests = "Currently there are no requests for this class. Please write down any requests for the teacher";
+  static String courses = "Courses";
+  static String ebook = "EBook";
 }

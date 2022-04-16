@@ -4,6 +4,7 @@ import 'package:project/views/ScheduleViewPage.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
 import '../widgets/CustomAppBar.dart';
+import 'CourseViewPage.dart';
 import 'TutorViewPage.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,6 +28,7 @@ class _HomePageState extends State<HomePage> {
     const List<Widget> _pages = <Widget>[
       TutorScreen(),
       ScheduleScreen(),
+      CourseScreen(),
       Icon(
         Icons.chat,
         size: 150,
@@ -59,11 +61,6 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.schedule),
               label: 'Schedule',
-              backgroundColor: Colors.black,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.history),
-              label: 'History',
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
