@@ -64,20 +64,8 @@ class _TutorScreenPageState extends State<TutorScreen> {
               padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 14,
+                height: MediaQuery.of(context).size.height / 13,
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.6),
-                        spreadRadius: 8,
-                        blurRadius: 6,
-                        offset: Offset(0, 4), // changes position of shadow
-                      ),
-                    ],
-                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(5),
                     child: Column(

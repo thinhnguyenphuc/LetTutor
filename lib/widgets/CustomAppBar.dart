@@ -10,7 +10,7 @@ class CustomAppBar extends AppBar {
           automaticallyImplyLeading: false,
           title: logo,
           actions: [
-            IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+            IconButton(icon: const Icon(Icons.message_outlined), onPressed: () {}),
           ],
         );
 }

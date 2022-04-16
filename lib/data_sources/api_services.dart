@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/models/Course.dart';
 
+import '../models/EBookModel.dart';
 import '../models/Schedule.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
@@ -161,6 +162,54 @@ class ApiServices {
       } else {
         return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
       }
+    });
+  }
+
+  Future<List<Course>> fetchCourse() {
+    return http.get(Uri.parse("$baseUrl/course"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }).then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200) {
+        if (kDebugMode) {
+          print(response.reasonPhrase);
+        }
+        throw FetchDataException(
+            "StatusCode:$statusCode, Error:${response.reasonPhrase}");
+      }
+
+      const JsonDecoder _decoder = JsonDecoder();
+      final courseContainer = _decoder.convert(jsonBody);
+      final List courses = courseContainer["data"]['rows'];
+      return courses.map((contactRaw) => Course.fromJson(contactRaw)).toList();
+    });
+  }
+
+  Future<List<EBook>> fetchEBook() {
+    return http.get(Uri.parse("$baseUrl/e-book"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }).then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200) {
+        if (kDebugMode) {
+          print(response.reasonPhrase);
+        }
+        throw FetchDataException(
+            "StatusCode:$statusCode, Error:${response.reasonPhrase}");
+      }
+
+      const JsonDecoder _decoder = JsonDecoder();
+      final eBookContainer = _decoder.convert(jsonBody);
+      final List eBooks = eBookContainer["data"]['rows'];
+      return eBooks.map((contactRaw) => EBook.fromJson(contactRaw)).toList();
     });
   }
 }

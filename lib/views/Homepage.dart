@@ -28,6 +28,10 @@ class _HomePageState extends State<HomePage> {
     const List<Widget> _pages = <Widget>[
       TutorScreen(),
       ScheduleScreen(),
+      Icon(
+        Icons.chat,
+        size: 150,
+      ),
       CourseScreen(),
       Icon(
         Icons.chat,
@@ -49,7 +53,21 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(logo),
         body: Center(
-          child: _pages.elementAt(_selectedIndex), //New
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: _pages.elementAt(_selectedIndex),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(
+                  scale: animation.status == AnimationStatus.dismissed
+                      ? Tween<double>(begin: .5, end: 1).animate(animation)
+                      : const AlwaysStoppedAnimation(1.0),
+                  child: child,
+                ),
+              );
+            },
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
@@ -61,6 +79,11 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.schedule),
               label: 'Schedule',
+              backgroundColor: Colors.black,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.video_call),
+              label: 'Conferance',
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
@@ -83,11 +106,6 @@ class _HomePageState extends State<HomePage> {
           ),
           type: BottomNavigationBarType.shifting,
         ),
-          floatingActionButton: FloatingActionButton(
-              elevation: 0.0,
-              child: const Icon(Icons.message_sharp),
-              backgroundColor: Colors.grey,
-              onPressed: () {})
       ),
     );
   }

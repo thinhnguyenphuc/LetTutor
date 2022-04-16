@@ -1,7 +1,6 @@
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../models/Schedule.dart';
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';

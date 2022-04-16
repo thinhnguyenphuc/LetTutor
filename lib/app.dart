@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/view_models/CourseViewModel.dart';
+import 'package:project/view_models/EBookViewModel.dart';
 import 'package:project/view_models/ScheduleViewModel.dart';
 import 'package:project/view_models/TutorViewModel.dart';
 import 'package:project/views/Splash.dart';
@@ -13,6 +15,8 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<TutorViewModel>(create: (context) => TutorViewModel()),
         ChangeNotifierProvider<ScheduleViewModel>(create: (context) => ScheduleViewModel()),
+        ChangeNotifierProvider<CourseViewModel>(create: (context) => CourseViewModel()),
+        ChangeNotifierProvider<EBookViewModel>(create: (context) => EBookViewModel()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

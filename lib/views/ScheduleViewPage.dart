@@ -212,13 +212,19 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> with SingleTickerPr
                 ],
               ),
             ),
-          onLeftSwipe: (){
-              _tabController.animateTo(++tabIndex);
-              setState(() {tabIndex;});
+          onLeftSwipe: () {
+            if (++tabIndex > 2) tabIndex = 2;
+            _tabController.animateTo(tabIndex);
+            setState(() {
+              tabIndex;
+            });
           },
-          onRightSwipe: (){
-            _tabController.animateTo(--tabIndex);
-            setState(() {tabIndex;});
+          onRightSwipe: () {
+            if (--tabIndex < 0) tabIndex = 0;
+            _tabController.animateTo(tabIndex);
+            setState(() {
+              tabIndex;
+            });
           },
         ),
       ),
