@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:project/models/Course.dart';
 
+import '../models/EBookModel.dart';
 import '../models/Schedule.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
@@ -95,7 +97,7 @@ class ApiServices {
 
   Future<List<Schedule>> fetchSchedule() {
     return http
-        .get(Uri.parse("$baseUrl/booking/list/student"),
+        .get(Uri.parse("$baseUrl/booking/list"),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
@@ -113,9 +115,101 @@ class ApiServices {
       } else {
         const JsonDecoder _decoder = JsonDecoder();
         final dataContainer = _decoder.convert(jsonBody);
-        final List schedules = dataContainer['data']['rows'];
-        return schedules.map((contactRaw) => Schedule.fromJson(contactRaw)).toList();
+        final int count = dataContainer['data']['count'];
+        return http
+            .get(Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+          )
+            .then((http.Response response) {
+          final String jsonBody = response.body;
+          final int statusCode = response.statusCode;
+
+          if (statusCode != 200) {
+            if (kDebugMode) {
+              print(response.reasonPhrase);
+            }
+            throw FetchDataException(
+                "StatusCode:$statusCode, Error:${response.body}");
+          } else {
+            const JsonDecoder _decoder = JsonDecoder();
+            final dataContainer = _decoder.convert(jsonBody);
+            final List schedules = dataContainer['data']['rows'];
+            return schedules.map((contactRaw) => Schedule.fromJson(contactRaw)).toList();
+          }
+        });
       }
+    });
+  }
+
+  Future<ServiceMessage> updateStudentRequest(String bookedId, String request) {
+    var request = {};
+    request['studentRequest'] = request;
+    return http
+        .post(Uri.parse("$baseUrl/booking/student-request/:$bookedId"),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(request))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if(statusCode == 200) {
+        return ServiceMessage(statusCode: 200, message: "SUCCESS");
+      } else {
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
+      }
+    });
+  }
+
+  Future<List<Course>> fetchCourse() {
+    return http.get(Uri.parse("$baseUrl/course"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }).then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200) {
+        if (kDebugMode) {
+          print(response.reasonPhrase);
+        }
+        throw FetchDataException(
+            "StatusCode:$statusCode, Error:${response.reasonPhrase}");
+      }
+
+      const JsonDecoder _decoder = JsonDecoder();
+      final courseContainer = _decoder.convert(jsonBody);
+      final List courses = courseContainer["data"]['rows'];
+      return courses.map((contactRaw) => Course.fromJson(contactRaw)).toList();
+    });
+  }
+
+  Future<List<EBook>> fetchEBook() {
+    return http.get(Uri.parse("$baseUrl/e-book"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }).then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200) {
+        if (kDebugMode) {
+          print(response.reasonPhrase);
+        }
+        throw FetchDataException(
+            "StatusCode:$statusCode, Error:${response.reasonPhrase}");
+      }
+
+      const JsonDecoder _decoder = JsonDecoder();
+      final eBookContainer = _decoder.convert(jsonBody);
+      final List eBooks = eBookContainer["data"]['rows'];
+      return eBooks.map((contactRaw) => EBook.fromJson(contactRaw)).toList();
     });
   }
 }
