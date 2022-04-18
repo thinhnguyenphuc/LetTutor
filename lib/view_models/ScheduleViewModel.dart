@@ -8,6 +8,7 @@ class ScheduleViewModel with ChangeNotifier {
   List<Schedule> schedules = [];
   List<Schedule> nextSchedule = [];
   List<Schedule> historySchedule = [];
+  bool isLoaded = false;
   String totalLearnedTime = "";
   ServiceMessage updateStudentRequestStatus = ServiceMessage(statusCode: 0, message: "");
 
@@ -28,6 +29,7 @@ class ScheduleViewModel with ChangeNotifier {
       }
     }
     totalLearnedTime = _calTotalLearnedTime(totalLearnTime);
+    isLoaded = true;
     notifyListeners();
   }
 

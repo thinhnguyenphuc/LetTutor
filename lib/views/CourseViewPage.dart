@@ -3,8 +3,8 @@ import 'package:project/view_models/CourseViewModel.dart';
 import 'package:provider/provider.dart';
 import 'package:sticky_grouped_list/sticky_grouped_list.dart';
 import 'package:swipe_to/swipe_to.dart';
-import 'package:url_launcher/link.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import '../Utils.dart';
 import '../models/Course.dart';
 import '../models/EBookModel.dart';
 import '../resources/Strings.dart';
@@ -42,14 +42,6 @@ class _CourseScreenPageState extends State<CourseScreen>
   void onCourseTap(Course course) {
     isCourseDetails = true;
     this.course = course;
-  }
-
-  launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceSafariVC: false, forceWebView: false);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   @override
@@ -161,7 +153,7 @@ class _CourseScreenPageState extends State<CourseScreen>
                   padding: const EdgeInsets.all(5.0),
                   child: InkWell(
                       onTap: () {
-                        launchURL(_ebook.fileUrl);
+                        Utils.launchURL(_ebook.fileUrl);
                       },
                       child: EBookViewItem(
                         eBook: _ebook,

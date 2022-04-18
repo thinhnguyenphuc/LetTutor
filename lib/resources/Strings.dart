@@ -19,11 +19,15 @@ class Strings {
   static String findTutor = "Group tutor by skill";
   static String sendResetLink = "Send reset link";
   static String resetPassword = "Reset Password";
-  static String resetPasswordContent = "Please enter your email address to search for your account";
-  static String passwordAndRePasswordNotMatch = "Password and RePassword not match";
+  static String resetPasswordContent =
+      "Please enter your email address to search for your account";
+  static String passwordAndRePasswordNotMatch =
+      "Password and RePassword not match";
   static String userNameEmpty = "User name is empty";
-  static String sendEmailToConfirmation = "An email is send to your email address to confirm your account";
-  static String emptyStudentRequests = "Currently there are no requests for this class. Please write down any requests for the teacher";
+  static String sendEmailToConfirmation =
+      "An email is send to your email address to confirm your account";
+  static String emptyStudentRequests =
+      "Currently there are no requests for this class. Please write down any requests for the teacher";
   static String courses = "Courses";
   static String ebook = "EBook";
   static String upcomingLesson = "Upcoming Lesson";
@@ -31,4 +35,14 @@ class Strings {
   static String lessonHistory = "Lesson History";
   static String whyTakeThisCourse = "Why take this course";
   static String whatWillYouBeAbleTodo = "What will you be able to do";
+
+  static String requestForLesson = "Request for lesson";
+
+  static String editRequest = "Edit Request";
+
+  static String emptyStudentRequestsWhenDone = "No request for lesson";
+
+  static String learnedBooks = "Learned Books";
+
+  static String lessonDetails = "Lesson Details";
 }

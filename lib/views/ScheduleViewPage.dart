@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_to/swipe_to.dart';
+
 import '../models/Schedule.dart';
 import '../resources/Strings.dart';
 import '../view_models/ScheduleViewModel.dart';
@@ -35,7 +36,7 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> with SingleTickerPr
   @override
   Widget build(BuildContext context) {
     final scheduleListOnProvider = Provider.of<ScheduleViewModel>(context);
-    final totalLearnedTime = scheduleListOnProvider.totalLearnedTime.isNotEmpty
+    final totalLearnedTime = scheduleListOnProvider.isLoaded
         ? Text(
             "Total lesson time is " + scheduleListOnProvider.totalLearnedTime,
             textAlign: TextAlign.center,
@@ -56,7 +57,7 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> with SingleTickerPr
         : tabIndex == 1
             ? scheduleListOnProvider.schedules
             : scheduleListOnProvider.historySchedule);
-    final scheduleListView = schedules.isNotEmpty
+    final scheduleListView = scheduleListOnProvider.isLoaded
         ? ListView.builder(
             physics: const AlwaysScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -67,6 +68,7 @@ class _ScheduleScreenPageState extends State<ScheduleScreen> with SingleTickerPr
                 padding: const EdgeInsets.all(5.0),
                 child: ScheduleViewItem(
                   schedule: _schedule,
+                  isDone: tabIndex != 0,
                 ),
               );
             },

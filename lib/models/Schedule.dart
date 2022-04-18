@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'StudentMaterials.dart';
 import 'TutorModel.dart';
 
 Schedule scheduleFromJson(String str) => Schedule.fromJson(json.decode(str));
@@ -43,7 +44,7 @@ class Schedule {
   final bool isDeleted;
   final ScheduleDetailInfo scheduleDetailInfo;
   final bool showRecordUrl;
-  final List<dynamic> studentMaterials;
+  final List<StudentMaterial> studentMaterials;
 
   factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
     createdAtTimeStamp: json["createdAtTimeStamp"],
@@ -62,7 +63,7 @@ class Schedule {
     isDeleted: json["isDeleted"],
     scheduleDetailInfo: ScheduleDetailInfo.fromJson(json["scheduleDetailInfo"]),
     showRecordUrl: json["showRecordUrl"]?? false,
-    studentMaterials: json["studentMaterials"] != null ? List<dynamic>.from(json["studentMaterials"].map((x) => x)) : [],
+    studentMaterials: List<StudentMaterial>.from(json["studentMaterials"].map((x) => StudentMaterial.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -82,7 +83,7 @@ class Schedule {
     "isDeleted": isDeleted,
     "scheduleDetailInfo": scheduleDetailInfo.toJson(),
     "showRecordUrl": showRecordUrl,
-    "studentMaterials": List<dynamic>.from(studentMaterials.map((x) => x)),
+    "studentMaterials": List<StudentMaterial>.from(studentMaterials.map((x) => x.toJson())),
   };
 }
 

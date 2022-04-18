@@ -1,6 +1,8 @@
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../Utils.dart';
 import '../models/Schedule.dart';
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
@@ -8,8 +10,11 @@ import '../resources/Strings.dart';
 
 class ScheduleViewItem extends StatefulWidget {
   final Schedule schedule;
+  final bool isDone;
 
-  const ScheduleViewItem({Key? key, required this.schedule}) : super(key: key);
+  const ScheduleViewItem(
+      {Key? key, required this.schedule, required this.isDone})
+      : super(key: key);
 
   @override
   _ScheduleViewItemState createState() => _ScheduleViewItemState();
@@ -32,7 +37,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
           borderRadius: const BorderRadius.all(
             Radius.circular(10.0),
           ),
-          color: Colors.green.shade200,
+          color: const Color.fromRGBO(237, 237, 240, 1),
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,
@@ -41,6 +46,8 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
             ),
           ]),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Time
           Row(
@@ -58,6 +65,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
               ),
             ],
           ),
+
           //Tutor information
           Container(
             decoration: BoxDecoration(
@@ -126,7 +134,80 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
               ],
             ),
           ),
-          //LessonDetails
+
+          Visibility(
+            visible:
+                widget.isDone && widget.schedule.studentMaterials.isNotEmpty,
+            child: Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: Text(
+                Strings.learnedBooks,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+          ),
+
+          Container(
+              margin: const EdgeInsets.only(top: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey),
+                borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+              ),
+              child: Visibility(
+                visible: widget.isDone &&
+                    widget.schedule.studentMaterials.isNotEmpty,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 15,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: widget.schedule.studentMaterials.length,
+                          itemBuilder: (context, position) {
+                            return Container(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: const EdgeInsets.all(2),
+                                child: TextButton(
+                                  onPressed: () {
+                                    Utils.launchURL(widget
+                                        .schedule
+                                        .studentMaterials[position]
+                                        .eBook
+                                        .fileUrl);
+                                  },
+                                  child: Column(
+                                    children: [
+                                      const Icon(Icons.book_sharp),
+                                      Text(widget
+                                          .schedule
+                                          .studentMaterials[position]
+                                          .eBook
+                                          .name)
+                                    ],
+                                  ),
+                                ));
+                          },
+                          scrollDirection: Axis.horizontal,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )),
+
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Text(
+              Strings.lessonDetails,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
           Container(
             margin: const EdgeInsets.only(top: 20),
             decoration: BoxDecoration(
@@ -170,11 +251,14 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                   });
                                 },
                               ),
-                              Text("Request for lesson"),
+                              Text(Strings.requestForLesson),
                               const Spacer(),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text("Edit Request"),
+                              Visibility(
+                                visible: !widget.isDone,
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(Strings.editRequest),
+                                ),
                               ),
                             ],
                           ),
@@ -186,7 +270,9 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                               child: Text(
                                 widget.schedule.studentRequest != null
                                     ? widget.schedule.studentRequest!
-                                    : Strings.emptyStudentRequests,
+                                    : widget.isDone
+                                        ? Strings.emptyStudentRequestsWhenDone
+                                        : Strings.emptyStudentRequests,
                                 style:
                                     TextStyle(fontSize: 20, color: Colors.grey),
                               ),
@@ -198,55 +284,64 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
               ),
             ),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(width: 1, color: Colors.red),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.close_sharp,
-                          color: Colors.red,
+
+          // Cancel and join meeting layout
+          Visibility(
+            visible: !widget.isDone,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(width: 1, color: Colors.red),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.close_sharp,
+                                color: Colors.red,
+                              ),
+                              Text("Cancel",
+                                  style: TextStyle(color: Colors.red)),
+                            ],
+                          ),
                         ),
-                        Text("Cancel", style: TextStyle(color: Colors.red)),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(width: 1, color: Colors.blue),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                    child: Row(
-                      children: const [
-                        Icon(Icons.meeting_room),
-                        Text("Go to meeting"),
-                      ],
-                    ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ]),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            side:
+                                const BorderSide(width: 1, color: Colors.blue),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Row(
+                            children: const [
+                              Icon(Icons.meeting_room),
+                              Text("Go to meeting"),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
+          ),
         ],
       ),
     );
