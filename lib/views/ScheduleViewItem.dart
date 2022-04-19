@@ -7,13 +7,18 @@ import '../models/Schedule.dart';
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
 import '../resources/Strings.dart';
+import '../view_models/ScheduleViewModel.dart';
 
 class ScheduleViewItem extends StatefulWidget {
   final Schedule schedule;
   final bool isDone;
+  final ScheduleViewModel viewModel;
 
   const ScheduleViewItem(
-      {Key? key, required this.schedule, required this.isDone})
+      {Key? key,
+      required this.schedule,
+      required this.isDone,
+      required this.viewModel})
       : super(key: key);
 
   @override
@@ -25,6 +30,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _requestedController = TextEditingController();
     var time = widget.schedule.scheduleDetailInfo.scheduleInfo.date;
     TutorInfo tutor = widget.schedule.scheduleDetailInfo.scheduleInfo.tutorInfo;
     var countryName = CountrySingleton().countryHashMap[tutor.country];
@@ -208,6 +214,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
+
           Container(
             margin: const EdgeInsets.only(top: 20),
             decoration: BoxDecoration(
@@ -256,7 +263,42 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                               Visibility(
                                 visible: !widget.isDone,
                                 child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () => showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      title: const Text('Special Request'),
+                                      content: TextField(
+                                        controller: _requestedController,
+                                        decoration: InputDecoration(
+                                            hintText: "Request"),
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, 'Cancel'),
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            widget.viewModel
+                                                .updateStudentRequest(
+                                                    widget.schedule.id,
+                                                    _requestedController.text)
+                                                .then((value) => {
+                                                  if(value.statusCode==200){
+                                                    setState(() {
+                                                      widget.viewModel.fetchScheduleAgain();
+                                                    })
+                                                  }
+                                            });
+                                            Navigator.pop(context, 'Submit');
+                                          },
+                                          child: const Text('Submit'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   child: Text(Strings.editRequest),
                                 ),
                               ),

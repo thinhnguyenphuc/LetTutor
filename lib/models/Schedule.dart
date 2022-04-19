@@ -35,7 +35,7 @@ class Schedule {
   final String scheduleDetailId;
   final String tutorMeetingLink;
   final String studentMeetingLink;
-  final String? studentRequest;
+  late String? studentRequest;
   final String? tutorReview;
   final int? scoreByTutor;
   final DateTime createdAt;

@@ -144,13 +144,14 @@ class ApiServices {
     });
   }
 
-  Future<ServiceMessage> updateStudentRequest(String bookedId, String request) {
+  Future<ServiceMessage> updateStudentRequest(String bookedId, String requestMessage) {
     var request = {};
-    request['studentRequest'] = request;
+    request['studentRequest'] = requestMessage;
     return http
-        .post(Uri.parse("$baseUrl/booking/student-request/:$bookedId"),
+        .post(Uri.parse("$baseUrl/booking/student-request/$bookedId"),
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
         },
         body: jsonEncode(request))
         .then((http.Response response) {
