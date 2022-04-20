@@ -36,13 +36,13 @@ class EBook {
   final List<Category> categories;
 
   factory EBook.fromJson(Map<String, dynamic> json) => EBook(
-    id: json["id"],
-    name: json["name"],
-    description: json["description"],
-    imageUrl: json["imageUrl"],
-    level: json["level"],
-    visible: json["visible"],
-    fileUrl: json["fileUrl"],
+    id: json["id"]??"",
+    name: json["name"]??"",
+    description: json["description"]??"",
+    imageUrl: json["imageUrl"]??"",
+    level: json["level"]??"",
+    visible: json["visible"]??false,
+    fileUrl: json["fileUrl"]??"",
     createdAt: json["createdAt"] == null ? null :DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null :DateTime.parse(json["updatedAt"]),
     isPrivate: json["isPrivate"],

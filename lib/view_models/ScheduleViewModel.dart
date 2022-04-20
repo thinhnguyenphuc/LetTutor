@@ -87,4 +87,10 @@ class ScheduleViewModel with ChangeNotifier {
     notifyListeners();
     _fetchHistorySchedule();
   }
+
+  Future<ServiceMessage> cancelBookedClass(String scheduleDetailId) async {
+    ServiceMessage cancelBookedClassStatus =
+        await ApiServices().cancelBookedClass(scheduleDetailId);
+    return cancelBookedClassStatus;
+  }
 }

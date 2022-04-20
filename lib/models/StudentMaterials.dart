@@ -25,7 +25,7 @@ class StudentMaterial {
   final DateTime latestDate;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final EBook eBook;
+  final EBook? eBook;
 
   factory StudentMaterial.fromJson(Map<String, dynamic> json) => StudentMaterial(
     id: json["id"],
@@ -50,6 +50,6 @@ class StudentMaterial {
     "latestDate": latestDate.toIso8601String(),
     "createdAt": createdAt.toIso8601String(),
     "updatedAt": updatedAt.toIso8601String(),
-    "eBook": eBook.toJson(),
+    "eBook": eBook?.toJson(),
   };
 }

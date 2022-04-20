@@ -35,12 +35,6 @@ class _ScheduleScreenPageState extends State<ScheduleScreen>
     _tabController = TabController(vsync: this, length: tabs.length);
   }
 
-  @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
-  }
-
   late DragStartDetails startVerticalDragDetails;
   late DragUpdateDetails updateVerticalDragDetails;
   int tabIndex = 0;
@@ -48,8 +42,6 @@ class _ScheduleScreenPageState extends State<ScheduleScreen>
   @override
   Widget build(BuildContext context) {
     final scheduleListOnProvider = Provider.of<ScheduleViewModel>(context);
-    timer = Timer.periodic(Duration(seconds: 10),
-        (Timer t) => scheduleListOnProvider.fetchScheduleAgain());
     final totalLearnedTime = scheduleListOnProvider.isLoaded
         ? Text(
             "Total lesson time is " +
@@ -246,6 +238,14 @@ class _ScheduleScreenPageState extends State<ScheduleScreen>
             });
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            scheduleListOnProvider.fetchScheduleAgain();
+          });
+        },
+        child: const Icon(Icons.sync),
       ),
     );
   }

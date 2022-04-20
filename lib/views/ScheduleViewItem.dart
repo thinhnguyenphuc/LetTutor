@@ -181,11 +181,13 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                 margin: const EdgeInsets.all(2),
                                 child: TextButton(
                                   onPressed: () {
-                                    Utils.launchURL(widget
-                                        .schedule
-                                        .studentMaterials[position]
-                                        .eBook
-                                        .fileUrl);
+                                    if(widget.schedule.studentMaterials[position].eBook!=null){
+                                      Utils.launchURL(widget
+                                          .schedule
+                                          .studentMaterials[position]
+                                          .eBook!
+                                          .fileUrl);
+                                    }
                                   },
                                   child: Column(
                                     children: [
@@ -193,7 +195,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                       Text(widget
                                           .schedule
                                           .studentMaterials[position]
-                                          .eBook
+                                          .eBook!
                                           .name)
                                     ],
                                   ),
@@ -338,7 +340,17 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            widget.viewModel.cancelBookedClass(
+                              widget.schedule.scheduleDetailId
+                            ).then((value) => {
+                              if (value.statusCode == 200){
+                                setState(() {
+                                  widget.viewModel.fetchScheduleAgain();
+                                })
+                              }
+                            });
+                          },
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(width: 1, color: Colors.red),
                             shape: RoundedRectangleBorder(
