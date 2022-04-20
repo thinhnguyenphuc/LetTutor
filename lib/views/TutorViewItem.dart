@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -42,11 +43,15 @@ class TutorViewItem extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       radius: 45,
                       child: ClipOval(
-                        child: Image.network(
-                          tutor.avatar,
+                        child: SizedBox(
                           width: 70,
                           height: 70,
-                          fit: BoxFit.cover,
+                          child: CachedNetworkImage(
+                            imageUrl: tutor.avatar,
+                            placeholder: (context, url) => const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

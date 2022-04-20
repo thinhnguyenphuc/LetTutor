@@ -8,37 +8,89 @@ class ScheduleViewModel with ChangeNotifier {
   List<Schedule> schedules = [];
   List<Schedule> nextSchedule = [];
   List<Schedule> historySchedule = [];
-  String totalLearnedTime = "";
-  ServiceMessage updateStudentRequestStatus = ServiceMessage(statusCode: 0, message: "");
+  bool isLoaded = false;
+  bool _isNotCalculated = true;
+  bool _isNotFetchedNextSchedule = true;
+  bool _isNotFetchedHistorySchedule = true;
+  String totalLearnedTimeString = "";
 
-  getScheduleList() async {
-    int totalLearnTime = 0;
-    schedules = await ApiServices().fetchSchedule();
+  calTotalLearnedTime() async {
     DateTime now = DateTime.now();
-    if (schedules.isNotEmpty) {
-      nextSchedule = [];
+    if (_isNotCalculated) {
+      int minutes = 0;
       for (Schedule schedule in schedules) {
-        if (schedule.scheduleDetailInfo.scheduleInfo.date.isAfter(now)) {
-          nextSchedule.add(schedule);
-        } else {
-          historySchedule.add(schedule);
-          totalLearnTime += schedule.scheduleDetailInfo.endPeriodTimestamp -
-              schedule.scheduleDetailInfo.startPeriodTimestamp;
+        var from = DateTime.fromMicrosecondsSinceEpoch(
+            schedule.scheduleDetailInfo.startPeriodTimestamp * 1000);
+        var to = DateTime.fromMicrosecondsSinceEpoch(
+            schedule.scheduleDetailInfo.endPeriodTimestamp * 1000);
+        if (schedule.scheduleDetailInfo.scheduleInfo.date.isBefore(now)) {
+          minutes += to.difference(from).inMinutes;
         }
       }
+      int hours = (minutes / 60).round();
+      minutes = minutes - hours*60;
+      totalLearnedTimeString = "$hours hours and $minutes minutes";
+      _isNotCalculated = false;
     }
-    totalLearnedTime = _calTotalLearnedTime(totalLearnTime);
-    notifyListeners();
   }
 
-  updateStudentRequest(bookedId, request) async{
-    updateStudentRequestStatus = await ApiServices().updateStudentRequest(bookedId, request);
-    notifyListeners();
+  _fetchNextSchedule() async {
+    DateTime now = DateTime.now();
+    if (schedules.isNotEmpty && _isNotFetchedNextSchedule) {
+      for (Schedule schedule in schedules) {
+        var date = DateTime.fromMicrosecondsSinceEpoch(
+            schedule.scheduleDetailInfo.scheduleInfo.startTimestamp * 1000);
+        if (date.isAfter(now)) {
+          nextSchedule.add(schedule);
+        }
+      }
+      _isNotFetchedNextSchedule = false;
+    }
   }
 
-  String _calTotalLearnedTime(int totalLearnedTime) {
-    int hours = (totalLearnedTime / 1000) ~/ 3600;
-    double minutes = (totalLearnedTime / 1000) % 3600 / 60;
-    return "$hours hours $minutes minutes";
+  _fetchHistorySchedule() async {
+    DateTime now = DateTime.now();
+    if (schedules.isNotEmpty && _isNotFetchedHistorySchedule) {
+      for (Schedule schedule in schedules) {
+        var date = DateTime.fromMicrosecondsSinceEpoch(
+            schedule.scheduleDetailInfo.scheduleInfo.startTimestamp * 1000);
+        if (date.isBefore(now)){
+          historySchedule.add(schedule);
+        }
+      }
+      _isNotFetchedHistorySchedule = false;
+    }
+  }
+
+  fetchSchedule() async {
+    schedules = await ApiServices().fetchSchedule();
+    isLoaded = true;
+    _fetchNextSchedule();
+    calTotalLearnedTime();
+    notifyListeners();
+    _fetchHistorySchedule();
+  }
+
+  Future<ServiceMessage> updateStudentRequest(bookedId, request) async {
+    ServiceMessage updateStudentRequestStatus =
+        await ApiServices().updateStudentRequest(bookedId, request);
+    return updateStudentRequestStatus;
+  }
+
+  fetchScheduleAgain() async {
+    schedules = await ApiServices().fetchSchedule();
+    nextSchedule.clear();
+    _isNotFetchedNextSchedule = true;
+    _isNotFetchedNextSchedule = true;
+    _fetchNextSchedule();
+    calTotalLearnedTime();
+    notifyListeners();
+    _fetchHistorySchedule();
+  }
+
+  Future<ServiceMessage> cancelBookedClass(String scheduleDetailId) async {
+    ServiceMessage cancelBookedClassStatus =
+        await ApiServices().cancelBookedClass(scheduleDetailId);
+    return cancelBookedClassStatus;
   }
 }

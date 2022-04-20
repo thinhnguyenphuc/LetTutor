@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -144,17 +145,17 @@ class ApiServices {
     });
   }
 
-  Future<ServiceMessage> updateStudentRequest(String bookedId, String request) {
+  Future<ServiceMessage> updateStudentRequest(String bookedId, String requestMessage) {
     var request = {};
-    request['studentRequest'] = request;
+    request['studentRequest'] = requestMessage;
     return http
-        .post(Uri.parse("$baseUrl/booking/student-request/:$bookedId"),
+        .post(Uri.parse("$baseUrl/booking/student-request/$bookedId"),
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
         },
         body: jsonEncode(request))
         .then((http.Response response) {
-      final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
       if(statusCode == 200) {
@@ -210,6 +211,26 @@ class ApiServices {
       final eBookContainer = _decoder.convert(jsonBody);
       final List eBooks = eBookContainer["data"]['rows'];
       return eBooks.map((contactRaw) => EBook.fromJson(contactRaw)).toList();
+    });
+  }
+
+  Future<ServiceMessage> cancelBookedClass(String bookedId){
+    var request = {};
+    request['scheduleDetailIds'] = [bookedId];
+    return http
+        .delete(Uri.parse("$baseUrl/booking"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+        body: jsonEncode(request))
+        .then((http.Response response) {
+      final int statusCode = response.statusCode;
+      if(statusCode == 200) {
+        return ServiceMessage(statusCode: 200, message: "SUCCESS");
+      } else {
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
+      }
     });
   }
 }

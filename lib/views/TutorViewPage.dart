@@ -65,45 +65,43 @@ class _TutorScreenPageState extends State<TutorScreen> {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 13,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Column(
-                      children: [
-                        Text(Strings.findTutor,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                            )),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: skillList.length,
-                            itemBuilder: (context, position) {
-                              return Container(
-                                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                margin: const EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                  color: skillList[position] == skillSort
-                                      ? Colors.blue.shade100
-                                      : Colors.grey.shade200,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      skillSort = skillList[position];
-                                    });
-                                  },
-                                  child: Text(skillList[position]),
-                                ),
-                              );
-                            },
-                            scrollDirection: Axis.horizontal,
-                          ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Column(
+                    children: [
+                      Text(Strings.findTutor,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                          )),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: skillList.length,
+                          itemBuilder: (context, position) {
+                            return Container(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                              margin: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                color: skillList[position] == skillSort
+                                    ? Colors.blue.shade100
+                                    : Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    skillSort = skillList[position];
+                                  });
+                                },
+                                child: Text(skillList[position]),
+                              ),
+                            );
+                          },
+                          scrollDirection: Axis.horizontal,
                         ),
-                      ],
-                    ),
-                  )
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

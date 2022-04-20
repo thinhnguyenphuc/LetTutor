@@ -29,22 +29,22 @@ class EBook {
   final String level;
   final bool visible;
   final String fileUrl;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final dynamic isPrivate;
   final dynamic createdBy;
   final List<Category> categories;
 
   factory EBook.fromJson(Map<String, dynamic> json) => EBook(
-    id: json["id"],
-    name: json["name"],
-    description: json["description"],
-    imageUrl: json["imageUrl"],
-    level: json["level"],
-    visible: json["visible"],
-    fileUrl: json["fileUrl"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
+    id: json["id"]??"",
+    name: json["name"]??"",
+    description: json["description"]??"",
+    imageUrl: json["imageUrl"]??"",
+    level: json["level"]??"",
+    visible: json["visible"]??false,
+    fileUrl: json["fileUrl"]??"",
+    createdAt: json["createdAt"] == null ? null :DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null :DateTime.parse(json["updatedAt"]),
     isPrivate: json["isPrivate"],
     createdBy: json["createdBy"],
     categories: json["categories"] == null ? [] : List<Category>.from(json["categories"].map((x) => Category.fromJson(x))),
@@ -58,8 +58,8 @@ class EBook {
     "level": level,
     "visible": visible,
     "fileUrl": fileUrl,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "isPrivate": isPrivate,
     "createdBy": createdBy,
     "categories": categories == [] ? null : List<dynamic>.from(categories.map((x) => x.toJson())),
