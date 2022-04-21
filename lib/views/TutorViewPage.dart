@@ -5,6 +5,7 @@ import '../models/TutorModel.dart';
 import '../resources/DemoTutorList.dart';
 import '../resources/Strings.dart';
 import '../view_models/TutorViewModel.dart';
+import 'TutorDetailsPage.dart';
 import 'TutorViewItem.dart';
 
 class TutorScreen extends StatefulWidget {
@@ -37,8 +38,14 @@ class _TutorScreenPageState extends State<TutorScreen> {
               final TutorInfo _tutor = tutorListOnProvider.tutorList[position];
               return Padding(
                 padding: const EdgeInsets.all(5.0),
-                child: TutorViewItem(
-                  tutor: _tutor,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => TutorDetailsPage(tutor: _tutor,)));
+                  },
+                  child: TutorViewItem(
+                    tutor: _tutor,
+                  ),
                 ),
               );
             },

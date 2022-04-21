@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:project/views/ScheduleViewPage.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
@@ -15,30 +17,62 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
-  @override
-  Widget build(BuildContext context) {
-    void _onItemTapped(int index) {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
-
-    const List<Widget> _pages = <Widget>[
-      TutorScreen(),
-      ScheduleScreen(),
-      Icon(
+  List<Widget> _navScreens() {
+    return [
+      const TutorScreen(),
+      const ScheduleScreen(),
+      const Icon(
         Icons.chat,
         size: 150,
       ),
-      CourseScreen(),
-      Icon(
+      const CourseScreen(),
+      const Icon(
         Icons.chat,
         size: 150,
       ),
     ];
+  }
 
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: const FaIcon(FontAwesomeIcons.chalkboardTeacher),
+        title: 'Tutor',
+        activeColorPrimary: CupertinoColors.systemYellow,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.schedule),
+        title: 'Schedule',
+        activeColorPrimary: CupertinoColors.systemYellow,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.video_call),
+        title: 'Conferance',
+        activeColorPrimary: CupertinoColors.systemYellow,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.book_outlined),
+        title: 'Courses',
+        activeColorPrimary: CupertinoColors.systemYellow,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.person),
+        title: 'Setting',
+        activeColorPrimary: CupertinoColors.systemYellow,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final logo = IconHero(
       tag: 'logo',
       child: Image.asset('assets/images/logo.png',
@@ -53,58 +87,30 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(logo),
         body: Center(
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            child: _pages.elementAt(_selectedIndex),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: ScaleTransition(
-                  scale: animation.status == AnimationStatus.dismissed
-                      ? Tween<double>(begin: .5, end: 1).animate(animation)
-                      : const AlwaysStoppedAnimation(1.0),
-                  child: child,
-                ),
-              );
-            },
+          child: PersistentTabView(
+            context,
+            controller: _controller,
+            screens: _navScreens(),
+            items: _navBarsItems(),
+            confineInSafeArea: true,
+            backgroundColor: Colors.black,
+            handleAndroidBackButtonPress: true,
+            resizeToAvoidBottomInset: true,
+            hideNavigationBarWhenKeyboardShows: true,
+            decoration: const NavBarDecoration(
+                colorBehindNavBar: Colors.indigo,),
+            popAllScreensOnTapOfSelectedTab: true,
+            navBarStyle: NavBarStyle.style6,
+            itemAnimationProperties: const ItemAnimationProperties(
+              duration: Duration(milliseconds: 400),
+              curve: Curves.ease,
+            ),
+            screenTransitionAnimation: const ScreenTransitionAnimation(
+              animateTabTransition: true,
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 200),
+            ),
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.chalkboardTeacher),
-              label: 'Tutor',
-              backgroundColor: Colors.black,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.schedule),
-              label: 'Schedule',
-              backgroundColor: Colors.black,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.video_call),
-              label: 'Conferance',
-              backgroundColor: Colors.black,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.book_outlined),
-              label: 'Courses',
-              backgroundColor: Colors.black,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Setting',
-              backgroundColor: Colors.black,
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          //New
-          onTap: _onItemTapped,
-          selectedItemColor: Colors.amberAccent,
-          unselectedIconTheme: const IconThemeData(
-            color: Colors.grey,
-          ),
-          type: BottomNavigationBarType.shifting,
         ),
       ),
     );
