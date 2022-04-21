@@ -109,9 +109,13 @@ class TutorInfo {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"],
-        feedbacks: json["feedbacks"]!=null ? List<Feedback>.from(
-            json["feedbacks"].map((x) => Feedback.fromJson(x))) : [],
-        schedules: json["schedules"]!=null ?List<dynamic>.from(json["schedules"].map((x) => x)) : [],
+        feedbacks: json["feedbacks"] != null
+            ? List<Feedback>.from(
+                json["feedbacks"].map((x) => Feedback.fromJson(x)))
+            : [],
+        schedules: json["schedules"] != null
+            ? List<dynamic>.from(json["schedules"].map((x) => x))
+            : [],
         id: json["id"],
         userId: json["userId"] ?? "",
         video: json["video"] ?? "",
@@ -126,7 +130,7 @@ class TutorInfo {
         specialties: json["specialties"] ?? "",
         resume: json["resume"] ?? "",
         isNative: json["isNative"] ?? "",
-        price: json["price"]?? 0,
+        price: json["price"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {

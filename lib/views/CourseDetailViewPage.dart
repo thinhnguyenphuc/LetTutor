@@ -1,4 +1,4 @@
- import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../models/Course.dart';
@@ -191,7 +191,8 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                           final Topic _topic = widget.course.topics[position];
                           return Padding(
                             padding: const EdgeInsets.all(5.0),
-                            child: Text((position+1).toString()+". " + _topic.name,
+                            child: Text(
+                                (position + 1).toString() + ". " + _topic.name,
                                 style: TextStyle(fontSize: 20)),
                           );
                         },

@@ -28,7 +28,7 @@ class ScheduleViewModel with ChangeNotifier {
         }
       }
       int hours = (minutes / 60).round();
-      minutes = minutes - hours*60;
+      minutes = minutes - hours * 60;
       totalLearnedTimeString = "$hours hours and $minutes minutes";
       _isNotCalculated = false;
     }
@@ -54,7 +54,7 @@ class ScheduleViewModel with ChangeNotifier {
       for (Schedule schedule in schedules) {
         var date = DateTime.fromMicrosecondsSinceEpoch(
             schedule.scheduleDetailInfo.scheduleInfo.startTimestamp * 1000);
-        if (date.isBefore(now)){
+        if (date.isBefore(now)) {
           historySchedule.add(schedule);
         }
       }

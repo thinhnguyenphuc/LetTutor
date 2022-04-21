@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -16,11 +15,10 @@ class ApiServices {
   static String baseUrl = "https://sandbox.api.lettutor.com";
 
   Future<List<TutorInfo>> fetchTutor() {
-    return http.post(Uri.parse("$baseUrl/tutor/search"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        }).then((http.Response response) {
+    return http.post(Uri.parse("$baseUrl/tutor/search"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
@@ -35,7 +33,9 @@ class ApiServices {
       const JsonDecoder _decoder = JsonDecoder();
       final tutorContainer = _decoder.convert(jsonBody);
       final List tutors = tutorContainer['rows'];
-      return tutors.map((contactRaw) => TutorInfo.fromJson(contactRaw)).toList();
+      return tutors
+          .map((contactRaw) => TutorInfo.fromJson(contactRaw))
+          .toList();
     });
   }
 
@@ -56,11 +56,10 @@ class ApiServices {
         const JsonDecoder _decoder = JsonDecoder();
         final userContainer = _decoder.convert(jsonBody);
         final ServiceMessage serviceMessage =
-        ServiceMessage.fromJson(userContainer);
+            ServiceMessage.fromJson(userContainer);
 
         return serviceMessage;
-      }
-      else {
+      } else {
         const JsonDecoder _decoder = JsonDecoder();
         final userContainer = _decoder.convert(jsonBody);
         final User user = User.fromJson(userContainer);
@@ -84,26 +83,26 @@ class ApiServices {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
-      if(statusCode == 201) {
+      if (statusCode == 201) {
         return ServiceMessage(statusCode: 201, message: "CREATED");
       } else {
         const JsonDecoder _decoder = JsonDecoder();
         final messageContainer = _decoder.convert(jsonBody);
         final ServiceMessage serviceMessage =
-        ServiceMessage.fromJson(messageContainer);
+            ServiceMessage.fromJson(messageContainer);
         return serviceMessage;
       }
     });
   }
 
   Future<List<Schedule>> fetchSchedule() {
-    return http
-        .get(Uri.parse("$baseUrl/booking/list"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        },)
-        .then((http.Response response) {
+    return http.get(
+      Uri.parse("$baseUrl/booking/list"),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
@@ -117,14 +116,13 @@ class ApiServices {
         const JsonDecoder _decoder = JsonDecoder();
         final dataContainer = _decoder.convert(jsonBody);
         final int count = dataContainer['data']['count'];
-        return http
-            .get(Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token',
-            },
-          )
-            .then((http.Response response) {
+        return http.get(
+          Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ).then((http.Response response) {
           final String jsonBody = response.body;
           final int statusCode = response.statusCode;
 
@@ -138,27 +136,30 @@ class ApiServices {
             const JsonDecoder _decoder = JsonDecoder();
             final dataContainer = _decoder.convert(jsonBody);
             final List schedules = dataContainer['data']['rows'];
-            return schedules.map((contactRaw) => Schedule.fromJson(contactRaw)).toList();
+            return schedules
+                .map((contactRaw) => Schedule.fromJson(contactRaw))
+                .toList();
           }
         });
       }
     });
   }
 
-  Future<ServiceMessage> updateStudentRequest(String bookedId, String requestMessage) {
+  Future<ServiceMessage> updateStudentRequest(
+      String bookedId, String requestMessage) {
     var request = {};
     request['studentRequest'] = requestMessage;
     return http
         .post(Uri.parse("$baseUrl/booking/student-request/$bookedId"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        },
-        body: jsonEncode(request))
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(request))
         .then((http.Response response) {
       final int statusCode = response.statusCode;
 
-      if(statusCode == 200) {
+      if (statusCode == 200) {
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       } else {
         return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
@@ -167,11 +168,10 @@ class ApiServices {
   }
 
   Future<List<Course>> fetchCourse() {
-    return http.get(Uri.parse("$baseUrl/course"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        }).then((http.Response response) {
+    return http.get(Uri.parse("$baseUrl/course"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
@@ -191,11 +191,10 @@ class ApiServices {
   }
 
   Future<List<EBook>> fetchEBook() {
-    return http.get(Uri.parse("$baseUrl/e-book"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        }).then((http.Response response) {
+    return http.get(Uri.parse("$baseUrl/e-book"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
@@ -214,19 +213,19 @@ class ApiServices {
     });
   }
 
-  Future<ServiceMessage> cancelBookedClass(String bookedId){
+  Future<ServiceMessage> cancelBookedClass(String bookedId) {
     var request = {};
     request['scheduleDetailIds'] = [bookedId];
     return http
         .delete(Uri.parse("$baseUrl/booking"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        },
-        body: jsonEncode(request))
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(request))
         .then((http.Response response) {
       final int statusCode = response.statusCode;
-      if(statusCode == 200) {
+      if (statusCode == 200) {
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       } else {
         return ServiceMessage(statusCode: 200, message: "UNSUCCESS");

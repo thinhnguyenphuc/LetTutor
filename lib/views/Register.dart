@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:project/resources/Strings.dart';
@@ -27,9 +26,9 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _rePasswordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-
     Future<void> registerUser() async {
       ServiceMessage res = await _registerViewModel.register(
         _emailController.text,
@@ -37,11 +36,12 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       if (res.statusCode == 201) {
-        Utils.showSnackBar(context,Strings.sendEmailToConfirmation,  Colors.lightGreenAccent.shade100);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const LoginPage()));
+        Utils.showSnackBar(context, Strings.sendEmailToConfirmation,
+            Colors.lightGreenAccent.shade100);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
       } else {
-        Utils.showSnackBar(context,res.message,  Colors.red.shade300);
+        Utils.showSnackBar(context, res.message, Colors.red.shade300);
       }
     }
 
@@ -121,17 +121,23 @@ class _RegisterPageState extends State<RegisterPage> {
           style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
       onPressedCallback: () {
         FocusManager.instance.primaryFocus?.unfocus();
-        if(_usernameController.text.isEmpty) {
+        if (_usernameController.text.isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(Strings.userNameEmpty, textAlign: TextAlign.center,),
+            content: Text(
+              Strings.userNameEmpty,
+              textAlign: TextAlign.center,
+            ),
             backgroundColor: Colors.red.shade300,
           ));
-        } else if(_passwordController.text != _rePasswordController.text){
+        } else if (_passwordController.text != _rePasswordController.text) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(Strings.passwordAndRePasswordNotMatch, textAlign: TextAlign.center,),
+            content: Text(
+              Strings.passwordAndRePasswordNotMatch,
+              textAlign: TextAlign.center,
+            ),
             backgroundColor: Colors.red.shade300,
           ));
-        }else {
+        } else {
           registerUser();
         }
       },

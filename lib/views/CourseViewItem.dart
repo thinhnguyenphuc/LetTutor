@@ -13,15 +13,19 @@ class CourseViewItem extends StatefulWidget {
 }
 
 class _CourseViewItemState extends State<CourseViewItem> {
-
-  var style =  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+  var style = const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
-    String type = widget.course.name.contains("Intermediate") ? "Intermediate" :
-    widget.course.name.contains("Advanced") ? "Advanced" :
-    widget.course.name.contains("Basic") ? "Basic" :
-    widget.course.name.contains("Beginner") ? "Beginner" : "Any level";
+    String type = widget.course.name.contains("Intermediate")
+        ? "Intermediate"
+        : widget.course.name.contains("Advanced")
+            ? "Advanced"
+            : widget.course.name.contains("Basic")
+                ? "Basic"
+                : widget.course.name.contains("Beginner")
+                    ? "Beginner"
+                    : "Any level";
     return Container(
         margin: EdgeInsets.all(15),
         decoration: BoxDecoration(
@@ -46,7 +50,8 @@ class _CourseViewItemState extends State<CourseViewItem> {
                 borderRadius: BorderRadius.circular(20),
                 child: CachedNetworkImage(
                   imageUrl: widget.course.imageUrl,
-                  placeholder: (context, url) => const CircularProgressIndicator(),
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
@@ -59,16 +64,30 @@ class _CourseViewItemState extends State<CourseViewItem> {
                     Text(widget.course.name,
                         style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Text(widget.course.description,
                         style: const TextStyle(fontSize: 18)),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("* " + type, style: style,),
-                        Text("* " + widget.course.categories.first.key, style: style,),
-                        Text("* " + widget.course.topics.length.toString() + " Lessons", style: style),
+                        Text(
+                          "* " + type,
+                          style: style,
+                        ),
+                        Text(
+                          "* " + widget.course.categories.first.key,
+                          style: style,
+                        ),
+                        Text(
+                            "* " +
+                                widget.course.topics.length.toString() +
+                                " Lessons",
+                            style: style),
                       ],
                     )
                   ],

@@ -181,7 +181,9 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                 margin: const EdgeInsets.all(2),
                                 child: TextButton(
                                   onPressed: () {
-                                    if(widget.schedule.studentMaterials[position].eBook!=null){
+                                    if (widget.schedule
+                                            .studentMaterials[position].eBook !=
+                                        null) {
                                       Utils.launchURL(widget
                                           .schedule
                                           .studentMaterials[position]
@@ -288,12 +290,15 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                                     widget.schedule.id,
                                                     _requestedController.text)
                                                 .then((value) => {
-                                                  if(value.statusCode==200){
-                                                    setState(() {
-                                                      widget.viewModel.fetchScheduleAgain();
-                                                    })
-                                                  }
-                                            });
+                                                      if (value.statusCode ==
+                                                          200)
+                                                        {
+                                                          setState(() {
+                                                            widget.viewModel
+                                                                .fetchScheduleAgain();
+                                                          })
+                                                        }
+                                                    });
                                             Navigator.pop(context, 'Submit');
                                           },
                                           child: const Text('Submit'),
@@ -341,15 +346,18 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                         padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
                         child: OutlinedButton(
                           onPressed: () {
-                            widget.viewModel.cancelBookedClass(
-                              widget.schedule.scheduleDetailId
-                            ).then((value) => {
-                              if (value.statusCode == 200){
-                                setState(() {
-                                  widget.viewModel.fetchScheduleAgain();
-                                })
-                              }
-                            });
+                            widget.viewModel
+                                .cancelBookedClass(
+                                    widget.schedule.scheduleDetailId)
+                                .then((value) => {
+                                      if (value.statusCode == 200)
+                                        {
+                                          setState(() {
+                                            widget.viewModel
+                                                .fetchScheduleAgain();
+                                          })
+                                        }
+                                    });
                           },
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(width: 1, color: Colors.red),
