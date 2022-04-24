@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
           height: MediaQuery.of(context).size.height / 5),
     );
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,

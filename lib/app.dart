@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:project/view_models/CourseViewModel.dart';
 import 'package:project/view_models/EBookViewModel.dart';
 import 'package:project/view_models/ScheduleViewModel.dart';
@@ -23,7 +24,9 @@ class App extends StatelessWidget {
             create: (context) => EBookViewModel()),
       ],
       child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          LocaleNamesLocalizationsDelegate(),
+        ],
         home: SplashScreen(),
       ),
     );
