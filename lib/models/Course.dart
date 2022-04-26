@@ -46,44 +46,57 @@ class Course {
   final List<Category> categories;
 
   factory Course.fromJson(Map<String, dynamic> json) => Course(
-    id: json["id"],
-    name: json["name"],
-    description: json["description"],
-    imageUrl: json["imageUrl"],
-    level: json["level"],
-    reason: json["reason"],
-    purpose: json["purpose"],
-    otherDetails: json["other_details"],
-    defaultPrice: json["default_price"],
-    coursePrice: json["course_price"],
-    courseType: json["courseType"],
-    sectionType: json["sectionType"],
-    visible: json["visible"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    topics: json["topics"] == null ? [] : List<Topic>.from(json["topics"].map((x) => Topic.fromJson(x))),
-    categories: json["categories"] == null ? [] : List<Category>.from(json["categories"].map((x) => Category.fromJson(x))),
-  );
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        imageUrl: json["imageUrl"],
+        level: json["level"],
+        reason: json["reason"],
+        purpose: json["purpose"],
+        otherDetails: json["other_details"],
+        defaultPrice: json["default_price"],
+        coursePrice: json["course_price"],
+        courseType: json["courseType"],
+        sectionType: json["sectionType"],
+        visible: json["visible"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        topics: json["topics"] == null
+            ? []
+            : List<Topic>.from(json["topics"].map((x) => Topic.fromJson(x))),
+        categories: json["categories"] == null
+            ? []
+            : List<Category>.from(
+                json["categories"].map((x) => Category.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "description": description,
-    "imageUrl": imageUrl,
-    "level": level,
-    "reason": reason,
-    "purpose": purpose,
-    "other_details": otherDetails,
-    "default_price": defaultPrice,
-    "course_price": coursePrice,
-    "courseType": courseType,
-    "sectionType": sectionType,
-    "visible": visible,
-    "createdAt": createdAt == null ? [] : createdAt?.toIso8601String(),
-    "updatedAt": updatedAt == null ? [] : updatedAt?.toIso8601String(),
-    "topics": topics == [] ? null : List<dynamic>.from(topics.map((x) => x.toJson())),
-    "categories": categories == [] ? null : List<dynamic>.from(categories.map((x) => x.toJson())),
-  };
+        "id": id,
+        "name": name,
+        "description": description,
+        "imageUrl": imageUrl,
+        "level": level,
+        "reason": reason,
+        "purpose": purpose,
+        "other_details": otherDetails,
+        "default_price": defaultPrice,
+        "course_price": coursePrice,
+        "courseType": courseType,
+        "sectionType": sectionType,
+        "visible": visible,
+        "createdAt": createdAt == null ? [] : createdAt?.toIso8601String(),
+        "updatedAt": updatedAt == null ? [] : updatedAt?.toIso8601String(),
+        "topics": topics == []
+            ? null
+            : List<dynamic>.from(topics.map((x) => x.toJson())),
+        "categories": categories == []
+            ? null
+            : List<dynamic>.from(categories.map((x) => x.toJson())),
+      };
 }
 
 class Topic {
@@ -110,26 +123,30 @@ class Topic {
   final DateTime? updatedAt;
 
   factory Topic.fromJson(Map<String, dynamic> json) => Topic(
-    id: json["id"],
-    courseId: json["courseId"],
-    orderCourse: json["orderCourse"],
-    name: json["name"],
-    nameFile: json["nameFile"],
-    description: json["description"],
-    videoUrl: json["videoUrl"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-  );
+        id: json["id"],
+        courseId: json["courseId"],
+        orderCourse: json["orderCourse"],
+        name: json["name"],
+        nameFile: json["nameFile"],
+        description: json["description"],
+        videoUrl: json["videoUrl"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "courseId": courseId,
-    "orderCourse": orderCourse,
-    "name": name,
-    "nameFile": nameFile,
-    "description": description,
-    "videoUrl": videoUrl,
-    "createdAt": createdAt == null ? [] : createdAt?.toIso8601String(),
-    "updatedAt": updatedAt == null ? [] : updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "courseId": courseId,
+        "orderCourse": orderCourse,
+        "name": name,
+        "nameFile": nameFile,
+        "description": description,
+        "videoUrl": videoUrl,
+        "createdAt": createdAt == null ? [] : createdAt?.toIso8601String(),
+        "updatedAt": updatedAt == null ? [] : updatedAt?.toIso8601String(),
+      };
 }

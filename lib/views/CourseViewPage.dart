@@ -28,8 +28,6 @@ class _CourseScreenPageState extends State<CourseScreen>
   ];
   late TabController _tabController;
   int tabIndex = 0;
-  bool isCourseDetails = false;
-  late Course course;
 
   @override
   void initState() {
@@ -39,44 +37,8 @@ class _CourseScreenPageState extends State<CourseScreen>
     _tabController = TabController(vsync: this, length: tabs.length);
   }
 
-  void onCourseTap(Course course) {
-    isCourseDetails = true;
-    this.course = course;
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (isCourseDetails) {
-      return Scaffold(
-        body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          child: CourseDetailViewPage(
-            course: course,
-          ),
-          transitionBuilder: (Widget child, Animation<double> animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: ScaleTransition(
-                scale: animation.status == AnimationStatus.dismissed
-                    ? Tween<double>(begin: .5, end: 1).animate(animation)
-                    : const AlwaysStoppedAnimation(1.0),
-                child: child,
-              ),
-            );
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              isCourseDetails = false;
-            });
-          },
-          backgroundColor: Colors.blue.withOpacity(.5),
-          child: const Icon(Icons.keyboard_backspace),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      );
-    } else {
       final courseListOnProvider = Provider.of<CourseViewModel>(context);
       final eBookListOnProvider = Provider.of<EBookViewModel>(context);
       final courseList = courseListOnProvider.courseList;
@@ -121,9 +83,8 @@ class _CourseScreenPageState extends State<CourseScreen>
               itemBuilder: (context, Course course) => InkWell(
                 child: CourseViewItem(course: course),
                 onTap: () {
-                  setState(() {
-                    onCourseTap(course);
-                  });
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => CourseDetailViewPage(course: course,)));
                 },
               ),
               itemComparator: (element1, element2) => element1
@@ -232,5 +193,4 @@ class _CourseScreenPageState extends State<CourseScreen>
         ),
       );
     }
-  }
 }
