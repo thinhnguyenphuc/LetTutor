@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.activity:activity:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/68865d38a53fb5c240061f062e474515/jetified-activity-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/68865d38a53fb5c240061f062e474515/jetified-activity-1.0.0/res" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/68865d38a53fb5c240061f062e474515/jetified-activity-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/8a2b962da043e8a509be7d8eae171925/jetified-activity-1.0.0/res" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/3d3eaeac66a753ef62d8817bde15a5cf/transformed/jetified-activity-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/3d3eaeac66a753ef62d8817bde15a5cf/transformed/jetified-activity-1.0.0/res" />
+      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/3d3eaeac66a753ef62d8817bde15a5cf/transformed/jetified-activity-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

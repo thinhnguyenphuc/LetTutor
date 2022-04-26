@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/15faa7fdc535e832982b4615d300cb77/lifecycle-livedata-2.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/15faa7fdc535e832982b4615d300cb77/lifecycle-livedata-2.0.0/res" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/15faa7fdc535e832982b4615d300cb77/lifecycle-livedata-2.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/74e0112860a827e561d53340640ccbaa/lifecycle-livedata-2.0.0/res" />
+      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/cd9cd29673892a0e2248638b2c2d4621/transformed/lifecycle-livedata-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/cd9cd29673892a0e2248638b2c2d4621/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/cd9cd29673892a0e2248638b2c2d4621/transformed/lifecycle-livedata-2.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

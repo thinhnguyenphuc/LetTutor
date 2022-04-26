@@ -3,12 +3,11 @@ import 'package:expandable/expandable.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:video_player/video_player.dart';
+import 'package:video_viewer/video_viewer.dart';
 
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
 import '../resources/Specialties.dart';
-import '../widgets/CustomVideoPlayer.dart';
 
 class TutorDetailsPage extends StatefulWidget {
   final TutorInfo tutor;
@@ -22,11 +21,12 @@ class TutorDetailsPage extends StatefulWidget {
 class _TutorDetailsPageState extends State<TutorDetailsPage> {
   var titleTextStyle =
       const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  final VideoViewerController controller = VideoViewerController();
 
   @override
   Widget build(BuildContext context) {
     var countryName = CountrySingleton().countryHashMap[widget.tutor.country];
-    List<String> languages =  widget.tutor.getLanguages(context);
+    List<String> languages = widget.tutor.getLanguages(context);
 
     final localNameView = countryName != null
         ? Text(
@@ -113,7 +113,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right:20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 children: [
                   Row(
@@ -133,14 +133,18 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                             Flexible(
                               child: Wrap(
                                 children: <Widget>[
-                                  for (String education in widget.tutor.education.split(","))
+                                  for (String education
+                                      in widget.tutor.education.split(","))
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(2, 0, 2, 5),
                                       child: Container(
-                                        margin: const EdgeInsets.only(top: 10, bottom: 10),
+                                        margin: const EdgeInsets.only(
+                                            top: 10, bottom: 10),
                                         padding: const EdgeInsets.all(10),
                                         decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(40)),
                                           color: Colors.lightBlueAccent,
                                         ),
                                         child: Text(education),
@@ -266,7 +270,33 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
             ),
             ExpandableNotifier(
               child: Expandable(
-                  collapsed: ExpandableButton(
+                  collapsed: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: ExpandableButton(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Video introduce", style: titleTextStyle),
+                              const Icon(Icons.arrow_downward_rounded),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(padding: const EdgeInsets.only(left:10, right:10),
+                      child: VideoViewer(
+                        controller: controller,
+                        source: {
+                          "SubRip Text": VideoSource(
+                            video: VideoPlayerController.network(
+                                widget.tutor.video),
+                          )
+                        },
+                      ))
+                    ],
+                  ),
+                  expanded: ExpandableButton(
                       child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Row(
@@ -276,34 +306,13 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                           "Video introduce",
                           style: titleTextStyle,
                         ),
-                        Icon(Icons.arrow_forward),
+                        const Icon(Icons.arrow_forward),
                       ],
                     ),
-                  )),
-                  expanded: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: ExpandableButton(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Video introduce", style: titleTextStyle),
-                              Icon(Icons.arrow_downward_rounded),
-                            ],
-                          ),
-                        ),
-                      ),
-                      CustomVideoPlayer(
-                        looping: true,
-                        videoPlayerController:
-                            VideoPlayerController.network(widget.tutor.video),
-                      ),
-                    ],
-                  )),
+                  ))),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right:20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 children: [
                   Row(
@@ -325,12 +334,15 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                                 children: <Widget>[
                                   for (String language in languages)
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(2, 0, 2, 5),
                                       child: Container(
-                                        margin: const EdgeInsets.only(top: 10, bottom: 10),
+                                        margin: const EdgeInsets.only(
+                                            top: 10, bottom: 10),
                                         padding: const EdgeInsets.all(10),
                                         decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(40)),
                                           color: Colors.greenAccent,
                                         ),
                                         child: Text(language),
@@ -348,7 +360,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right:20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 children: [
                   Row(
@@ -368,14 +380,18 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                             Flexible(
                               child: Wrap(
                                 children: <Widget>[
-                                  for (String skill in widget.tutor.specialties.split(","))
+                                  for (String skill
+                                      in widget.tutor.specialties.split(","))
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(2, 0, 2, 5),
                                       child: Container(
-                                        margin: const EdgeInsets.only(top: 5, bottom: 5),
+                                        margin: const EdgeInsets.only(
+                                            top: 5, bottom: 5),
                                         padding: const EdgeInsets.all(10),
                                         decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(40)),
                                           color: Colors.greenAccent,
                                         ),
                                         child: Text(getSkillByKey(skill)),
@@ -393,7 +409,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right:20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 children: [
                   Row(
@@ -409,7 +425,10 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                         width: MediaQuery.of(context).size.width / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
-                          child: Text(widget.tutor.interests, style: TextStyle(fontSize: 20),),
+                          child: Text(
+                            widget.tutor.interests,
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                     ),
@@ -418,7 +437,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right:20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 children: [
                   Row(
@@ -434,7 +453,10 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                         width: MediaQuery.of(context).size.width / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
-                          child: Text(widget.tutor.experience, style: TextStyle(fontSize: 20),),
+                          child: Text(
+                            widget.tutor.experience,
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                     ),
