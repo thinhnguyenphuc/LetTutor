@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project/resources/Specialties.dart';
 
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
@@ -48,8 +49,10 @@ class TutorViewItem extends StatelessWidget {
                           height: 70,
                           child: CachedNetworkImage(
                             imageUrl: tutor.avatar,
-                            placeholder: (context, url) => const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -83,7 +86,7 @@ class TutorViewItem extends StatelessWidget {
                   Row(children: [
                     RatingBar.builder(
                       itemSize: 15,
-                      initialRating: 5,
+                      initialRating: tutor.getRating(),
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
@@ -113,13 +116,12 @@ class TutorViewItem extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
                               child: Container(
-                                padding: const EdgeInsets.all(5.0),
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.blue.shade500),
-                                  borderRadius: BorderRadius.circular(20),
+                                padding: const EdgeInsets.all(10),
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                                  color: Colors.greenAccent,
                                 ),
-                                child: Text(skill),
+                                child: Text(getSkillByKey(skill)),
                               ),
                             ),
                         ],

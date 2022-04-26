@@ -1,5 +1,6 @@
 import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 List<TutorInfo> tutorFromJson(String str) =>
     List<TutorInfo>.from(json.decode(str).map((x) => TutorInfo.fromJson(x)));
 
@@ -109,9 +110,13 @@ class TutorInfo {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"],
-        feedbacks: json["feedbacks"]!=null ? List<Feedback>.from(
-            json["feedbacks"].map((x) => Feedback.fromJson(x))) : [],
-        schedules: json["schedules"]!=null ?List<dynamic>.from(json["schedules"].map((x) => x)) : [],
+        feedbacks: json["feedbacks"] != null
+            ? List<Feedback>.from(
+                json["feedbacks"].map((x) => Feedback.fromJson(x)))
+            : [],
+        schedules: json["schedules"] != null
+            ? List<dynamic>.from(json["schedules"].map((x) => x))
+            : [],
         id: json["id"],
         userId: json["userId"] ?? "",
         video: json["video"] ?? "",
@@ -126,7 +131,7 @@ class TutorInfo {
         specialties: json["specialties"] ?? "",
         resume: json["resume"] ?? "",
         isNative: json["isNative"] ?? "",
-        price: json["price"]?? 0,
+        price: json["price"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -170,6 +175,22 @@ class TutorInfo {
         "isNative": isNative,
         "price": price,
       };
+  double getRating(){
+    int sumRating = 0;
+    for (Feedback feedback in feedbacks){
+      sumRating+=feedback.rating;
+    }
+    return sumRating/feedbacks.length;
+  }
+
+  List<String> getLanguages(BuildContext context){
+    List<String> languagesCodeList = languages.split(",");
+    List<String> res = [];
+    for(String item in languagesCodeList){
+      res.add(LocaleNames.of(context)!.nameOf(item).toString());
+    }
+    return res;
+  }
 }
 
 class Feedback {

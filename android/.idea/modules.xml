@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.iml" filepath="$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1538536216/android.path_provider_android.iml" filepath="$PROJECT_DIR$/.idea/modules/1538536216/android.path_provider_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.iml" filepath="$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1623657892/android.url_launcher_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1623657892/android.url_launcher_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-95253266/android.video_player_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-95253266/android.video_player_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.iml" filepath="$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.iml" filepath="$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.iml" />
+    </modules>
+  </component>
+</project>

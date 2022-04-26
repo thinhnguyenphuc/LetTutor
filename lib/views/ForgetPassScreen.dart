@@ -20,11 +20,13 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
   Widget build(BuildContext context) {
     Future<void> forgotPassword() async {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Processing Data', textAlign: TextAlign.center,),
+        content: const Text(
+          'Processing Data',
+          textAlign: TextAlign.center,
+        ),
         backgroundColor: Colors.green.shade300,
       ));
     }
-
 
     final logoField = IconHero(
         tag: "logo",
@@ -40,11 +42,11 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
         }));
 
     final resetPassText = Text(Strings.resetPassword,
-    style: const TextStyle(
-      fontSize: 30,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-    ));
+        style: const TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ));
 
     final resetPassContentText = Text(Strings.resetPasswordContent,
         textAlign: TextAlign.center,
@@ -67,7 +69,7 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
       iconSize: 20,
       hasGradientColor: true,
       textStyle:
-      style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+          style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
       onPressedCallback: forgotPassword,
     );
 
@@ -91,16 +93,14 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                       children: <Widget>[logoField],
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(10,10,10,50),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 50),
                       child: Column(
                         children: [
                           resetPassText,
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0,20,0,0),
+                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                             child: Column(
-                              children: [
-                                resetPassContentText
-                              ],
+                              children: [resetPassContentText],
                             ),
                           ),
                         ],

@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isButtonDisabled = false;
+
   @override
   Widget build(BuildContext context) {
     Future<void> loginUsers() async {
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
             context, MaterialPageRoute(builder: (context) => const HomePage()));
       } else {
         isButtonDisabled = false;
-        Utils.showSnackBar(context,res.message,  Colors.red.shade300);
+        Utils.showSnackBar(context, res.message, Colors.red.shade300);
       }
     }
 
@@ -111,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
       hasGradientColor: true,
       textStyle:
           style.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-      onPressedCallback: isButtonDisabled ? null: loginUsers,
+      onPressedCallback: isButtonDisabled ? null : loginUsers,
     );
 
     final loginGoogleButton = IconButton(

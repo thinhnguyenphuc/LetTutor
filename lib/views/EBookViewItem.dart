@@ -13,8 +13,7 @@ class EBookViewItem extends StatefulWidget {
 }
 
 class _EBookViewItemState extends State<EBookViewItem> {
-
-  var style =  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+  var style = const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,8 @@ class _EBookViewItemState extends State<EBookViewItem> {
                 borderRadius: BorderRadius.circular(20),
                 child: CachedNetworkImage(
                   imageUrl: widget.eBook.imageUrl,
-                  placeholder: (context, url) => const CircularProgressIndicator(),
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
@@ -55,10 +55,14 @@ class _EBookViewItemState extends State<EBookViewItem> {
                     Text(widget.eBook.name,
                         style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Text(widget.eBook.description,
                         style: const TextStyle(fontSize: 18)),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               )

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-ServiceMessage serviceMessageFromJson(String str) => ServiceMessage.fromJson(json.decode(str));
+ServiceMessage serviceMessageFromJson(String str) =>
+    ServiceMessage.fromJson(json.decode(str));
 
 String serviceMessageToJson(ServiceMessage data) => json.encode(data.toJson());
 
@@ -14,12 +15,12 @@ class ServiceMessage {
   final String message;
 
   factory ServiceMessage.fromJson(Map<String, dynamic> json) => ServiceMessage(
-    statusCode: json["statusCode"],
-    message: json["message"],
-  );
+        statusCode: json["statusCode"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "statusCode": statusCode,
-    "message": message,
-  };
+        "statusCode": statusCode,
+        "message": message,
+      };
 }

@@ -47,44 +47,47 @@ class Schedule {
   final List<StudentMaterial> studentMaterials;
 
   factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
-    createdAtTimeStamp: json["createdAtTimeStamp"],
-    updatedAtTimeStamp: json["updatedAtTimeStamp"],
-    id: json["id"],
-    userId: json["userId"],
-    scheduleDetailId: json["scheduleDetailId"],
-    tutorMeetingLink: json["tutorMeetingLink"],
-    studentMeetingLink: json["studentMeetingLink"],
-    studentRequest: json["studentRequest"],
-    tutorReview: json["tutorReview"],
-    scoreByTutor: json["scoreByTutor"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    recordUrl: json["recordUrl"],
-    isDeleted: json["isDeleted"],
-    scheduleDetailInfo: ScheduleDetailInfo.fromJson(json["scheduleDetailInfo"]),
-    showRecordUrl: json["showRecordUrl"]?? false,
-    studentMaterials: List<StudentMaterial>.from(json["studentMaterials"].map((x) => StudentMaterial.fromJson(x))),
-  );
+        createdAtTimeStamp: json["createdAtTimeStamp"],
+        updatedAtTimeStamp: json["updatedAtTimeStamp"],
+        id: json["id"],
+        userId: json["userId"],
+        scheduleDetailId: json["scheduleDetailId"],
+        tutorMeetingLink: json["tutorMeetingLink"],
+        studentMeetingLink: json["studentMeetingLink"],
+        studentRequest: json["studentRequest"],
+        tutorReview: json["tutorReview"],
+        scoreByTutor: json["scoreByTutor"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        recordUrl: json["recordUrl"],
+        isDeleted: json["isDeleted"],
+        scheduleDetailInfo:
+            ScheduleDetailInfo.fromJson(json["scheduleDetailInfo"]),
+        showRecordUrl: json["showRecordUrl"] ?? false,
+        studentMaterials: List<StudentMaterial>.from(
+            json["studentMaterials"].map((x) => StudentMaterial.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "createdAtTimeStamp": createdAtTimeStamp,
-    "updatedAtTimeStamp": updatedAtTimeStamp,
-    "id": id,
-    "userId": userId,
-    "scheduleDetailId": scheduleDetailId,
-    "tutorMeetingLink": tutorMeetingLink,
-    "studentMeetingLink": studentMeetingLink,
-    "studentRequest": studentRequest,
-    "tutorReview": tutorReview,
-    "scoreByTutor": scoreByTutor,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "recordUrl": recordUrl,
-    "isDeleted": isDeleted,
-    "scheduleDetailInfo": scheduleDetailInfo.toJson(),
-    "showRecordUrl": showRecordUrl,
-    "studentMaterials": List<StudentMaterial>.from(studentMaterials.map((x) => x.toJson())),
-  };
+        "createdAtTimeStamp": createdAtTimeStamp,
+        "updatedAtTimeStamp": updatedAtTimeStamp,
+        "id": id,
+        "userId": userId,
+        "scheduleDetailId": scheduleDetailId,
+        "tutorMeetingLink": tutorMeetingLink,
+        "studentMeetingLink": studentMeetingLink,
+        "studentRequest": studentRequest,
+        "tutorReview": tutorReview,
+        "scoreByTutor": scoreByTutor,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "recordUrl": recordUrl,
+        "isDeleted": isDeleted,
+        "scheduleDetailInfo": scheduleDetailInfo.toJson(),
+        "showRecordUrl": showRecordUrl,
+        "studentMaterials":
+            List<StudentMaterial>.from(studentMaterials.map((x) => x.toJson())),
+      };
 }
 
 class ScheduleDetailInfo {
@@ -110,29 +113,30 @@ class ScheduleDetailInfo {
   final DateTime updatedAt;
   final ScheduleInfo scheduleInfo;
 
-  factory ScheduleDetailInfo.fromJson(Map<String, dynamic> json) => ScheduleDetailInfo(
-    startPeriodTimestamp: json["startPeriodTimestamp"],
-    endPeriodTimestamp: json["endPeriodTimestamp"],
-    id: json["id"],
-    scheduleId: json["scheduleId"],
-    startPeriod: json["startPeriod"],
-    endPeriod: json["endPeriod"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    scheduleInfo: ScheduleInfo.fromJson(json["scheduleInfo"]),
-  );
+  factory ScheduleDetailInfo.fromJson(Map<String, dynamic> json) =>
+      ScheduleDetailInfo(
+        startPeriodTimestamp: json["startPeriodTimestamp"],
+        endPeriodTimestamp: json["endPeriodTimestamp"],
+        id: json["id"],
+        scheduleId: json["scheduleId"],
+        startPeriod: json["startPeriod"],
+        endPeriod: json["endPeriod"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        scheduleInfo: ScheduleInfo.fromJson(json["scheduleInfo"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "startPeriodTimestamp": startPeriodTimestamp,
-    "endPeriodTimestamp": endPeriodTimestamp,
-    "id": id,
-    "scheduleId": scheduleId,
-    "startPeriod": startPeriod,
-    "endPeriod": endPeriod,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "scheduleInfo": scheduleInfo.toJson(),
-  };
+        "startPeriodTimestamp": startPeriodTimestamp,
+        "endPeriodTimestamp": endPeriodTimestamp,
+        "id": id,
+        "scheduleId": scheduleId,
+        "startPeriod": startPeriod,
+        "endPeriod": endPeriod,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "scheduleInfo": scheduleInfo.toJson(),
+      };
 }
 
 class ScheduleInfo {
@@ -161,28 +165,29 @@ class ScheduleInfo {
   final TutorInfo tutorInfo;
 
   factory ScheduleInfo.fromJson(Map<String, dynamic> json) => ScheduleInfo(
-    date: DateTime.parse(json["date"]),
-    startTimestamp: json["startTimestamp"],
-    endTimestamp: json["endTimestamp"],
-    id: json["id"],
-    tutorId: json["tutorId"],
-    startTime: json["startTime"],
-    endTime: json["endTime"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    tutorInfo: TutorInfo.fromJson(json["tutorInfo"]),
-  );
+        date: DateTime.parse(json["date"]),
+        startTimestamp: json["startTimestamp"],
+        endTimestamp: json["endTimestamp"],
+        id: json["id"],
+        tutorId: json["tutorId"],
+        startTime: json["startTime"],
+        endTime: json["endTime"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        tutorInfo: TutorInfo.fromJson(json["tutorInfo"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
-    "startTimestamp": startTimestamp,
-    "endTimestamp": endTimestamp,
-    "id": id,
-    "tutorId": tutorId,
-    "startTime": startTime,
-    "endTime": endTime,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "tutorInfo": tutorInfo.toJson(),
-  };
+        "date":
+            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "startTimestamp": startTimestamp,
+        "endTimestamp": endTimestamp,
+        "id": id,
+        "tutorId": tutorId,
+        "startTime": startTime,
+        "endTime": endTime,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "tutorInfo": tutorInfo.toJson(),
+      };
 }
