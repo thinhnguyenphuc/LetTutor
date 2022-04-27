@@ -3,14 +3,16 @@ import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:project/resources/Specialties.dart';
+import 'package:project/view_models/TutorViewModel.dart';
 
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
 
 class TutorViewItem extends StatelessWidget {
   final TutorInfo tutor;
+  final TutorViewModel tutorViewModel;
 
-  const TutorViewItem({Key? key, required this.tutor}) : super(key: key);
+  const TutorViewItem({Key? key, required this.tutor, required this.tutorViewModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +152,9 @@ class TutorViewItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      tutorViewModel.fetchBookings(tutor.id);
+                    },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           side: const BorderSide(width: 5, color: Colors.blue),

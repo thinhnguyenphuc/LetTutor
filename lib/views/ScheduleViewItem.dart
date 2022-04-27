@@ -349,15 +349,18 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                             widget.viewModel
                                 .cancelBookedClass(
                                     widget.schedule.scheduleDetailId)
-                                .then((value) => {
-                                      if (value.statusCode == 200)
-                                        {
-                                          setState(() {
-                                            widget.viewModel
-                                                .fetchScheduleAgain();
-                                          })
-                                        }
-                                    });
+                                .then((value) {
+                              if (value.statusCode == 200) {
+                                setState(() {
+                                  Utils.showSnackBar(
+                                      context, value.message, Colors.green);
+                                  widget.viewModel.fetchScheduleAgain();
+                                });
+                              } else {
+                                Utils.showSnackBar(
+                                    context, value.message, Colors.green);
+                              }
+                            });
                           },
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(width: 1, color: Colors.red),

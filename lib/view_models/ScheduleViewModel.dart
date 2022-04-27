@@ -93,4 +93,9 @@ class ScheduleViewModel with ChangeNotifier {
         await ApiServices().cancelBookedClass(scheduleDetailId);
     return cancelBookedClassStatus;
   }
+
+  Future<ServiceMessage> bookClass(String bookedId, String note) async {
+    ServiceMessage bookClassStatus = await ApiServices().bookClass(bookedId, note);
+    return bookClassStatus;
+  }
 }
