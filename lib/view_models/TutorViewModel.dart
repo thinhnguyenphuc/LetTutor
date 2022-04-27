@@ -7,10 +7,11 @@ import '../models/TutorModel.dart';
 class TutorViewModel with ChangeNotifier {
   List<TutorInfo> tutorList = [];
   List<Schedule> schedules = [];
+
   List<TutorInfo> filteredTutorList(String filter) {
     List<TutorInfo> res = [];
-    for (TutorInfo item in tutorList){
-      if(item.specialties.contains(filter)){
+    for (TutorInfo item in tutorList) {
+      if (item.specialties.contains(filter)) {
         res.add(item);
       }
     }

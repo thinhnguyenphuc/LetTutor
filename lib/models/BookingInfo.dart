@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-BookingInfo bookingInfoFromJson(String str) => BookingInfo.fromJson(json.decode(str));
+BookingInfo bookingInfoFromJson(String str) =>
+    BookingInfo.fromJson(json.decode(str));
 
 String bookingInfoToJson(BookingInfo data) => json.encode(data.toJson());
 
@@ -38,36 +39,36 @@ class BookingInfo {
   final bool isDeleted;
 
   factory BookingInfo.fromJson(Map<String, dynamic> json) => BookingInfo(
-    createdAtTimeStamp: json["createdAtTimeStamp"],
-    updatedAtTimeStamp: json["updatedAtTimeStamp"],
-    id: json["id"],
-    userId: json["userId"],
-    scheduleDetailId: json["scheduleDetailId"],
-    tutorMeetingLink: json["tutorMeetingLink"],
-    studentMeetingLink: json["studentMeetingLink"],
-    studentRequest: json["studentRequest"],
-    tutorReview: json["tutorReview"],
-    scoreByTutor: json["scoreByTutor"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    recordUrl: json["recordUrl"],
-    isDeleted: json["isDeleted"],
-  );
+        createdAtTimeStamp: json["createdAtTimeStamp"],
+        updatedAtTimeStamp: json["updatedAtTimeStamp"],
+        id: json["id"],
+        userId: json["userId"],
+        scheduleDetailId: json["scheduleDetailId"],
+        tutorMeetingLink: json["tutorMeetingLink"],
+        studentMeetingLink: json["studentMeetingLink"],
+        studentRequest: json["studentRequest"],
+        tutorReview: json["tutorReview"],
+        scoreByTutor: json["scoreByTutor"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        recordUrl: json["recordUrl"],
+        isDeleted: json["isDeleted"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "createdAtTimeStamp": createdAtTimeStamp,
-    "updatedAtTimeStamp": updatedAtTimeStamp,
-    "id": id,
-    "userId": userId,
-    "scheduleDetailId": scheduleDetailId,
-    "tutorMeetingLink": tutorMeetingLink,
-    "studentMeetingLink": studentMeetingLink,
-    "studentRequest": studentRequest,
-    "tutorReview": tutorReview,
-    "scoreByTutor": scoreByTutor,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "recordUrl": recordUrl,
-    "isDeleted": isDeleted,
-  };
+        "createdAtTimeStamp": createdAtTimeStamp,
+        "updatedAtTimeStamp": updatedAtTimeStamp,
+        "id": id,
+        "userId": userId,
+        "scheduleDetailId": scheduleDetailId,
+        "tutorMeetingLink": tutorMeetingLink,
+        "studentMeetingLink": studentMeetingLink,
+        "studentRequest": studentRequest,
+        "tutorReview": tutorReview,
+        "scoreByTutor": scoreByTutor,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "recordUrl": recordUrl,
+        "isDeleted": isDeleted,
+      };
 }

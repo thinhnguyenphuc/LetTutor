@@ -239,17 +239,17 @@ class ApiServices {
     });
   }
 
-  Future<List<Schedule>> fetchBookings(String tutorID){
+  Future<List<Schedule>> fetchBookings(String tutorID) {
     String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['tutorId'] = [tutorID];
     return http
         .post(Uri.parse("$baseUrl/schedule"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        },
-        body: jsonEncode(request))
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(request))
         .then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
@@ -264,22 +264,24 @@ class ApiServices {
       const JsonDecoder _decoder = JsonDecoder();
       final scheduleContainer = _decoder.convert(jsonBody);
       final List schedules = scheduleContainer["data"];
-      return schedules.map((contactRaw) => Schedule.fromJson(contactRaw)).toList();
+      return schedules
+          .map((contactRaw) => Schedule.fromJson(contactRaw))
+          .toList();
     });
   }
 
-  Future<ServiceMessage> bookClass(String classID, String note){
+  Future<ServiceMessage> bookClass(String classID, String note) {
     String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['scheduleDetailIds'] = [classID];
     request['note'] = [note];
     return http
         .post(Uri.parse("$baseUrl/booking"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        },
-        body: jsonEncode(request))
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(request))
         .then((http.Response response) {
       final int statusCode = response.statusCode;
       if (statusCode == 200) {
@@ -290,18 +292,18 @@ class ApiServices {
     });
   }
 
-  Future<ServiceMessage> changePassword(String oldPass, String newPass){
+  Future<ServiceMessage> changePassword(String oldPass, String newPass) {
     String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['password'] = [oldPass];
     request['newPassword'] = [newPass];
     return http
         .post(Uri.parse("$baseUrl/auth/change-password"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        },
-        body: jsonEncode(request))
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(request))
         .then((http.Response response) {
       final int statusCode = response.statusCode;
       if (statusCode == 200) {
@@ -311,7 +313,6 @@ class ApiServices {
       }
     });
   }
-
 }
 
 class FetchDataException implements Exception {

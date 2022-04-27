@@ -1,9 +1,11 @@
 import '../models/User.dart';
 
-class UserInfoLazyInitializedSingleton{
+class UserInfoLazyInitializedSingleton {
   static UserInfoLazyInitializedSingleton? _instance =
+      UserInfoLazyInitializedSingleton._privateConstructor();
+
   UserInfoLazyInitializedSingleton._privateConstructor();
-  UserInfoLazyInitializedSingleton._privateConstructor();
+
   static late final User _userInfo;
 
   factory UserInfoLazyInitializedSingleton() {
@@ -11,16 +13,15 @@ class UserInfoLazyInitializedSingleton{
     return _instance!;
   }
 
-  void setUserInfo(User user){
+  void setUserInfo(User user) {
     _userInfo = user;
   }
 
-  User getUserInfo(){
+  User getUserInfo() {
     return _userInfo;
   }
 
-  String getToken(){
+  String getToken() {
     return _userInfo.tokens.access.token;
   }
-
 }

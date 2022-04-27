@@ -49,8 +49,8 @@ class _TutorScreenPageState extends State<TutorScreen> {
                             )));
                   },
                   child: TutorViewItem(
-                    tutor: _tutor, tutorViewModel: tutorListOnProvider,
-                    
+                    tutor: _tutor,
+                    tutorViewModel: tutorListOnProvider,
                   ),
                 ),
               );

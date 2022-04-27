@@ -95,7 +95,8 @@ class ScheduleViewModel with ChangeNotifier {
   }
 
   Future<ServiceMessage> bookClass(String bookedId, String note) async {
-    ServiceMessage bookClassStatus = await ApiServices().bookClass(bookedId, note);
+    ServiceMessage bookClassStatus =
+        await ApiServices().bookClass(bookedId, note);
     return bookClassStatus;
   }
 }

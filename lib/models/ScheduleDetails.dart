@@ -37,16 +37,16 @@ class ScheduleDetailInfo {
       );
 
   Map<String, dynamic> toJson() => {
-    "startPeriodTimestamp": startPeriodTimestamp,
-    "endPeriodTimestamp": endPeriodTimestamp,
-    "id": id,
-    "scheduleId": scheduleId,
-    "startPeriod": startPeriod,
-    "endPeriod": endPeriod,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "scheduleInfo": scheduleInfo.toJson(),
-  };
+        "startPeriodTimestamp": startPeriodTimestamp,
+        "endPeriodTimestamp": endPeriodTimestamp,
+        "id": id,
+        "scheduleId": scheduleId,
+        "startPeriod": startPeriod,
+        "endPeriod": endPeriod,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "scheduleInfo": scheduleInfo.toJson(),
+      };
 }
 
 class ScheduleInfo {
@@ -75,29 +75,29 @@ class ScheduleInfo {
   final TutorInfo tutorInfo;
 
   factory ScheduleInfo.fromJson(Map<String, dynamic> json) => ScheduleInfo(
-    date: DateTime.parse(json["date"]),
-    startTimestamp: json["startTimestamp"],
-    endTimestamp: json["endTimestamp"],
-    id: json["id"],
-    tutorId: json["tutorId"],
-    startTime: json["startTime"],
-    endTime: json["endTime"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    tutorInfo: TutorInfo.fromJson(json["tutorInfo"]),
-  );
+        date: DateTime.parse(json["date"]),
+        startTimestamp: json["startTimestamp"],
+        endTimestamp: json["endTimestamp"],
+        id: json["id"],
+        tutorId: json["tutorId"],
+        startTime: json["startTime"],
+        endTime: json["endTime"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        tutorInfo: TutorInfo.fromJson(json["tutorInfo"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "date":
-    "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
-    "startTimestamp": startTimestamp,
-    "endTimestamp": endTimestamp,
-    "id": id,
-    "tutorId": tutorId,
-    "startTime": startTime,
-    "endTime": endTime,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "tutorInfo": tutorInfo.toJson(),
-  };
+        "date":
+            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "startTimestamp": startTimestamp,
+        "endTimestamp": endTimestamp,
+        "id": id,
+        "tutorId": tutorId,
+        "startTime": startTime,
+        "endTime": endTime,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "tutorInfo": tutorInfo.toJson(),
+      };
 }

@@ -12,7 +12,9 @@ class TutorViewItem extends StatelessWidget {
   final TutorInfo tutor;
   final TutorViewModel tutorViewModel;
 
-  const TutorViewItem({Key? key, required this.tutor, required this.tutorViewModel}) : super(key: key);
+  const TutorViewItem(
+      {Key? key, required this.tutor, required this.tutorViewModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +122,8 @@ class TutorViewItem extends StatelessWidget {
                               child: Container(
                                 padding: const EdgeInsets.all(10),
                                 decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(40)),
                                   color: Colors.greenAccent,
                                 ),
                                 child: Text(getSkillByKey(skill)),

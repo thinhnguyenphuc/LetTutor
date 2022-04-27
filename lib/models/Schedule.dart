@@ -70,7 +70,7 @@ class Schedule {
         studentMaterials: List<StudentMaterial>.from(
             json["studentMaterials"].map((x) => StudentMaterial.fromJson(x))),
         bookingInfo: List<BookingInfo>.from(
-          json["studentMaterials"].map((x) => BookingInfo.fromJson(x))),
+            json["studentMaterials"].map((x) => BookingInfo.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -96,4 +96,3 @@ class Schedule {
             List<BookingInfo>.from(bookingInfo.map((x) => x.toJson())),
       };
 }
-
