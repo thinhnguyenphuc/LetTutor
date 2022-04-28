@@ -33,9 +33,9 @@ class ScheduleDetailInfo {
         endPeriod: json["endPeriod"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        bookingInfo: json["BookingInfo"] == null
+        bookingInfo: json["scheduleInfo"] == null
             ? null
-            : BookingInfo.fromJson(json["BookingInfo"]),
+            : BookingInfo.fromJson(json["scheduleInfo"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -47,6 +47,6 @@ class ScheduleDetailInfo {
         "endPeriod": endPeriod,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
-        "BookingInfo": bookingInfo!.toJson(),
+        "scheduleInfo": bookingInfo!.toJson(),
       };
 }

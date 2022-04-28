@@ -30,7 +30,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _requestedController = TextEditingController();
+    TextEditingController requestedController = TextEditingController();
     var time = widget.schedule.scheduleDetailInfo!.bookingInfo!.date;
     TutorInfo? tutor =
         widget.schedule.scheduleDetailInfo!.bookingInfo!.tutorInfo;
@@ -276,7 +276,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                         AlertDialog(
                                       title: const Text('Special Request'),
                                       content: TextField(
-                                        controller: _requestedController,
+                                        controller: requestedController,
                                         decoration: InputDecoration(
                                             hintText: "Request"),
                                       ),
@@ -291,7 +291,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                             widget.viewModel
                                                 .updateStudentRequest(
                                                     widget.schedule.id,
-                                                    _requestedController.text)
+                                                    requestedController.text)
                                                 .then((value) => {
                                                       if (value.statusCode ==
                                                           200)

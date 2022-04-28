@@ -24,10 +24,17 @@ class TutorViewModel with ChangeNotifier {
   }
 
   fetchBookings(String userId) async {
+    DateTime now = DateTime.now();
+    List<BookingInfo> res = [];
     if (!schedulesMap.containsKey(userId)) {
-      await ApiServices()
-          .fetchBookings(userId)
-          .then((value) => {schedulesMap[userId] = value});
+      List<BookingInfo> bookingList = await ApiServices().fetchBookings(userId);
+      for (BookingInfo info in bookingList) {
+        DateTime time = DateTime.fromMillisecondsSinceEpoch(info.startTimestamp);
+        if(time.isAfter(now)){
+          res.add(info);
+        }
+      }
+      schedulesMap[userId] = res;
     }
     notifyListeners();
   }

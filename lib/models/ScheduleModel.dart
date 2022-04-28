@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:project/models/BookingInfoModel.dart';
+
 import 'ScheduleDetailsModel.dart';
 import 'StudentMaterialsModel.dart';
 
@@ -26,7 +28,6 @@ class Schedule {
     required this.scheduleDetailInfo,
     required this.showRecordUrl,
     this.studentMaterials = const [],
-    this.bookingInfo = const [],
   });
 
   final int createdAtTimeStamp;
@@ -46,7 +47,6 @@ class Schedule {
   final ScheduleDetailInfo? scheduleDetailInfo;
   final bool? showRecordUrl;
   final List<StudentMaterial>? studentMaterials;
-  final List<Schedule>? bookingInfo;
 
   factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
         createdAtTimeStamp: json["createdAtTimeStamp"],
@@ -75,10 +75,6 @@ class Schedule {
             ? []
             : List<StudentMaterial>.from(json["studentMaterials"]
                 .map((x) => StudentMaterial.fromJson(x))),
-        bookingInfo: json["bookingInfo"] == null
-            ? []
-            : List<Schedule>.from(
-                json["bookingInfo"].map((x) => Schedule.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -100,6 +96,5 @@ class Schedule {
         "showRecordUrl": showRecordUrl,
         "studentMaterials": List<StudentMaterial>.from(
             studentMaterials!.map((x) => x.toJson())),
-        "bookingInfo": List<Schedule>.from(bookingInfo!.map((x) => x.toJson())),
       };
 }

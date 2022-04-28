@@ -33,8 +33,8 @@ class ApiServices {
             "StatusCode:$statusCode, Error:${response.reasonPhrase}");
       }
 
-      const JsonDecoder _decoder = JsonDecoder();
-      final tutorContainer = _decoder.convert(jsonBody);
+      const JsonDecoder decoder = JsonDecoder();
+      final tutorContainer = decoder.convert(jsonBody);
       final List tutors = tutorContainer['rows'];
       return tutors
           .map((contactRaw) => TutorInfo.fromJson(contactRaw))
@@ -56,14 +56,14 @@ class ApiServices {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
       if (statusCode != 200) {
-        const JsonDecoder _decoder = JsonDecoder();
-        final userContainer = _decoder.convert(jsonBody);
+        const JsonDecoder decoder = JsonDecoder();
+        final userContainer = decoder.convert(jsonBody);
         final ServiceMessage serviceMessage =
             ServiceMessage.fromJson(userContainer);
         return serviceMessage;
       } else {
-        const JsonDecoder _decoder = JsonDecoder();
-        final userContainer = _decoder.convert(jsonBody);
+        const JsonDecoder decoder = JsonDecoder();
+        final userContainer = decoder.convert(jsonBody);
         final User user = User.fromJson(userContainer);
         UserInfoLazyInitializedSingleton().setUserInfo(user);
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
@@ -88,8 +88,8 @@ class ApiServices {
       if (statusCode == 201) {
         return ServiceMessage(statusCode: 201, message: "CREATED");
       } else {
-        const JsonDecoder _decoder = JsonDecoder();
-        final messageContainer = _decoder.convert(jsonBody);
+        const JsonDecoder decoder = JsonDecoder();
+        final messageContainer = decoder.convert(jsonBody);
         final ServiceMessage serviceMessage =
             ServiceMessage.fromJson(messageContainer);
         return serviceMessage;
@@ -116,8 +116,8 @@ class ApiServices {
         throw FetchDataException(
             "StatusCode:$statusCode, Error:${response.body}");
       } else {
-        const JsonDecoder _decoder = JsonDecoder();
-        final dataContainer = _decoder.convert(jsonBody);
+        const JsonDecoder decoder = JsonDecoder();
+        final dataContainer = decoder.convert(jsonBody);
         final int count = dataContainer['data']['count'];
         return http.get(
           Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
@@ -136,8 +136,8 @@ class ApiServices {
             throw FetchDataException(
                 "StatusCode:$statusCode, Error:${response.body}");
           } else {
-            const JsonDecoder _decoder = JsonDecoder();
-            final dataContainer = _decoder.convert(jsonBody);
+            const JsonDecoder decoder = JsonDecoder();
+            final dataContainer = decoder.convert(jsonBody);
             final List schedules = dataContainer['data']['rows'];
             return schedules
                 .map((contactRaw) => Schedule.fromJson(contactRaw))
@@ -166,7 +166,7 @@ class ApiServices {
       if (statusCode == 200) {
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       } else {
-        return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESSFUL");
       }
     });
   }
@@ -188,8 +188,8 @@ class ApiServices {
             "StatusCode:$statusCode, Error:${response.reasonPhrase}");
       }
 
-      const JsonDecoder _decoder = JsonDecoder();
-      final courseContainer = _decoder.convert(jsonBody);
+      const JsonDecoder decoder = JsonDecoder();
+      final courseContainer = decoder.convert(jsonBody);
       final List courses = courseContainer["data"]['rows'];
       return courses.map((contactRaw) => Course.fromJson(contactRaw)).toList();
     });
@@ -212,8 +212,8 @@ class ApiServices {
             "StatusCode:$statusCode, Error:${response.reasonPhrase}");
       }
 
-      const JsonDecoder _decoder = JsonDecoder();
-      final eBookContainer = _decoder.convert(jsonBody);
+      const JsonDecoder decoder = JsonDecoder();
+      final eBookContainer = decoder.convert(jsonBody);
       final List eBooks = eBookContainer["data"]['rows'];
       return eBooks.map((contactRaw) => EBook.fromJson(contactRaw)).toList();
     });
@@ -235,7 +235,7 @@ class ApiServices {
       if (statusCode == 200) {
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       } else {
-        return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESSFUL");
       }
     });
   }
@@ -262,8 +262,8 @@ class ApiServices {
             "StatusCode:$statusCode, Error:${response.reasonPhrase}");
       }
 
-      const JsonDecoder _decoder = JsonDecoder();
-      final scheduleContainer = _decoder.convert(jsonBody);
+      const JsonDecoder decoder = JsonDecoder();
+      final scheduleContainer = decoder.convert(jsonBody);
       final List bookingInfoList = scheduleContainer["data"];
       return bookingInfoList
           .map((contactRaw) => BookingInfo.fromJson(contactRaw))
@@ -288,7 +288,7 @@ class ApiServices {
       if (statusCode == 200) {
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       } else {
-        return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESSFUL");
       }
     });
   }
@@ -310,7 +310,7 @@ class ApiServices {
       if (statusCode == 200) {
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       } else {
-        return ServiceMessage(statusCode: 200, message: "UNSUCCESS");
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESSFUL");
       }
     });
   }
