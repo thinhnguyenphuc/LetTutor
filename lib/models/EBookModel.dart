@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'Category.dart';
+import 'CategoryModel.dart';
 
 EBook eBookFromJson(String str) => EBook.fromJson(json.decode(str));
 

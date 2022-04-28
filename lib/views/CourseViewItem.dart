@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../models/Course.dart';
+import '../models/CourseModel.dart';
+
 
 class CourseViewItem extends StatefulWidget {
   final Course course;

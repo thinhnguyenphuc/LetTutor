@@ -5,7 +5,7 @@ import 'package:sticky_grouped_list/sticky_grouped_list.dart';
 import 'package:swipe_to/swipe_to.dart';
 
 import '../Utils.dart';
-import '../models/Course.dart';
+import '../models/CourseModel.dart';
 import '../models/EBookModel.dart';
 import '../resources/Strings.dart';
 import '../view_models/EBookViewModel.dart';

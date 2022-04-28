@@ -7,6 +7,7 @@ import 'package:project/view_models/TutorViewModel.dart';
 
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
+import 'BookingPage.dart';
 
 class TutorViewItem extends StatelessWidget {
   final TutorInfo tutor;
@@ -156,7 +157,11 @@ class TutorViewItem extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
                   child: OutlinedButton(
                     onPressed: () {
-                      tutorViewModel.fetchBookings(tutor.id);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => BookingPage(
+                            userId: tutor.userId,
+                            tutorViewModel: tutorViewModel,
+                          )));
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(

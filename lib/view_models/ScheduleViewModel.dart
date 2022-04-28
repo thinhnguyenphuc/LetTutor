@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../data_sources/api_services.dart';
-import '../models/Schedule.dart';
+import '../models/bookingInfoModel.dart';
+import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
 
 class ScheduleViewModel with ChangeNotifier {
@@ -20,10 +21,10 @@ class ScheduleViewModel with ChangeNotifier {
       int minutes = 0;
       for (Schedule schedule in schedules) {
         var from = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo.startPeriodTimestamp * 1000);
+            schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000);
         var to = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo.endPeriodTimestamp * 1000);
-        if (schedule.scheduleDetailInfo.scheduleInfo.date.isBefore(now)) {
+            schedule.scheduleDetailInfo!.endPeriodTimestamp * 1000);
+        if (schedule.scheduleDetailInfo!.bookingInfo!.date!.isBefore(now)) {
           minutes += to.difference(from).inMinutes;
         }
       }
@@ -39,7 +40,7 @@ class ScheduleViewModel with ChangeNotifier {
     if (schedules.isNotEmpty && _isNotFetchedNextSchedule) {
       for (Schedule schedule in schedules) {
         var date = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo.scheduleInfo.startTimestamp * 1000);
+            schedule.scheduleDetailInfo!.bookingInfo!.startTimestamp * 1000);
         if (date.isAfter(now)) {
           nextSchedule.add(schedule);
         }
@@ -53,7 +54,7 @@ class ScheduleViewModel with ChangeNotifier {
     if (schedules.isNotEmpty && _isNotFetchedHistorySchedule) {
       for (Schedule schedule in schedules) {
         var date = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo.scheduleInfo.startTimestamp * 1000);
+            schedule.scheduleDetailInfo!.bookingInfo!.startTimestamp * 1000);
         if (date.isBefore(now)) {
           historySchedule.add(schedule);
         }

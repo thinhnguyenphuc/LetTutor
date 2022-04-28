@@ -1,4 +1,4 @@
-import '../models/User.dart';
+import '../models/UserModel.dart';
 
 class UserInfoLazyInitializedSingleton {
   static UserInfoLazyInitializedSingleton? _instance =

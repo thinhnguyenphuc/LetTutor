@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_to/swipe_to.dart';
 
-import '../models/Schedule.dart';
+import '../models/ScheduleModel.dart';
 import '../resources/Strings.dart';
 import '../view_models/ScheduleViewModel.dart';
 import 'ScheduleViewItem.dart';

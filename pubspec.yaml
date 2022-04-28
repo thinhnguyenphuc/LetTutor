@@ -43,6 +43,7 @@ dependencies:
   expandable: ^5.0.1
   flutter_localized_locales: ^2.0.3
   video_viewer: ^1.2.7
+  syncfusion_flutter_calendar: ^20.1.51
 dev_dependencies:
   flutter_test:
     sdk: flutter

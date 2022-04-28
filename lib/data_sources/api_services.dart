@@ -3,13 +3,14 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:project/models/Course.dart';
+import 'package:project/models/CourseModel.dart';
 
+import '../models/BookingInfoModel.dart';
 import '../models/EBookModel.dart';
-import '../models/Schedule.dart';
+import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
-import '../models/User.dart';
+import '../models/UserModel.dart';
 import '../resources/UserInfoSingleton.dart';
 
 class ApiServices {
@@ -239,10 +240,10 @@ class ApiServices {
     });
   }
 
-  Future<List<Schedule>> fetchBookings(String tutorID) {
+  Future<List<BookingInfo>> fetchBookings(String tutorID) {
     String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
-    request['tutorId'] = [tutorID];
+    request['tutorId'] = tutorID;
     return http
         .post(Uri.parse("$baseUrl/schedule"),
             headers: {
@@ -263,9 +264,9 @@ class ApiServices {
 
       const JsonDecoder _decoder = JsonDecoder();
       final scheduleContainer = _decoder.convert(jsonBody);
-      final List schedules = scheduleContainer["data"];
-      return schedules
-          .map((contactRaw) => Schedule.fromJson(contactRaw))
+      final List bookingInfoList = scheduleContainer["data"];
+      return bookingInfoList
+          .map((contactRaw) => BookingInfo.fromJson(contactRaw))
           .toList();
     });
   }

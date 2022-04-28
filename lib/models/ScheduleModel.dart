@@ -1,8 +1,6 @@
 import 'dart:convert';
-
-import 'BookingInfo.dart';
-import 'ScheduleDetails.dart';
-import 'StudentMaterials.dart';
+import 'ScheduleDetailsModel.dart';
+import 'StudentMaterialsModel.dart';
 
 Schedule scheduleFromJson(String str) => Schedule.fromJson(json.decode(str));
 
@@ -40,14 +38,14 @@ class Schedule {
   late String? studentRequest;
   final String? tutorReview;
   final int? scoreByTutor;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final String? recordUrl;
   final bool isDeleted;
-  final ScheduleDetailInfo scheduleDetailInfo;
-  final bool showRecordUrl;
-  final List<StudentMaterial> studentMaterials;
-  final List<BookingInfo> bookingInfo;
+  final ScheduleDetailInfo? scheduleDetailInfo;
+  final bool? showRecordUrl;
+  final List<StudentMaterial>? studentMaterials;
+  final List<Schedule>? bookingInfo;
 
   factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
         createdAtTimeStamp: json["createdAtTimeStamp"],
@@ -60,17 +58,17 @@ class Schedule {
         studentRequest: json["studentRequest"],
         tutorReview: json["tutorReview"],
         scoreByTutor: json["scoreByTutor"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         recordUrl: json["recordUrl"],
         isDeleted: json["isDeleted"],
-        scheduleDetailInfo:
+        scheduleDetailInfo:json["scheduleDetailInfo"]==null?null:
             ScheduleDetailInfo.fromJson(json["scheduleDetailInfo"]),
         showRecordUrl: json["showRecordUrl"] ?? false,
-        studentMaterials: List<StudentMaterial>.from(
+        studentMaterials:json["studentMaterials"]==null ? [] : List<StudentMaterial>.from(
             json["studentMaterials"].map((x) => StudentMaterial.fromJson(x))),
-        bookingInfo: List<BookingInfo>.from(
-            json["studentMaterials"].map((x) => BookingInfo.fromJson(x))),
+        bookingInfo:json["bookingInfo"]==null ? [] : List<Schedule>.from(
+            json["bookingInfo"].map((x) => Schedule.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -84,15 +82,15 @@ class Schedule {
         "studentRequest": studentRequest,
         "tutorReview": tutorReview,
         "scoreByTutor": scoreByTutor,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
         "recordUrl": recordUrl,
         "isDeleted": isDeleted,
-        "scheduleDetailInfo": scheduleDetailInfo.toJson(),
+        "scheduleDetailInfo": scheduleDetailInfo!.toJson(),
         "showRecordUrl": showRecordUrl,
         "studentMaterials":
-            List<StudentMaterial>.from(studentMaterials.map((x) => x.toJson())),
+            List<StudentMaterial>.from(studentMaterials!.map((x) => x.toJson())),
         "bookingInfo":
-            List<BookingInfo>.from(bookingInfo.map((x) => x.toJson())),
+            List<Schedule>.from(bookingInfo!.map((x) => x.toJson())),
       };
 }

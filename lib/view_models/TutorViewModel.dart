@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../data_sources/api_services.dart';
-import '../models/Schedule.dart';
+import '../models/BookingInfoModel.dart';
+import '../models/ScheduleModel.dart';
 import '../models/TutorModel.dart';
 
 class TutorViewModel with ChangeNotifier {
   List<TutorInfo> tutorList = [];
-  List<Schedule> schedules = [];
+  Map<String, List<BookingInfo>> schedulesMap = <String, List<BookingInfo>>{};
 
   List<TutorInfo> filteredTutorList(String filter) {
     List<TutorInfo> res = [];
@@ -23,8 +24,12 @@ class TutorViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  fetchBookings(String tutorID) async {
-    schedules = await ApiServices().fetchBookings(tutorID);
+  fetchBookings(String userId) async {
+    if(!schedulesMap.containsKey(userId)){
+      await ApiServices().fetchBookings(userId).then((value) => {
+        schedulesMap[userId] = value
+      });
+    }
     notifyListeners();
   }
 }
