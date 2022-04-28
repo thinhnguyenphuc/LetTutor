@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../data_sources/api_services.dart';
 import '../models/BookingInfoModel.dart';
-import '../models/ScheduleModel.dart';
 import '../models/TutorModel.dart';
 
 class TutorViewModel with ChangeNotifier {
@@ -25,10 +24,10 @@ class TutorViewModel with ChangeNotifier {
   }
 
   fetchBookings(String userId) async {
-    if(!schedulesMap.containsKey(userId)){
-      await ApiServices().fetchBookings(userId).then((value) => {
-        schedulesMap[userId] = value
-      });
+    if (!schedulesMap.containsKey(userId)) {
+      await ApiServices()
+          .fetchBookings(userId)
+          .then((value) => {schedulesMap[userId] = value});
     }
     notifyListeners();
   }

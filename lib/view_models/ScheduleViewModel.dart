@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../data_sources/api_services.dart';
-import '../models/bookingInfoModel.dart';
 import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
 

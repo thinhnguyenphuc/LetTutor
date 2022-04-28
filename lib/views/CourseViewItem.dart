@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../models/CourseModel.dart';
 
-
 class CourseViewItem extends StatefulWidget {
   final Course course;
 

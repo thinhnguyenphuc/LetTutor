@@ -1,5 +1,4 @@
 import 'BookingInfoModel.dart';
-import 'TutorModel.dart';
 
 class ScheduleDetailInfo {
   ScheduleDetailInfo({
@@ -34,7 +33,9 @@ class ScheduleDetailInfo {
         endPeriod: json["endPeriod"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        bookingInfo:json["BookingInfo"]==null ? null : BookingInfo.fromJson(json["BookingInfo"]),
+        bookingInfo: json["BookingInfo"] == null
+            ? null
+            : BookingInfo.fromJson(json["BookingInfo"]),
       );
 
   Map<String, dynamic> toJson() => {

@@ -159,9 +159,9 @@ class TutorViewItem extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => BookingPage(
-                            userId: tutor.userId,
-                            tutorViewModel: tutorViewModel,
-                          )));
+                                userId: tutor.userId,
+                                tutorViewModel: tutorViewModel,
+                              )));
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(

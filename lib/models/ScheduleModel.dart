@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'ScheduleDetailsModel.dart';
 import 'StudentMaterialsModel.dart';
 
@@ -58,17 +59,26 @@ class Schedule {
         studentRequest: json["studentRequest"],
         tutorReview: json["tutorReview"],
         scoreByTutor: json["scoreByTutor"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
         recordUrl: json["recordUrl"],
         isDeleted: json["isDeleted"],
-        scheduleDetailInfo:json["scheduleDetailInfo"]==null?null:
-            ScheduleDetailInfo.fromJson(json["scheduleDetailInfo"]),
+        scheduleDetailInfo: json["scheduleDetailInfo"] == null
+            ? null
+            : ScheduleDetailInfo.fromJson(json["scheduleDetailInfo"]),
         showRecordUrl: json["showRecordUrl"] ?? false,
-        studentMaterials:json["studentMaterials"]==null ? [] : List<StudentMaterial>.from(
-            json["studentMaterials"].map((x) => StudentMaterial.fromJson(x))),
-        bookingInfo:json["bookingInfo"]==null ? [] : List<Schedule>.from(
-            json["bookingInfo"].map((x) => Schedule.fromJson(x))),
+        studentMaterials: json["studentMaterials"] == null
+            ? []
+            : List<StudentMaterial>.from(json["studentMaterials"]
+                .map((x) => StudentMaterial.fromJson(x))),
+        bookingInfo: json["bookingInfo"] == null
+            ? []
+            : List<Schedule>.from(
+                json["bookingInfo"].map((x) => Schedule.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -88,9 +98,8 @@ class Schedule {
         "isDeleted": isDeleted,
         "scheduleDetailInfo": scheduleDetailInfo!.toJson(),
         "showRecordUrl": showRecordUrl,
-        "studentMaterials":
-            List<StudentMaterial>.from(studentMaterials!.map((x) => x.toJson())),
-        "bookingInfo":
-            List<Schedule>.from(bookingInfo!.map((x) => x.toJson())),
+        "studentMaterials": List<StudentMaterial>.from(
+            studentMaterials!.map((x) => x.toJson())),
+        "bookingInfo": List<Schedule>.from(bookingInfo!.map((x) => x.toJson())),
       };
 }

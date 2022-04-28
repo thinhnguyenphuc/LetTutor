@@ -32,7 +32,8 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
   Widget build(BuildContext context) {
     TextEditingController _requestedController = TextEditingController();
     var time = widget.schedule.scheduleDetailInfo!.bookingInfo!.date;
-    TutorInfo? tutor = widget.schedule.scheduleDetailInfo!.bookingInfo!.tutorInfo;
+    TutorInfo? tutor =
+        widget.schedule.scheduleDetailInfo!.bookingInfo!.tutorInfo;
     var countryName = CountrySingleton().countryHashMap[tutor?.country];
     final localNameView =
         countryName != null ? Text(countryName) : const Text("Null");
@@ -181,8 +182,10 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                 margin: const EdgeInsets.all(2),
                                 child: TextButton(
                                   onPressed: () {
-                                    if (widget.schedule
-                                            .studentMaterials![position].eBook !=
+                                    if (widget
+                                            .schedule
+                                            .studentMaterials![position]
+                                            .eBook !=
                                         null) {
                                       Utils.launchURL(widget
                                           .schedule

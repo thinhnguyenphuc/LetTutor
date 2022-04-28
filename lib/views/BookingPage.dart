@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../models/BookingInfoModel.dart';
-import '../models/ScheduleModel.dart';
 import '../view_models/TutorViewModel.dart';
 
 class BookingPage extends StatefulWidget {
@@ -87,13 +86,13 @@ class MeetingDataSource extends CalendarDataSource {
   @override
   DateTime getStartTime(int index) {
     return DateTime.fromMicrosecondsSinceEpoch(
-        _getMeetingData(index).endTimestamp*1000);
+        _getMeetingData(index).endTimestamp * 1000);
   }
 
   @override
   DateTime getEndTime(int index) {
     return DateTime.fromMicrosecondsSinceEpoch(
-        _getMeetingData(index).startTimestamp*1000);
+        _getMeetingData(index).startTimestamp * 1000);
   }
 
   BookingInfo _getMeetingData(int index) {
