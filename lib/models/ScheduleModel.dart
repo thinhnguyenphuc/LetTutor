@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:project/models/BookingInfoModel.dart';
+import 'package:project/models/ScheduleInfoModel.dart';
 
 import 'ScheduleDetailsModel.dart';
 import 'StudentMaterialsModel.dart';

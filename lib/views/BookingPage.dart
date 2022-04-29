@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project/Utils.dart';
 import 'package:project/models/TutorModel.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-
-import '../models/BookingInfoModel.dart';
+import 'package:intl/intl.dart';
+import '../models/ScheduleDetailsModel.dart';
+import '../models/ScheduleInfoModel.dart';
 import '../resources/CountryList.dart';
 import '../view_models/TutorViewModel.dart';
 
@@ -46,9 +48,10 @@ class BookingPageState extends State<BookingPage> {
       style: const TextStyle(fontSize: 20),
     )
         : const Text("Null");
-    Map<String, List<BookingInfo>> schedulesMap =
+    Map<String, List<ScheduleDetailInfo>> schedulesMap =
         widget.tutorViewModel.schedulesMap;
-    final calendarView = schedulesMap.containsKey(widget.tutor.userId)
+    bool isReadyLoaded = schedulesMap.containsKey(widget.tutor.userId);
+    final calendarView = isReadyLoaded
         ? Container(
             padding: const EdgeInsets.all(5),
             child: SfCalendar(
@@ -60,7 +63,6 @@ class BookingPageState extends State<BookingPage> {
                     canBook = false;
                   }
                 });
-
               },
               view: CalendarView.month,
               dataSource: MeetingDataSource(schedulesMap[widget.tutor.userId]!),
@@ -173,9 +175,23 @@ class BookingPageState extends State<BookingPage> {
             Expanded(
               child: calendarView,
             ),
-            OutlinedButton(onPressed: () {  },
-              child: Text("Book a class this day", style: TextStyle(color: canBook ? Colors.green : Colors.grey),),
-            )
+            Visibility(
+              visible: isReadyLoaded,
+              child: ElevatedButton(
+                onPressed: () {  },
+                child: Text(
+                  "Book a class this day",
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: canBook ? Colors.green : Colors.grey,
+                  onPrimary: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -186,26 +202,24 @@ class BookingPageState extends State<BookingPage> {
 class MeetingDataSource extends CalendarDataSource {
   /// Creates a meeting data source, which used to set the appointment
   /// collection to the calendar
-  MeetingDataSource(List<BookingInfo> source) {
+  MeetingDataSource(List<ScheduleDetailInfo> source) {
     appointments = source;
   }
 
   @override
   DateTime getStartTime(int index) {
-    return DateTime.fromMillisecondsSinceEpoch(
-        _getMeetingData(index).startTimestamp);
+    return DateTime.fromMillisecondsSinceEpoch(_getMeetingData(index).startPeriodTimestamp);
   }
 
   @override
   DateTime getEndTime(int index) {
-    return DateTime.fromMillisecondsSinceEpoch(
-        _getMeetingData(index).endTimestamp);
+    return DateTime.fromMillisecondsSinceEpoch(_getMeetingData(index).endPeriodTimestamp);
   }
 
-  BookingInfo _getMeetingData(int index) {
+  ScheduleDetailInfo _getMeetingData(int index) {
     final dynamic meeting = appointments![index];
-    late final BookingInfo meetingData;
-    if (meeting is BookingInfo) {
+    late final ScheduleDetailInfo meetingData;
+    if (meeting is ScheduleDetailInfo) {
       meetingData = meeting;
     }
 

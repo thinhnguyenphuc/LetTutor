@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/models/CourseModel.dart';
 
-import '../models/BookingInfoModel.dart';
+import '../models/ScheduleInfoModel.dart';
 import '../models/EBookModel.dart';
 import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
@@ -240,7 +240,7 @@ class ApiServices {
     });
   }
 
-  Future<List<BookingInfo>> fetchBookings(String tutorID) {
+  Future<List<ScheduleInfo>> fetchBookings(String tutorID) {
     String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['tutorId'] = tutorID;
@@ -264,9 +264,9 @@ class ApiServices {
 
       const JsonDecoder decoder = JsonDecoder();
       final scheduleContainer = decoder.convert(jsonBody);
-      final List bookingInfoList = scheduleContainer["data"];
-      return bookingInfoList
-          .map((contactRaw) => BookingInfo.fromJson(contactRaw))
+      final List scheduleInfoList = scheduleContainer["data"];
+      return scheduleInfoList
+          .map((contactRaw) => ScheduleInfo.fromJson(contactRaw))
           .toList();
     });
   }
@@ -314,6 +314,29 @@ class ApiServices {
       }
     });
   }
+
+  Future<ServiceMessage> totalLearnedTime() {
+    String token = UserInfoLazyInitializedSingleton().getToken();
+    return http
+        .get(Uri.parse("$baseUrl/call/total"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        })
+        .then((http.Response response) {
+      final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
+      if (statusCode == 200) {
+        const JsonDecoder decoder = JsonDecoder();
+        final totalLearnedTime = decoder.convert(jsonBody);
+        final int totalTime = totalLearnedTime["total"];
+        return ServiceMessage(statusCode: 200, message: totalTime.toString());
+      } else {
+        return ServiceMessage(statusCode: 200, message: "UNSUCCESSFUL");
+      }
+    });
+  }
+
 }
 
 class FetchDataException implements Exception {

@@ -1,72 +1,73 @@
 import 'dart:convert';
 
-import 'ScheduleDetailsModel.dart';
-import 'TutorModel.dart';
-
-BookingInfo bookingInfoFromJson(String str) =>
-    BookingInfo.fromJson(json.decode(str));
+BookingInfo bookingInfoFromJson(String str) => BookingInfo.fromJson(json.decode(str));
 
 String bookingInfoToJson(BookingInfo data) => json.encode(data.toJson());
 
 class BookingInfo {
   BookingInfo({
-    required this.date,
+    required this.createdAtTimeStamp,
+    required this.updatedAtTimeStamp,
     required this.id,
-    required this.tutorId,
-    required this.startTime,
-    required this.endTime,
-    required this.startTimestamp,
-    required this.endTimestamp,
+    required this.userId,
+    required this.scheduleDetailId,
+    required this.tutorMeetingLink,
+    required this.studentMeetingLink,
+    required this.studentRequest,
+    required this.tutorReview,
+    required this.scoreByTutor,
     required this.createdAt,
-    required this.isBooked,
-    required this.scheduleDetails,
-    required this.tutorInfo,
+    required this.updatedAt,
+    required this.recordUrl,
+    required this.isDeleted,
   });
 
-  final DateTime? date;
+  final int createdAtTimeStamp;
+  final int updatedAtTimeStamp;
   final String id;
-  final String tutorId;
-  final String startTime;
-  final String endTime;
-  final int startTimestamp;
-  final int endTimestamp;
+  final String userId;
+  final String scheduleDetailId;
+  final String tutorMeetingLink;
+  final String studentMeetingLink;
+  final dynamic studentRequest;
+  final dynamic tutorReview;
+  final dynamic scoreByTutor;
   final DateTime createdAt;
-  final bool isBooked;
-  final List<ScheduleDetailInfo>? scheduleDetails;
-  final TutorInfo? tutorInfo;
+  final DateTime updatedAt;
+  final dynamic recordUrl;
+  final bool isDeleted;
 
   factory BookingInfo.fromJson(Map<String, dynamic> json) => BookingInfo(
-        date: json["date"] == null ? null : DateTime.parse(json["date"]),
-        id: json["id"],
-        tutorId: json["tutorId"],
-        startTime: json["startTime"],
-        endTime: json["endTime"],
-        startTimestamp: json["startTimestamp"],
-        endTimestamp: json["endTimestamp"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        isBooked: json["isBooked"],
-        scheduleDetails: json["scheduleDetails"] == null
-            ? []
-            : List<ScheduleDetailInfo>.from(json["scheduleDetails"]
-                .map((x) => ScheduleDetailInfo.fromJson(x))),
-        tutorInfo: json["tutorInfo"] == null
-            ? null
-            : TutorInfo.fromJson(json["tutorInfo"]),
-      );
+    createdAtTimeStamp: json["createdAtTimeStamp"],
+    updatedAtTimeStamp: json["updatedAtTimeStamp"],
+    id: json["id"],
+    userId: json["userId"],
+    scheduleDetailId: json["scheduleDetailId"],
+    tutorMeetingLink: json["tutorMeetingLink"],
+    studentMeetingLink: json["studentMeetingLink"],
+    studentRequest: json["studentRequest"],
+    tutorReview: json["tutorReview"],
+    scoreByTutor: json["scoreByTutor"],
+    createdAt: DateTime.parse(json["createdAt"]),
+    updatedAt: DateTime.parse(json["updatedAt"]),
+    recordUrl: json["recordUrl"],
+    isDeleted: json["isDeleted"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "date":
-            "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
-        "id": id,
-        "tutorId": tutorId,
-        "startTime": startTime,
-        "endTime": endTime,
-        "startTimestamp": startTimestamp,
-        "endTimestamp": endTimestamp,
-        "createdAt": createdAt.toIso8601String(),
-        "isBooked": isBooked,
-        "scheduleDetails": List<ScheduleDetailInfo>.from(
-            scheduleDetails!.map((x) => x.toJson())),
-        "tutorInfo": tutorInfo!.toJson(),
-      };
+    "createdAtTimeStamp": createdAtTimeStamp,
+    "updatedAtTimeStamp": updatedAtTimeStamp,
+    "id": id,
+    "userId": userId,
+    "scheduleDetailId": scheduleDetailId,
+    "tutorMeetingLink": tutorMeetingLink,
+    "studentMeetingLink": studentMeetingLink,
+    "studentRequest": studentRequest,
+    "tutorReview": tutorReview,
+    "scoreByTutor": scoreByTutor,
+    "createdAt": createdAt.toIso8601String(),
+    "updatedAt": updatedAt.toIso8601String(),
+    "recordUrl": recordUrl,
+    "isDeleted": isDeleted,
+  };
 }

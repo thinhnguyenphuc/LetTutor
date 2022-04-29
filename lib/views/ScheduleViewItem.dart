@@ -31,9 +31,9 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
   @override
   Widget build(BuildContext context) {
     TextEditingController requestedController = TextEditingController();
-    var time = widget.schedule.scheduleDetailInfo!.bookingInfo!.date;
+    var time = widget.schedule.scheduleDetailInfo!.scheduleInfo!.date;
     TutorInfo? tutor =
-        widget.schedule.scheduleDetailInfo!.bookingInfo!.tutorInfo;
+        widget.schedule.scheduleDetailInfo!.scheduleInfo!.tutorInfo;
     var countryName = CountrySingleton().countryHashMap[tutor?.country];
     final localNameView =
         countryName != null ? Text(countryName) : const Text("Null");
@@ -351,7 +351,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                           onPressed: () {
                             widget.viewModel
                                 .cancelBookedClass(
-                                    widget.schedule.scheduleDetailId!)
+                                    widget.schedule.scheduleDetailId)
                                 .then((value) {
                               if (value.statusCode == 200) {
                                 setState(() {

@@ -1,4 +1,5 @@
 import 'BookingInfoModel.dart';
+import 'ScheduleInfoModel.dart';
 
 class ScheduleDetailInfo {
   ScheduleDetailInfo({
@@ -11,6 +12,7 @@ class ScheduleDetailInfo {
     required this.createdAt,
     required this.updatedAt,
     required this.bookingInfo,
+    required this.scheduleInfo,
   });
 
   final int startPeriodTimestamp;
@@ -21,7 +23,8 @@ class ScheduleDetailInfo {
   final String endPeriod;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final BookingInfo? bookingInfo;
+  final List<BookingInfo>? bookingInfo;
+  final ScheduleInfo? scheduleInfo;
 
   factory ScheduleDetailInfo.fromJson(Map<String, dynamic> json) =>
       ScheduleDetailInfo(
@@ -33,9 +36,13 @@ class ScheduleDetailInfo {
         endPeriod: json["endPeriod"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        bookingInfo: json["scheduleInfo"] == null
+        bookingInfo: json["bookingInfo"] == null
             ? null
-            : BookingInfo.fromJson(json["scheduleInfo"]),
+            : List<BookingInfo>.from(json["bookingInfo"]
+            .map((x) => BookingInfo.fromJson(x))),
+        scheduleInfo: json["scheduleInfo"] == null
+            ? null
+            : ScheduleInfo.fromJson(json["scheduleInfo"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -47,6 +54,8 @@ class ScheduleDetailInfo {
         "endPeriod": endPeriod,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
-        "scheduleInfo": bookingInfo!.toJson(),
+        "bookingInfo": List<BookingInfo>.from(
+            bookingInfo!.map((x) => x.toJson())),
+        "scheduleInfo": scheduleInfo!.toJson(),
       };
 }
