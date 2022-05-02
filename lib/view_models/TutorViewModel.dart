@@ -26,14 +26,12 @@ class TutorViewModel with ChangeNotifier {
   }
 
   fetchBookings(String userId) async {
-    List<ScheduleDetailInfo> res = [];
     if (!schedulesMap.containsKey(userId)) {
+      List<ScheduleDetailInfo> res = [];
       List<ScheduleInfo> scheduleInfoList = await ApiServices().fetchBookings(userId);
       for (ScheduleInfo schedulesInfo in scheduleInfoList) {
-        if(schedulesInfo.isBooked){
-          for(ScheduleDetailInfo scheduleDetailInfo in schedulesInfo.scheduleDetails){
-            res.add(scheduleDetailInfo);
-          }
+        for(ScheduleDetailInfo scheduleDetailInfo in schedulesInfo.scheduleDetails){
+          res.add(scheduleDetailInfo);
         }
       }
       schedulesMap[userId] = res;

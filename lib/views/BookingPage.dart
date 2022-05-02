@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:project/Utils.dart';
 import 'package:project/models/TutorModel.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:intl/intl.dart';
+
 import '../models/ScheduleDetailsModel.dart';
-import '../models/ScheduleInfoModel.dart';
 import '../resources/CountryList.dart';
 import '../view_models/TutorViewModel.dart';
+import 'BookingClassDetails.dart';
 
 class BookingPage extends StatefulWidget {
   final TutorViewModel tutorViewModel;
@@ -26,38 +25,38 @@ class BookingPage extends StatefulWidget {
 class BookingPageState extends State<BookingPage> {
   bool isLoaded = false;
   bool canBook = false;
+  List<ScheduleDetailInfo> schedulesListChosen = [];
+
   @override
-  void initState() {
-    super.initState();
-    if (!isLoaded) {
+  Widget build(BuildContext context) {
+    var countryName = CountrySingleton().countryHashMap[widget.tutor.country];
+    final localNameView = countryName != null
+        ? Text(
+            countryName,
+            style: const TextStyle(fontSize: 20),
+          )
+        : const Text("Null");
+    Map<String, List<ScheduleDetailInfo>> schedulesMap =
+        widget.tutorViewModel.schedulesMap;
+    bool isReadyLoaded = schedulesMap.containsKey(widget.tutor.userId);
+
+    if(!isLoaded) {
       widget.tutorViewModel.fetchBookings(widget.tutor.userId).then((value) {
         setState(() {
           isLoaded = true;
         });
       });
     }
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    var countryName = CountrySingleton().countryHashMap[widget.tutor.country];
-    List<String> languages = widget.tutor.getLanguages(context);
-    final localNameView = countryName != null
-        ? Text(
-      countryName,
-      style: const TextStyle(fontSize: 20),
-    )
-        : const Text("Null");
-    Map<String, List<ScheduleDetailInfo>> schedulesMap =
-        widget.tutorViewModel.schedulesMap;
-    bool isReadyLoaded = schedulesMap.containsKey(widget.tutor.userId);
     final calendarView = isReadyLoaded
         ? Container(
             padding: const EdgeInsets.all(5),
             child: SfCalendar(
               onTap: (CalendarTapDetails details) {
                 setState(() {
-                  if(details.date!.isAfter(DateTime.now())){
+                  schedulesListChosen =
+                      details.appointments!.cast<ScheduleDetailInfo>();
+                  if (details.date!.isAfter(DateTime.now())) {
                     canBook = true;
                   } else {
                     canBook = false;
@@ -117,9 +116,9 @@ class BookingPageState extends State<BookingPage> {
                               child: CachedNetworkImage(
                                 imageUrl: widget.tutor.avatar,
                                 placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
+                                    const CircularProgressIndicator(),
                                 errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
+                                    const Icon(Icons.error),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -178,7 +177,22 @@ class BookingPageState extends State<BookingPage> {
             Visibility(
               visible: isReadyLoaded,
               child: ElevatedButton(
-                onPressed: () {  },
+                onPressed: () async {
+                  if(canBook){
+                    await Navigator.of(context)
+                        .push(MaterialPageRoute(
+                        builder: (context) => BookingClassDetails(
+                          tutor: widget.tutor,
+                          schedules: schedulesListChosen,
+                        )))
+                        .then((value) => setState(() {
+                      if (value) {
+                        widget.tutorViewModel.schedulesMap.clear();
+                        isLoaded = false;
+                      }
+                    }));
+                  }
+                },
                 child: Text(
                   "Book a class this day",
                   style: TextStyle(color: Colors.white),
@@ -208,12 +222,27 @@ class MeetingDataSource extends CalendarDataSource {
 
   @override
   DateTime getStartTime(int index) {
-    return DateTime.fromMillisecondsSinceEpoch(_getMeetingData(index).startPeriodTimestamp);
+    return DateTime.fromMillisecondsSinceEpoch(
+        _getMeetingData(index).startPeriodTimestamp);
   }
 
   @override
   DateTime getEndTime(int index) {
-    return DateTime.fromMillisecondsSinceEpoch(_getMeetingData(index).endPeriodTimestamp);
+    return DateTime.fromMillisecondsSinceEpoch(
+        _getMeetingData(index).endPeriodTimestamp);
+  }
+
+  @override
+  Color getColor(int index) {
+    Color res = Colors.green;
+    if (_getMeetingData(index).isBooked!) {
+      res = Colors.red;
+    } else if (DateTime.fromMillisecondsSinceEpoch(
+            _getMeetingData(index).startPeriodTimestamp)
+        .isBefore(DateTime.now())) {
+      res = Colors.grey;
+    }
+    return res;
   }
 
   ScheduleDetailInfo _getMeetingData(int index) {

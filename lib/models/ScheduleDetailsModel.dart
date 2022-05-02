@@ -13,6 +13,7 @@ class ScheduleDetailInfo {
     required this.updatedAt,
     required this.bookingInfo,
     required this.scheduleInfo,
+    required this.isBooked
   });
 
   final int startPeriodTimestamp;
@@ -25,6 +26,7 @@ class ScheduleDetailInfo {
   final DateTime updatedAt;
   final List<BookingInfo>? bookingInfo;
   final ScheduleInfo? scheduleInfo;
+  final bool? isBooked;
 
   factory ScheduleDetailInfo.fromJson(Map<String, dynamic> json) =>
       ScheduleDetailInfo(
@@ -43,6 +45,7 @@ class ScheduleDetailInfo {
         scheduleInfo: json["scheduleInfo"] == null
             ? null
             : ScheduleInfo.fromJson(json["scheduleInfo"]),
+        isBooked: json["isBooked"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,5 +60,6 @@ class ScheduleDetailInfo {
         "bookingInfo": List<BookingInfo>.from(
             bookingInfo!.map((x) => x.toJson())),
         "scheduleInfo": scheduleInfo!.toJson(),
+        "isBooked": isBooked,
       };
 }

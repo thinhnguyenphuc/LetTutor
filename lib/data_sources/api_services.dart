@@ -275,7 +275,7 @@ class ApiServices {
     String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['scheduleDetailIds'] = [classID];
-    request['note'] = [note];
+    request['note'] = note;
     return http
         .post(Uri.parse("$baseUrl/booking"),
             headers: {
@@ -285,10 +285,11 @@ class ApiServices {
             body: jsonEncode(request))
         .then((http.Response response) {
       final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
       if (statusCode == 200) {
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       } else {
-        return ServiceMessage(statusCode: 200, message: "UNSUCCESSFUL");
+        return ServiceMessage(statusCode: statusCode, message: jsonBody);
       }
     });
   }
