@@ -33,4 +33,3 @@ String getSkillByKey(String key) {
   String? res = skillList[key];
   return res ?? "null";
 }
-

@@ -43,6 +43,8 @@ dependencies:
   expandable: ^5.0.1
   flutter_localized_locales: ^2.0.3
   video_viewer: ^1.2.7
+  syncfusion_flutter_calendar: ^20.1.51
+  provider: ^6.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -64,7 +66,6 @@ dev_dependencies:
   flag: ^6.0.0
   flutter_rating_bar: ^4.0.0
   import_sorter: ^4.6.0
-  provider: ^6.0.2
   video_player: ^2.4.0
 flutter_launcher_name:
     name: "LetTutor"
@@ -74,8 +75,7 @@ flutter_launcher_name:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - assets/images/logo.png
-    - assets/images/background.jpg
+    - assets/images/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

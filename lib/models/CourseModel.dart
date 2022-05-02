@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'Category.dart';
+import 'CategoryModel.dart';
 
 Course courseFromJson(String str) => Course.fromJson(json.decode(str));
 

@@ -98,7 +98,8 @@ class _HomePageState extends State<HomePage> {
             resizeToAvoidBottomInset: true,
             hideNavigationBarWhenKeyboardShows: true,
             decoration: const NavBarDecoration(
-                colorBehindNavBar: Colors.indigo,),
+              colorBehindNavBar: Colors.indigo,
+            ),
             popAllScreensOnTapOfSelectedTab: true,
             navBarStyle: NavBarStyle.style6,
             itemAnimationProperties: const ItemAnimationProperties(

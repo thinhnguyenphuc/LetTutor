@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../Utils.dart';
-import '../models/Schedule.dart';
+import '../models/ScheduleModel.dart';
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
 import '../resources/Strings.dart';
@@ -30,10 +30,11 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _requestedController = TextEditingController();
-    var time = widget.schedule.scheduleDetailInfo.scheduleInfo.date;
-    TutorInfo tutor = widget.schedule.scheduleDetailInfo.scheduleInfo.tutorInfo;
-    var countryName = CountrySingleton().countryHashMap[tutor.country];
+    TextEditingController requestedController = TextEditingController();
+    var time = widget.schedule.scheduleDetailInfo!.scheduleInfo!.date;
+    TutorInfo? tutor =
+        widget.schedule.scheduleDetailInfo!.scheduleInfo!.tutorInfo;
+    var countryName = CountrySingleton().countryHashMap[tutor?.country];
     final localNameView =
         countryName != null ? Text(countryName) : const Text("Null");
     return Container(
@@ -62,7 +63,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width / 1.2,
-                  child: Text(DateFormat.yMMMEd("en_US").format(time),
+                  child: Text(DateFormat.yMMMEd("en_US").format(time!),
                       style: TextStyle(
                           color: Colors.grey.shade700,
                           fontSize: 30,
@@ -90,7 +91,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                         radius: 45,
                         child: ClipOval(
                           child: Image.network(
-                            tutor.avatar,
+                            tutor!.avatar,
                             width: 70,
                             height: 70,
                             fit: BoxFit.cover,
@@ -143,7 +144,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
 
           Visibility(
             visible:
-                widget.isDone && widget.schedule.studentMaterials.isNotEmpty,
+                widget.isDone && widget.schedule.studentMaterials!.isNotEmpty,
             child: Container(
               margin: const EdgeInsets.only(top: 20),
               child: Text(
@@ -163,7 +164,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
               ),
               child: Visibility(
                 visible: widget.isDone &&
-                    widget.schedule.studentMaterials.isNotEmpty,
+                    widget.schedule.studentMaterials!.isNotEmpty,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 15,
@@ -173,7 +174,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                     children: [
                       Expanded(
                         child: ListView.builder(
-                          itemCount: widget.schedule.studentMaterials.length,
+                          itemCount: widget.schedule.studentMaterials!.length,
                           itemBuilder: (context, position) {
                             return Container(
                                 padding:
@@ -181,12 +182,14 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                 margin: const EdgeInsets.all(2),
                                 child: TextButton(
                                   onPressed: () {
-                                    if (widget.schedule
-                                            .studentMaterials[position].eBook !=
+                                    if (widget
+                                            .schedule
+                                            .studentMaterials![position]
+                                            .eBook !=
                                         null) {
                                       Utils.launchURL(widget
                                           .schedule
-                                          .studentMaterials[position]
+                                          .studentMaterials![position]
                                           .eBook!
                                           .fileUrl);
                                     }
@@ -196,7 +199,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                       const Icon(Icons.book_sharp),
                                       Text(widget
                                           .schedule
-                                          .studentMaterials[position]
+                                          .studentMaterials![position]
                                           .eBook!
                                           .name)
                                     ],
@@ -233,9 +236,9 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                   Row(children: [
                     Text(
                         "Lesson Time: " +
-                            widget.schedule.scheduleDetailInfo.startPeriod +
+                            widget.schedule.scheduleDetailInfo!.startPeriod +
                             " - " +
-                            widget.schedule.scheduleDetailInfo.endPeriod,
+                            widget.schedule.scheduleDetailInfo!.endPeriod,
                         style: const TextStyle(fontSize: 25)),
                   ]),
                   Container(
@@ -273,7 +276,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                         AlertDialog(
                                       title: const Text('Special Request'),
                                       content: TextField(
-                                        controller: _requestedController,
+                                        controller: requestedController,
                                         decoration: InputDecoration(
                                             hintText: "Request"),
                                       ),
@@ -288,7 +291,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                             widget.viewModel
                                                 .updateStudentRequest(
                                                     widget.schedule.id,
-                                                    _requestedController.text)
+                                                    requestedController.text)
                                                 .then((value) => {
                                                       if (value.statusCode ==
                                                           200)
@@ -349,15 +352,18 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                             widget.viewModel
                                 .cancelBookedClass(
                                     widget.schedule.scheduleDetailId)
-                                .then((value) => {
-                                      if (value.statusCode == 200)
-                                        {
-                                          setState(() {
-                                            widget.viewModel
-                                                .fetchScheduleAgain();
-                                          })
-                                        }
-                                    });
+                                .then((value) {
+                              if (value.statusCode == 200) {
+                                setState(() {
+                                  Utils.showSnackBar(
+                                      context, value.message, Colors.green);
+                                  widget.viewModel.fetchScheduleAgain();
+                                });
+                              } else {
+                                Utils.showSnackBar(
+                                    context, value.message, Colors.green);
+                              }
+                            });
                           },
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(width: 1, color: Colors.red),

@@ -1,6 +1,8 @@
 import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+
 List<TutorInfo> tutorFromJson(String str) =>
     List<TutorInfo>.from(json.decode(str).map((x) => TutorInfo.fromJson(x)));
 
@@ -175,18 +177,19 @@ class TutorInfo {
         "isNative": isNative,
         "price": price,
       };
-  double getRating(){
+
+  double getRating() {
     int sumRating = 0;
-    for (Feedback feedback in feedbacks){
-      sumRating+=feedback.rating;
+    for (Feedback feedback in feedbacks) {
+      sumRating += feedback.rating;
     }
-    return sumRating/feedbacks.length;
+    return sumRating / feedbacks.length;
   }
 
-  List<String> getLanguages(BuildContext context){
+  List<String> getLanguages(BuildContext context) {
     List<String> languagesCodeList = languages.split(",");
     List<String> res = [];
-    for(String item in languagesCodeList){
+    for (String item in languagesCodeList) {
       res.add(LocaleNames.of(context)!.nameOf(item).toString());
     }
     return res;

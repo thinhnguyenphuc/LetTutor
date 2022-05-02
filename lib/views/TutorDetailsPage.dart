@@ -284,16 +284,17 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                           ),
                         ),
                       ),
-                      Padding(padding: const EdgeInsets.only(left:10, right:10),
-                      child: VideoViewer(
-                        controller: controller,
-                        source: {
-                          "SubRip Text": VideoSource(
-                            video: VideoPlayerController.network(
-                                widget.tutor.video),
-                          )
-                        },
-                      ))
+                      Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: VideoViewer(
+                            controller: controller,
+                            source: {
+                              "SubRip Text": VideoSource(
+                                video: VideoPlayerController.network(
+                                    widget.tutor.video),
+                              )
+                            },
+                          ))
                     ],
                   ),
                   expanded: ExpandableButton(
