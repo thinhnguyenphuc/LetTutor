@@ -8,6 +8,7 @@ import 'package:project/widgets/HeroAnimation.dart';
 import '../widgets/CustomAppBar.dart';
 import 'CourseViewPage.dart';
 import 'TutorViewPage.dart';
+import 'UserPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,10 +30,7 @@ class _HomePageState extends State<HomePage> {
         size: 150,
       ),
       const CourseScreen(),
-      const Icon(
-        Icons.chat,
-        size: 150,
-      ),
+      const UserPage(),
     ];
   }
 
@@ -64,7 +62,7 @@ class _HomePageState extends State<HomePage> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.person),
-        title: 'Setting',
+        title: 'User',
         activeColorPrimary: CupertinoColors.systemYellow,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
