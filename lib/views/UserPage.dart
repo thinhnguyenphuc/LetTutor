@@ -20,34 +20,17 @@ class UserPageState extends State<UserPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Column(
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const UserDetailsInfo()));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 1,
-                        offset: Offset(0, 1), // Shadow position
-                      ),
-                    ]),
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  children: [
-                    CircleAvatar(
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 30, bottom: 20),
+            child: Column(
+              children: [
+                Hero(
+                    tag: "avatar",
+                    child: CircleAvatar(
                       backgroundColor: Colors.transparent,
-                      radius: 30,
+                      radius: 65,
                       child: ClipOval(
                         child: SizedBox(
                           width: 300,
@@ -62,25 +45,296 @@ class UserPageState extends State<UserPage> {
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left:20, right:20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(_userInfo.user.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                          Text("My information",style: TextStyle(fontSize: 16)),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    Icon(Icons.keyboard_arrow_right),
-                  ],
+                    )),
+                Hero(
+                  tag: "name",
+                  child: Text(_userInfo.user.name,
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 ),
-              ),
-            )
-          ],
-        ),
+                Text("Level: " + _userInfo.user.level,
+                    style: TextStyle(fontSize: 20)),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserDetailsInfo()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey.shade300,
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.edit),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text("Edit my information",
+                                  style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserDetailsInfo()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey.shade300,
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.wallet),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text("My wallet", style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserDetailsInfo()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey.shade300,
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.language),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text("Languages", style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserDetailsInfo()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey.shade300,
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.dark_mode),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text("Dark theme",
+                                  style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserDetailsInfo()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey.shade300,
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.password),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text("Change password",
+                                  style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserDetailsInfo()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey.shade300,
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.settings),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text("Settings", style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserDetailsInfo()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey.shade300,
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Icon(Icons.logout),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text("Logout", style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
