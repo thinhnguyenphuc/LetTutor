@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:project/models/CourseModel.dart';
+import 'package:project/resources/Strings.dart';
 
-import '../models/CourseModel.dart';
-import '../resources/Strings.dart';
 
 class CourseDetailViewPage extends StatefulWidget {
   final Course course;
@@ -117,7 +117,7 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(20),
                           child: Text("Overview",
                               style: TextStyle(
@@ -125,35 +125,35 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.question_mark_rounded,
+                            const Icon(Icons.question_mark_rounded,
                                 color: Colors.red),
                             Text(Strings.whyTakeThisCourse,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.w400)),
                           ],
                         ),
                         Padding(
                           padding:
-                              EdgeInsets.only(left: 25, top: 10, bottom: 10),
+                              const EdgeInsets.only(left: 25, top: 10, bottom: 10),
                           child: Text(widget.course.reason,
-                              style: TextStyle(fontSize: 18)),
+                              style: const TextStyle(fontSize: 18)),
                         ),
                         Row(
                           children: [
-                            Icon(Icons.question_mark_rounded,
+                            const Icon(Icons.question_mark_rounded,
                                 color: Colors.red),
                             Text(Strings.whatWillYouBeAbleTodo,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.w400)),
                           ],
                         ),
                         Padding(
                           padding:
-                              EdgeInsets.only(left: 25, top: 10, bottom: 10),
+                              const EdgeInsets.only(left: 25, top: 10, bottom: 10),
                           child: Text(widget.course.purpose,
-                              style: TextStyle(fontSize: 18)),
+                              style: const TextStyle(fontSize: 18)),
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(20),
                           child: Text("Experience Level",
                               style: TextStyle(
@@ -161,13 +161,13 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.people_alt, color: Colors.blue),
+                            const Icon(Icons.people_alt, color: Colors.blue),
                             Text(type,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.w400)),
                           ],
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(20),
                           child: Text("Course Length",
                               style: TextStyle(
@@ -175,15 +175,15 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.topic_outlined, color: Colors.blue),
+                            const Icon(Icons.topic_outlined, color: Colors.blue),
                             Text(
                                 widget.course.topics.length.toString() +
                                     " topics",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.w400)),
                           ],
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(20),
                           child: Text("List Topics",
                               style: TextStyle(
@@ -201,7 +201,7 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                                   (position + 1).toString() +
                                       ". " +
                                       _topic.name,
-                                  style: TextStyle(fontSize: 20)),
+                                  style: const TextStyle(fontSize: 20)),
                             );
                           },
                         )

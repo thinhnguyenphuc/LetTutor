@@ -101,7 +101,8 @@ class TutorInfo {
         country: json["country"],
         phone: json["phone"],
         language: json["language"],
-        birthday: DateTime.parse(json["birthday"]),
+        birthday: json["birthday"] == null
+            ? DateTime.parse("2000-01-01T00:00:00") : DateTime.parse(json["birthday"]),
         requestPassword: json["requestPassword"],
         isActivated: json["isActivated"],
         isPhoneActivated: json["isPhoneActivated"],
@@ -109,8 +110,10 @@ class TutorInfo {
         timezone: json["timezone"],
         phoneAuth: json["phoneAuth"],
         isPhoneAuthActivated: json["isPhoneAuthActivated"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        createdAt:json["createdAt"] == null
+            ? DateTime.parse("2000-01-01T00:00:00") :  DateTime.parse(json["createdAt"]),
+        updatedAt:json["updatedAt"] == null
+            ? DateTime.parse("2000-01-01T00:00:00") :  DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"],
         feedbacks: json["feedbacks"] != null
             ? List<Feedback>.from(

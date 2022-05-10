@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:project/Utils.dart';
+import 'package:project/models/ScheduleDetailsModel.dart';
+import 'package:project/models/TutorModel.dart';
+import 'package:project/resources/CountryList.dart';
+import 'package:project/view_models/BookingViewModel.dart';
 
-import '../models/ScheduleDetailsModel.dart';
-import '../models/TutorModel.dart';
-import '../resources/CountryList.dart';
-import '../view_models/BookingViewModel.dart';
 
 class BookingClassDetails extends StatefulWidget {
   final List<ScheduleDetailInfo> schedules;

@@ -2,12 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project/models/TutorModel.dart';
+import 'package:project/resources/CountryList.dart';
 import 'package:project/resources/Specialties.dart';
 import 'package:project/view_models/TutorViewModel.dart';
-
-import '../models/TutorModel.dart';
-import '../resources/CountryList.dart';
-import 'BookingPage.dart';
+import 'package:project/views/booking_viewpages/BookingPage.dart';
 
 class TutorViewItem extends StatelessWidget {
   final TutorInfo tutor;

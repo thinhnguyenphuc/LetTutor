@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:video_viewer/video_viewer.dart';
 
-import '../models/TutorModel.dart';
-import '../resources/CountryList.dart';
-import '../resources/Specialties.dart';
+import '../../models/TutorModel.dart';
+import '../../resources/CountryList.dart';
+import '../../resources/Specialties.dart';
 
 class TutorDetailsPage extends StatefulWidget {
   final TutorInfo tutor;

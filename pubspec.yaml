@@ -45,6 +45,7 @@ dependencies:
   video_viewer: ^1.2.7
   syncfusion_flutter_calendar: ^20.1.51
   provider: ^6.0.2
+  data_tables: ^1.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -45,4 +45,9 @@ class Strings {
   static String learnedBooks = "Learned Books";
 
   static String lessonDetails = "Lesson Details";
+
+  static String successBookingStatus = "Success booking";
+  static String failedBookingStatus = "Failed booking";
+  static String cancelBookingStatus = "Canceled booking";
+  static String studyBookingStatus = "Study";
 }

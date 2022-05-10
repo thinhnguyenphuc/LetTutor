@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:project/models/ScheduleModel.dart';
+import 'package:project/resources/Strings.dart';
+import 'package:project/view_models/ScheduleViewModel.dart';
+import 'package:project/views/schedule_viewpages/ScheduleViewItem.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_to/swipe_to.dart';
-
-import '../models/ScheduleModel.dart';
-import '../resources/Strings.dart';
-import '../view_models/ScheduleViewModel.dart';
-import 'ScheduleViewItem.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({Key? key}) : super(key: key);

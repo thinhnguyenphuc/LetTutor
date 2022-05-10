@@ -5,8 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/models/CourseModel.dart';
 
-import '../models/ScheduleInfoModel.dart';
 import '../models/EBookModel.dart';
+import '../models/PaymentInfoModel.dart';
+import '../models/ScheduleInfoModel.dart';
 import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
@@ -318,13 +319,10 @@ class ApiServices {
 
   Future<ServiceMessage> totalLearnedTime() {
     String token = UserInfoLazyInitializedSingleton().getToken();
-    return http
-        .get(Uri.parse("$baseUrl/call/total"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        })
-        .then((http.Response response) {
+    return http.get(Uri.parse("$baseUrl/call/total"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    }).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
       if (statusCode == 200) {
@@ -338,6 +336,27 @@ class ApiServices {
     });
   }
 
+  Future<ServiceMessage> fetchPaymentHistory() {
+    String token = UserInfoLazyInitializedSingleton().getToken();
+    return http.get(Uri.parse("$baseUrl/payment/history"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    }).then((http.Response response) {
+      final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
+      if (statusCode == 200) {
+        const JsonDecoder decoder = JsonDecoder();
+        final paymentHistory = decoder.convert(jsonBody);
+        final List paymentHistoryJson = paymentHistory["data"]["rows"];
+        final List<PaymentInfo> paymentHistories = paymentHistoryJson
+            .map((contactRaw) => PaymentInfo.fromJson(contactRaw))
+            .toList();
+        return ServiceMessage(statusCode: 200, message: paymentHistories);
+      } else {
+        return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
+      }
+    });
+  }
 }
 
 class FetchDataException implements Exception {

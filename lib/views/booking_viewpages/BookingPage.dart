@@ -3,12 +3,12 @@ import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:project/models/TutorModel.dart';
+import 'package:project/views/booking_viewpages/BookingClassDetails.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../models/ScheduleDetailsModel.dart';
-import '../resources/CountryList.dart';
-import '../view_models/TutorViewModel.dart';
-import 'BookingClassDetails.dart';
+import '../../models/ScheduleDetailsModel.dart';
+import '../../resources/CountryList.dart';
+import '../../view_models/TutorViewModel.dart';
 
 class BookingPage extends StatefulWidget {
   final TutorViewModel tutorViewModel;

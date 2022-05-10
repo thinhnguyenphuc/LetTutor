@@ -1,33 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:project/models/EBookModel.dart';
 
-import '../models/CourseModel.dart';
+import '../../models/EBookModel.dart';
 
-class CourseViewItem extends StatefulWidget {
-  final Course course;
+class EBookViewItem extends StatefulWidget {
+  final EBook eBook;
 
-  const CourseViewItem({Key? key, required this.course}) : super(key: key);
+  const EBookViewItem({Key? key, required this.eBook}) : super(key: key);
 
   @override
-  _CourseViewItemState createState() => _CourseViewItemState();
+  _EBookViewItemState createState() => _EBookViewItemState();
 }
 
-class _CourseViewItemState extends State<CourseViewItem> {
+class _EBookViewItemState extends State<EBookViewItem> {
   var style = const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
-    String type = widget.course.name.contains("Intermediate")
-        ? "Intermediate"
-        : widget.course.name.contains("Advanced")
-            ? "Advanced"
-            : widget.course.name.contains("Basic")
-                ? "Basic"
-                : widget.course.name.contains("Beginner")
-                    ? "Beginner"
-                    : "Any level";
     return Container(
-        margin: EdgeInsets.all(15),
+        margin: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: const BorderRadius.all(
@@ -49,7 +41,7 @@ class _CourseViewItemState extends State<CourseViewItem> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: CachedNetworkImage(
-                  imageUrl: widget.course.imageUrl,
+                  imageUrl: widget.eBook.imageUrl,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -61,35 +53,17 @@ class _CourseViewItemState extends State<CourseViewItem> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.course.name,
+                    Text(widget.eBook.name,
                         style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)),
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(widget.course.description,
+                    Text(widget.eBook.description,
                         style: const TextStyle(fontSize: 18)),
                     const SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "* " + type,
-                          style: style,
-                        ),
-                        Text(
-                          "* " + widget.course.categories.first.key,
-                          style: style,
-                        ),
-                        Text(
-                            "* " +
-                                widget.course.topics.length.toString() +
-                                " Lessons",
-                            style: style),
-                      ],
-                    )
                   ],
                 ),
               )

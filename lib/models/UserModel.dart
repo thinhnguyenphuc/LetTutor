@@ -96,7 +96,7 @@ class UserClass {
   final dynamic language;
   final DateTime birthday;
   final bool isActivated;
-  final WalletInfo walletInfo;
+  final WalletInfo? walletInfo;
   final List<dynamic> courses;
   final dynamic requireNote;
   final String level;
@@ -110,21 +110,21 @@ class UserClass {
         email: json["email"],
         name: json["name"],
         avatar: json["avatar"],
-        country: json["country"],
-        phone: json["phone"],
-        roles: List<String>.from(json["roles"].map((x) => x)),
-        language: json["language"],
-        birthday: DateTime.parse(json["birthday"]),
-        isActivated: json["isActivated"],
-        walletInfo: WalletInfo.fromJson(json["walletInfo"]),
-        courses: List<dynamic>.from(json["courses"].map((x) => x)),
+        country: json["country"]??"",
+        phone: json["phone"]??"",
+        roles: json["role"] == null ? [] : List<String>.from(json["roles"].map((x) => x)),
+        language: json["language"]??"",
+        birthday: json["birthday"] == null? DateTime.parse("2000-01-01") : DateTime.parse(json["birthday"]),
+        isActivated: json["isActivated"] ?? true,
+        walletInfo: json["walletInfo"] == null ? null : WalletInfo.fromJson(json["walletInfo"]),
+        courses:json["courses"] == null ? [] : List<dynamic>.from(json["courses"].map((x) => x)),
         requireNote: json["requireNote"],
-        level: json["level"],
-        learnTopics: List<dynamic>.from(json["learnTopics"].map((x) => x)),
-        testPreparations:
+        level: json["level"] ?? "",
+        learnTopics: json["leanTopics"] == null ? [] :List<dynamic>.from(json["learnTopics"].map((x) => x)),
+        testPreparations: json["testPreparations"] == null ? [] :
             List<dynamic>.from(json["testPreparations"].map((x) => x)),
-        isPhoneActivated: json["isPhoneActivated"],
-        timezone: json["timezone"],
+        isPhoneActivated: json["isPhoneActivated"] ?? true,
+        timezone: json["timezone"] ?? 7,
       );
 
   Map<String, dynamic> toJson() => {
@@ -139,7 +139,7 @@ class UserClass {
         "birthday":
             "${birthday.year.toString().padLeft(4, '0')}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}",
         "isActivated": isActivated,
-        "walletInfo": walletInfo.toJson(),
+        "walletInfo": walletInfo!.toJson(),
         "courses": List<dynamic>.from(courses.map((x) => x)),
         "requireNote": requireNote,
         "level": level,

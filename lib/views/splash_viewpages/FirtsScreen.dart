@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/resources/Strings.dart';
-import 'package:project/views/Login.dart';
+import 'package:project/views/auth/Login.dart';
+import 'package:project/views/auth/Register.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/HeroAnimation.dart';
-
-import 'Register.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project/Utils.dart';
+import 'package:project/models/ServiceMessageModel.dart';
 import 'package:project/resources/Strings.dart';
+import 'package:project/view_models/LoginViewModel.dart';
+import 'package:project/views/auth/ForgetPassScreen.dart';
+import 'package:project/views/Homepage.dart';
+import 'package:project/views/auth/Register.dart';
 import 'package:project/widgets/CustomButton.dart';
 import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
-
-import '../Utils.dart';
-import '../models/ServiceMessageModel.dart';
-import '../view_models/LoginViewModel.dart';
-import 'ForgetPassScreen.dart';
-import 'Homepage.dart';
-import 'Register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

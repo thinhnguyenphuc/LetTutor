@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:project/views/tutor_viewpages/TutorViewItem.dart';
 import 'package:provider/provider.dart';
 
-import '../models/TutorModel.dart';
-import '../resources/Specialties.dart';
-import '../resources/Strings.dart';
-import '../view_models/TutorViewModel.dart';
+import '../../models/TutorModel.dart';
+import '../../resources/Specialties.dart';
+import '../../resources/Strings.dart';
+import '../../view_models/TutorViewModel.dart';
 import 'TutorDetailsPage.dart';
-import 'TutorViewItem.dart';
 
 class TutorScreen extends StatefulWidget {
   const TutorScreen({Key? key}) : super(key: key);

@@ -6,9 +6,9 @@ import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
-import '../Utils.dart';
-import '../models/ServiceMessageModel.dart';
-import '../view_models/RegisterViewModel.dart';
+import '../../Utils.dart';
+import '../../models/ServiceMessageModel.dart';
+import '../../view_models/RegisterViewModel.dart';
 import 'Login.dart';
 
 class RegisterPage extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../models/UserModel.dart';
-import '../resources/UserInfoSingleton.dart';
-import 'UserDetailsInfo.dart';
-
+import 'package:project/models/UserModel.dart';
+import 'package:project/resources/UserInfoSingleton.dart';
+import 'package:project/view_models/WalletViewModel.dart';
+import 'package:project/views/user_viewpages/UserDetailsInfo.dart';
+import 'package:project/views/user_viewpages/WalletPage.dart';
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
 
@@ -105,7 +105,7 @@ class UserPageState extends State<UserPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
+                            builder: (context) => const WalletPage()));
                   },
                   child: Container(
                     decoration: BoxDecoration(

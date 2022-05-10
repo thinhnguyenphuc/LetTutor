@@ -20,8 +20,12 @@ class Utils {
     }
   }
 
-  static DateTime parseString(String str) {
+  static DateTime parseStringToHourMin(String str) {
     return DateFormat("hh:mm").parse(str);
+  }
+
+  static String parseDateToString(DateTime date) {
+    return DateFormat('yyyy-MM-dd HH:m').format(date);
   }
 
   static DateTime combineDateTime(DateTime date, DateTime time) {

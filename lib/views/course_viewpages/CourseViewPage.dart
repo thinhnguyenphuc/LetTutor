@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project/view_models/CourseViewModel.dart';
+import 'package:project/views/course_viewpages/CourseDetailViewPage.dart';
 import 'package:provider/provider.dart';
 import 'package:sticky_grouped_list/sticky_grouped_list.dart';
 import 'package:swipe_to/swipe_to.dart';
 
-import '../Utils.dart';
-import '../models/CourseModel.dart';
-import '../models/EBookModel.dart';
-import '../resources/Strings.dart';
-import '../view_models/EBookViewModel.dart';
-import 'CourseDetailViewPage.dart';
+import '../../Utils.dart';
+import '../../models/CourseModel.dart';
+import '../../models/EBookModel.dart';
+import '../../resources/Strings.dart';
+import '../../view_models/EBookViewModel.dart';
 import 'CourseViewItem.dart';
 import 'EBookViewItem.dart';
 

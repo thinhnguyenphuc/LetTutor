@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:project/views/ScheduleViewPage.dart';
+import 'package:project/views/user_viewpages/UserPage.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 
 import '../widgets/CustomAppBar.dart';
-import 'CourseViewPage.dart';
-import 'TutorViewPage.dart';
-import 'UserPage.dart';
+import 'course_viewpages/CourseViewPage.dart';
+import 'schedule_viewpages/ScheduleViewPage.dart';
+import 'tutor_viewpages/TutorViewPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

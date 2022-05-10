@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:project/models/UserModel.dart';
 
-import '../resources/CountryList.dart';
-import '../resources/UserInfoSingleton.dart';
-import '../themes/Themes.dart';
+import '../../resources/CountryList.dart';
+import '../../resources/UserInfoSingleton.dart';
+import '../../themes/Themes.dart';
 
 class UserDetailsInfo extends StatelessWidget {
   const UserDetailsInfo({Key? key}) : super(key: key);

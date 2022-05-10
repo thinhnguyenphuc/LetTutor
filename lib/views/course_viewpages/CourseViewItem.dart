@@ -1,24 +1,33 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../models/EBookModel.dart';
+import '../../models/CourseModel.dart';
 
-class EBookViewItem extends StatefulWidget {
-  final EBook eBook;
+class CourseViewItem extends StatefulWidget {
+  final Course course;
 
-  const EBookViewItem({Key? key, required this.eBook}) : super(key: key);
+  const CourseViewItem({Key? key, required this.course}) : super(key: key);
 
   @override
-  _EBookViewItemState createState() => _EBookViewItemState();
+  _CourseViewItemState createState() => _CourseViewItemState();
 }
 
-class _EBookViewItemState extends State<EBookViewItem> {
+class _CourseViewItemState extends State<CourseViewItem> {
   var style = const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
+    String type = widget.course.name.contains("Intermediate")
+        ? "Intermediate"
+        : widget.course.name.contains("Advanced")
+            ? "Advanced"
+            : widget.course.name.contains("Basic")
+                ? "Basic"
+                : widget.course.name.contains("Beginner")
+                    ? "Beginner"
+                    : "Any level";
     return Container(
-        margin: const EdgeInsets.all(15),
+        margin: EdgeInsets.all(15),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: const BorderRadius.all(
@@ -40,7 +49,7 @@ class _EBookViewItemState extends State<EBookViewItem> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: CachedNetworkImage(
-                  imageUrl: widget.eBook.imageUrl,
+                  imageUrl: widget.course.imageUrl,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -52,17 +61,35 @@ class _EBookViewItemState extends State<EBookViewItem> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.eBook.name,
+                    Text(widget.course.name,
                         style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)),
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(widget.eBook.description,
+                    Text(widget.course.description,
                         style: const TextStyle(fontSize: 18)),
                     const SizedBox(
                       height: 20,
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "* " + type,
+                          style: style,
+                        ),
+                        Text(
+                          "* " + widget.course.categories.first.key,
+                          style: style,
+                        ),
+                        Text(
+                            "* " +
+                                widget.course.topics.length.toString() +
+                                " Lessons",
+                            style: style),
+                      ],
+                    )
                   ],
                 ),
               )

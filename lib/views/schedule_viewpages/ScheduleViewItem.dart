@@ -2,12 +2,12 @@ import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../Utils.dart';
-import '../models/ScheduleModel.dart';
-import '../models/TutorModel.dart';
-import '../resources/CountryList.dart';
-import '../resources/Strings.dart';
-import '../view_models/ScheduleViewModel.dart';
+import '../../Utils.dart';
+import '../../models/ScheduleModel.dart';
+import '../../models/TutorModel.dart';
+import '../../resources/CountryList.dart';
+import '../../resources/Strings.dart';
+import '../../view_models/ScheduleViewModel.dart';
 
 class ScheduleViewItem extends StatefulWidget {
   final Schedule schedule;
