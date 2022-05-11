@@ -4,6 +4,7 @@ import 'package:project/view_models/CourseViewModel.dart';
 import 'package:project/view_models/EBookViewModel.dart';
 import 'package:project/view_models/ScheduleViewModel.dart';
 import 'package:project/view_models/TutorViewModel.dart';
+import 'package:project/view_models/UserViewModel.dart';
 import 'package:project/view_models/WalletViewModel.dart';
 import 'package:project/views/splash_viewpages/Splash.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,8 @@ class App extends StatelessWidget {
             create: (context) => EBookViewModel()),
         ChangeNotifierProvider<WalletViewModel>(
           create: (context) => WalletViewModel()),
+        ChangeNotifierProvider<UserViewModel>(
+            create: (context) => UserViewModel()),
       ],
       child: const MaterialApp(
         localizationsDelegates: [

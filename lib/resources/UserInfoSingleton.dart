@@ -20,8 +20,4 @@ class UserInfoLazyInitializedSingleton {
   User getUserInfo() {
     return _userInfo;
   }
-
-  String getToken() {
-    return _userInfo.tokens.access.token;
-  }
 }

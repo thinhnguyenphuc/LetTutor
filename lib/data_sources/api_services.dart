@@ -12,16 +12,16 @@ import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
 import '../models/UserModel.dart';
-import '../resources/UserInfoSingleton.dart';
 
 class ApiServices {
   static String baseUrl = "https://sandbox.api.lettutor.com";
-
+  static late Tokens tokens;
+  
+  
   Future<List<TutorInfo>> fetchTutor() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     return http.post(Uri.parse("$baseUrl/tutor/search"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer '+ tokens.access.token
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -64,9 +64,8 @@ class ApiServices {
         return serviceMessage;
       } else {
         const JsonDecoder decoder = JsonDecoder();
-        final userContainer = decoder.convert(jsonBody);
-        final User user = User.fromJson(userContainer);
-        UserInfoLazyInitializedSingleton().setUserInfo(user);
+        final tokenContainer = decoder.convert(jsonBody);
+        tokens = Tokens.fromJson(tokenContainer["tokens"]);
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       }
     });
@@ -99,12 +98,12 @@ class ApiServices {
   }
 
   Future<List<Schedule>> fetchSchedule() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     return http.get(
       Uri.parse("$baseUrl/booking/list"),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer '+ tokens.access.token
       },
     ).then((http.Response response) {
       final String jsonBody = response.body;
@@ -124,7 +123,7 @@ class ApiServices {
           Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer $token',
+            'Authorization': 'Bearer ' + tokens.access.token,
           },
         ).then((http.Response response) {
           final String jsonBody = response.body;
@@ -151,14 +150,14 @@ class ApiServices {
 
   Future<ServiceMessage> updateStudentRequest(
       String bookedId, String requestMessage) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     var request = {};
     request['studentRequest'] = requestMessage;
     return http
         .post(Uri.parse("$baseUrl/booking/student-request/$bookedId"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ' + tokens.access.token
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -173,10 +172,10 @@ class ApiServices {
   }
 
   Future<List<Course>> fetchCourse() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     return http.get(Uri.parse("$baseUrl/course"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer ' + tokens.access.token
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -197,10 +196,10 @@ class ApiServices {
   }
 
   Future<List<EBook>> fetchEBook() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     return http.get(Uri.parse("$baseUrl/e-book"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer ' + tokens.access.token
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -221,14 +220,14 @@ class ApiServices {
   }
 
   Future<ServiceMessage> cancelBookedClass(String bookedId) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     var request = {};
     request['scheduleDetailIds'] = [bookedId];
     return http
         .delete(Uri.parse("$baseUrl/booking"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ' + tokens.access.token
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -242,14 +241,14 @@ class ApiServices {
   }
 
   Future<List<ScheduleInfo>> fetchBookings(String tutorID) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     var request = {};
     request['tutorId'] = tutorID;
     return http
         .post(Uri.parse("$baseUrl/schedule"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ' + tokens.access.token
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -273,7 +272,7 @@ class ApiServices {
   }
 
   Future<ServiceMessage> bookClass(String classID, String note) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     var request = {};
     request['scheduleDetailIds'] = [classID];
     request['note'] = note;
@@ -281,7 +280,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/booking"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ' + tokens.access.token
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -296,7 +295,7 @@ class ApiServices {
   }
 
   Future<ServiceMessage> changePassword(String oldPass, String newPass) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
+
     var request = {};
     request['password'] = [oldPass];
     request['newPassword'] = [newPass];
@@ -304,7 +303,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/auth/change-password"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ' + tokens.access.token
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -318,10 +317,9 @@ class ApiServices {
   }
 
   Future<ServiceMessage> totalLearnedTime() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     return http.get(Uri.parse("$baseUrl/call/total"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer ' + tokens.access.token
     }).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
@@ -337,10 +335,9 @@ class ApiServices {
   }
 
   Future<ServiceMessage> fetchPaymentHistory() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     return http.get(Uri.parse("$baseUrl/payment/history"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer ' + tokens.access.token
     }).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
@@ -352,6 +349,24 @@ class ApiServices {
             .map((contactRaw) => PaymentInfo.fromJson(contactRaw))
             .toList();
         return ServiceMessage(statusCode: 200, message: paymentHistories);
+      } else {
+        return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
+      }
+    });
+  }
+
+  Future<ServiceMessage> fetchUserInfo(){
+    return http.get(Uri.parse("$baseUrl/user/info"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + tokens.access.token
+    }).then((http.Response response) {
+      final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
+      if (statusCode == 200) {
+        const JsonDecoder decoder = JsonDecoder();
+        final userContainer = decoder.convert(jsonBody);
+        final User userInfo = User.fromJson(userContainer);
+        return ServiceMessage(statusCode: 200, message: userInfo);
       } else {
         return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
       }

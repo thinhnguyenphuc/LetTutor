@@ -1,28 +1,6 @@
 import 'dart:convert';
 
-User userFromJson(String str) => User.fromJson(json.decode(str));
-
-String userToJson(User data) => json.encode(data.toJson());
-
-class User {
-  User({
-    required this.user,
-    required this.tokens,
-  });
-
-  final UserClass user;
-  final Tokens tokens;
-
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        user: UserClass.fromJson(json["user"]),
-        tokens: Tokens.fromJson(json["tokens"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "user": user.toJson(),
-        "tokens": tokens.toJson(),
-      };
-}
+import 'TutorModel.dart';
 
 class Tokens {
   Tokens({
@@ -64,6 +42,26 @@ class Access {
       };
 }
 
+User userFromJson(String str) => User.fromJson(json.decode(str));
+
+String userToJson(User data) => json.encode(data.toJson());
+
+class User {
+  User({
+    required this.user,
+  });
+
+  final UserClass user;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        user: UserClass.fromJson(json["user"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "user": user.toJson(),
+      };
+}
+
 class UserClass {
   UserClass({
     required this.id,
@@ -76,7 +74,9 @@ class UserClass {
     required this.language,
     required this.birthday,
     required this.isActivated,
+    required this.tutorInfo,
     required this.walletInfo,
+    required this.feedbacks,
     required this.courses,
     required this.requireNote,
     required this.level,
@@ -84,6 +84,9 @@ class UserClass {
     required this.testPreparations,
     required this.isPhoneActivated,
     required this.timezone,
+    required this.referralInfo,
+    required this.avgRating,
+    required this.priceOfEachSession,
   });
 
   final String id;
@@ -93,38 +96,68 @@ class UserClass {
   final String country;
   final String phone;
   final List<String> roles;
-  final dynamic language;
+  final String language;
   final DateTime birthday;
   final bool isActivated;
+  final TutorInfo? tutorInfo;
   final WalletInfo? walletInfo;
+  final List<Feedback> feedbacks;
   final List<dynamic> courses;
   final dynamic requireNote;
   final String level;
-  final List<dynamic> learnTopics;
-  final List<dynamic> testPreparations;
+  final List<LearnTopic> learnTopics;
+  final List<LearnTopic> testPreparations;
   final bool isPhoneActivated;
   final int timezone;
+  final ReferralInfo? referralInfo;
+  final double avgRating;
+  final PriceOfEachSession? priceOfEachSession;
 
   factory UserClass.fromJson(Map<String, dynamic> json) => UserClass(
         id: json["id"],
         email: json["email"],
         name: json["name"],
         avatar: json["avatar"],
-        country: json["country"]??"",
-        phone: json["phone"]??"",
-        roles: json["role"] == null ? [] : List<String>.from(json["roles"].map((x) => x)),
-        language: json["language"]??"",
-        birthday: json["birthday"] == null? DateTime.parse("2000-01-01") : DateTime.parse(json["birthday"]),
-        isActivated: json["isActivated"] ?? true,
-        walletInfo: json["walletInfo"] == null ? null : WalletInfo.fromJson(json["walletInfo"]),
-        courses:json["courses"] == null ? [] : List<dynamic>.from(json["courses"].map((x) => x)),
+        country: json["country"],
+        phone: json["phone"],
+        roles: json["roles"] == null
+            ? []
+            : List<String>.from(json["roles"].map((x) => x)),
+        language: json["language"],
+        birthday: DateTime.parse(json["birthday"] ?? "2000-01-01"),
+        isActivated: json["isActivated"],
+        tutorInfo: json["tutorInfo"] == null
+            ? null
+            : TutorInfo.fromJson(json["tutorInfo"]),
+        walletInfo: json["walletInfo"] == null
+            ? null
+            : WalletInfo.fromJson(json["walletInfo"]),
+        feedbacks: json["feedbacks"] == null
+            ? []
+            : List<Feedback>.from(
+                json["feedbacks"].map((x) => Feedback.fromJson(x))),
+        courses: json["courses"] == null
+            ? []
+            : List<dynamic>.from(json["courses"].map((x) => x)),
         requireNote: json["requireNote"],
-        level: json["level"] ?? "",
-        learnTopics: json["leanTopics"] == null ? [] :List<dynamic>.from(json["learnTopics"].map((x) => x)),
-        testPreparations: json["testPreparations"] == null ? [] :
-            List<dynamic>.from(json["testPreparations"].map((x) => x)),
-        isPhoneActivated: json["isPhoneActivated"] ?? true,
-        timezone: json["timezone"] ?? 7,
+        level: json["level"],
+        learnTopics: json["learnTopics"] == null
+            ? []
+            : List<LearnTopic>.from(
+                json["learnTopics"].map((x) => LearnTopic.fromJson(x))),
+        testPreparations: json["testPreparations"] == null
+            ? []
+            : List<LearnTopic>.from(
+                json["testPreparations"].map((x) => LearnTopic.fromJson(x))),
+        isPhoneActivated: json["isPhoneActivated"],
+        timezone: json["timezone"],
+        referralInfo: json["referralInfo"] == null
+            ? null
+            : ReferralInfo.fromJson(json["referralInfo"]),
+        avgRating: (json["avgRating"] ?? 5).toDouble(),
+        priceOfEachSession: json["priceOfEachSession"] == null
+            ? null
+            : PriceOfEachSession.fromJson(json["priceOfEachSession"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -139,14 +172,304 @@ class UserClass {
         "birthday":
             "${birthday.year.toString().padLeft(4, '0')}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}",
         "isActivated": isActivated,
-        "walletInfo": walletInfo!.toJson(),
+        "tutorInfo": tutorInfo == null ? null : tutorInfo!.toJson(),
+        "walletInfo": walletInfo == null ? null : walletInfo!.toJson(),
+        "feedbacks": List<dynamic>.from(feedbacks.map((x) => x.toJson())),
         "courses": List<dynamic>.from(courses.map((x) => x)),
         "requireNote": requireNote,
         "level": level,
-        "learnTopics": List<dynamic>.from(learnTopics.map((x) => x)),
-        "testPreparations": List<dynamic>.from(testPreparations.map((x) => x)),
+        "learnTopics": List<dynamic>.from(learnTopics.map((x) => x.toJson())),
+        "testPreparations":
+            List<dynamic>.from(testPreparations.map((x) => x.toJson())),
         "isPhoneActivated": isPhoneActivated,
         "timezone": timezone,
+        "referralInfo": referralInfo == null ? null : referralInfo!.toJson(),
+        "avgRating": avgRating,
+        "priceOfEachSession":
+            priceOfEachSession ?? priceOfEachSession!.toJson(),
+      };
+}
+
+class Feedback {
+  Feedback({
+    required this.id,
+    required this.bookingId,
+    required this.firstId,
+    required this.secondId,
+    required this.rating,
+    required this.content,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.firstInfo,
+    required this.secondInfo,
+  });
+
+  final String id;
+  final String bookingId;
+  final String firstId;
+  final String secondId;
+  final double rating;
+  final String content;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final Info firstInfo;
+  final Info secondInfo;
+
+  factory Feedback.fromJson(Map<String, dynamic> json) => Feedback(
+        id: json["id"],
+        bookingId: json["bookingId"],
+        firstId: json["firstId"],
+        secondId: json["secondId"],
+        rating: json["rating"].toDouble(),
+        content: json["content"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        firstInfo: Info.fromJson(json["firstInfo"]),
+        secondInfo: Info.fromJson(json["secondInfo"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "bookingId": bookingId,
+        "firstId": firstId,
+        "secondId": secondId,
+        "rating": rating,
+        "content": content,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "firstInfo": firstInfo.toJson(),
+        "secondInfo": secondInfo.toJson(),
+      };
+}
+
+class Info {
+  Info({
+    required this.id,
+    required this.level,
+    required this.email,
+    required this.google,
+    required this.facebook,
+    required this.apple,
+    required this.avatar,
+    required this.name,
+    required this.country,
+    required this.phone,
+    required this.language,
+    required this.birthday,
+    required this.requestPassword,
+    required this.isActivated,
+    required this.isPhoneActivated,
+    required this.requireNote,
+    required this.timezone,
+    required this.phoneAuth,
+    required this.isPhoneAuthActivated,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.deletedAt,
+  });
+
+  final String id;
+  final String level;
+  final String email;
+  final dynamic google;
+  final dynamic facebook;
+  final dynamic apple;
+  final String avatar;
+  final String name;
+  final String country;
+  final String phone;
+  final String language;
+  final DateTime birthday;
+  final bool requestPassword;
+  final bool isActivated;
+  final bool isPhoneActivated;
+  final dynamic requireNote;
+  final int timezone;
+  final dynamic phoneAuth;
+  final bool isPhoneAuthActivated;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final dynamic deletedAt;
+
+  factory Info.fromJson(Map<String, dynamic> json) => Info(
+        id: json["id"],
+        level: json["level"],
+        email: json["email"],
+        google: json["google"],
+        facebook: json["facebook"],
+        apple: json["apple"],
+        avatar: json["avatar"],
+        name: json["name"],
+        country: json["country"],
+        phone: json["phone"],
+        language: json["language"],
+        birthday: DateTime.parse(json["birthday"]),
+        requestPassword: json["requestPassword"],
+        isActivated: json["isActivated"],
+        isPhoneActivated: json["isPhoneActivated"],
+        requireNote: json["requireNote"],
+        timezone: json["timezone"],
+        phoneAuth: json["phoneAuth"],
+        isPhoneAuthActivated: json["isPhoneAuthActivated"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        deletedAt: json["deletedAt"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "level": level,
+        "email": email,
+        "google": google,
+        "facebook": facebook,
+        "apple": apple,
+        "avatar": avatar,
+        "name": name,
+        "country": country,
+        "phone": phone,
+        "language": language,
+        "birthday":
+            "${birthday.year.toString().padLeft(4, '0')}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}",
+        "requestPassword": requestPassword,
+        "isActivated": isActivated,
+        "isPhoneActivated": isPhoneActivated,
+        "requireNote": requireNote,
+        "timezone": timezone,
+        "phoneAuth": phoneAuth,
+        "isPhoneAuthActivated": isPhoneAuthActivated,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "deletedAt": deletedAt,
+      };
+}
+
+class LearnTopic {
+  LearnTopic({
+    required this.id,
+    required this.key,
+    required this.name,
+  });
+
+  final int id;
+  final String key;
+  final String name;
+
+  factory LearnTopic.fromJson(Map<String, dynamic> json) => LearnTopic(
+        id: json["id"],
+        key: json["key"],
+        name: json["name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "key": key,
+        "name": name,
+      };
+}
+
+class PriceOfEachSession {
+  PriceOfEachSession({
+    required this.id,
+    required this.key,
+    required this.price,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  final String id;
+  final String key;
+  final String price;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  factory PriceOfEachSession.fromJson(Map<String, dynamic> json) =>
+      PriceOfEachSession(
+        id: json["id"],
+        key: json["key"],
+        price: json["price"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "key": key,
+        "price": price,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+      };
+}
+
+class ReferralInfo {
+  ReferralInfo({
+    required this.id,
+    required this.referralCode,
+    required this.userId,
+    required this.referralPackId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.referralPackInfo,
+  });
+
+  final int id;
+  final String referralCode;
+  final String userId;
+  final int referralPackId;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final ReferralPackInfo referralPackInfo;
+
+  factory ReferralInfo.fromJson(Map<String, dynamic> json) => ReferralInfo(
+        id: json["id"],
+        referralCode: json["referralCode"],
+        userId: json["userId"],
+        referralPackId: json["referralPackId"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        referralPackInfo: ReferralPackInfo.fromJson(json["referralPackInfo"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "referralCode": referralCode,
+        "userId": userId,
+        "referralPackId": referralPackId,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "referralPackInfo": referralPackInfo.toJson(),
+      };
+}
+
+class ReferralPackInfo {
+  ReferralPackInfo({
+    required this.id,
+    required this.earnPercent,
+    required this.isActive,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  final int id;
+  final int earnPercent;
+  final bool isActive;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  factory ReferralPackInfo.fromJson(Map<String, dynamic> json) =>
+      ReferralPackInfo(
+        id: json["id"],
+        earnPercent: json["earnPercent"],
+        isActive: json["isActive"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "earnPercent": earnPercent,
+        "isActive": isActive,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
       };
 }
 
