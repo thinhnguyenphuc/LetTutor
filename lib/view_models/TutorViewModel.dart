@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../data_sources/api_services.dart';
-import '../models/BookingInfoModel.dart';
 import '../models/ScheduleDetailsModel.dart';
 import '../models/ScheduleInfoModel.dart';
 import '../models/TutorModel.dart';
 
 class TutorViewModel with ChangeNotifier {
   List<TutorInfo> tutorList = [];
-  Map<String, List<ScheduleDetailInfo>> schedulesMap = <String, List<ScheduleDetailInfo>>{};
+  Map<String, List<ScheduleDetailInfo>> schedulesMap =
+      <String, List<ScheduleDetailInfo>>{};
 
   List<TutorInfo> filteredTutorList(String filter) {
-    List<TutorInfo> res = [];
-    for (TutorInfo item in tutorList) {
-      if (item.specialties.contains(filter)) {
-        res.add(item);
-      }
-    }
-    return res;
+    return tutorList
+        .where((tutor) => tutor.specialties.contains(filter))
+        .toList();
   }
 
   getTutorList() async {
@@ -28,9 +24,11 @@ class TutorViewModel with ChangeNotifier {
   fetchBookings(String userId) async {
     if (!schedulesMap.containsKey(userId)) {
       List<ScheduleDetailInfo> res = [];
-      List<ScheduleInfo> scheduleInfoList = await ApiServices().fetchBookings(userId);
+      List<ScheduleInfo> scheduleInfoList =
+          await ApiServices().fetchBookings(userId);
       for (ScheduleInfo schedulesInfo in scheduleInfoList) {
-        for(ScheduleDetailInfo scheduleDetailInfo in schedulesInfo.scheduleDetails){
+        for (ScheduleDetailInfo scheduleDetailInfo
+            in schedulesInfo.scheduleDetails) {
           res.add(scheduleDetailInfo);
         }
       }

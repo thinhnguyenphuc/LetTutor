@@ -81,9 +81,9 @@ class BookingPageState extends State<BookingPage> {
                 children: [
                   Container(
                     margin: const EdgeInsets.all(10),
-                    child: Text("Loading schedule..."),
+                    child: const Text("Loading schedule..."),
                   ),
-                  CircularProgressIndicator()
+                  const CircularProgressIndicator()
                 ],
               ),
             ),
@@ -193,7 +193,7 @@ class BookingPageState extends State<BookingPage> {
                     }));
                   }
                 },
-                child: Text(
+                child: const Text(
                   "Book a class this day",
                   style: TextStyle(color: Colors.white),
                 ),

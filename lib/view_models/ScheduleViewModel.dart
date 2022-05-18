@@ -14,29 +14,23 @@ class ScheduleViewModel with ChangeNotifier {
   String totalLearnedTimeString = "";
 
   _fetchNextSchedule() async {
-    DateTime now = DateTime.now();
     if (schedules.isNotEmpty && _isNotFetchedNextSchedule) {
-      for (Schedule schedule in schedules) {
-        var date = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000);
-        if (date.isAfter(now)) {
-          nextSchedule.add(schedule);
-        }
-      }
+      schedules
+          .where((schedule) => DateTime.fromMicrosecondsSinceEpoch(
+                  schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000)
+              .isAfter(DateTime.now()))
+          .toList();
       _isNotFetchedNextSchedule = false;
     }
   }
 
   _fetchHistorySchedule() async {
-    DateTime now = DateTime.now();
     if (schedules.isNotEmpty && _isNotFetchedHistorySchedule) {
-      for (Schedule schedule in schedules) {
-        var date = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo!.startPeriodTimestamp* 1000);
-        if (date.isBefore(now)) {
-          historySchedule.add(schedule);
-        }
-      }
+      schedules
+          .where((schedule) => DateTime.fromMicrosecondsSinceEpoch(
+                  schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000)
+              .isBefore(DateTime.now()))
+          .toList();
       _isNotFetchedHistorySchedule = false;
     }
   }
@@ -81,7 +75,7 @@ class ScheduleViewModel with ChangeNotifier {
 
   getTotalLearner() async {
     ServiceMessage totalLearnedTimeStatus =
-    await ApiServices().totalLearnedTime();
+        await ApiServices().totalLearnedTime();
     int minutes = int.parse(totalLearnedTimeStatus.message);
     int hours = (minutes / 60).round();
     minutes = minutes - hours * 60;

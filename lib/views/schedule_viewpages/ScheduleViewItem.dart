@@ -277,7 +277,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                       title: const Text('Special Request'),
                                       content: TextField(
                                         controller: requestedController,
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                             hintText: "Request"),
                                       ),
                                       actions: <Widget>[
@@ -326,7 +326,7 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                         ? Strings.emptyStudentRequestsWhenDone
                                         : Strings.emptyStudentRequests,
                                 style:
-                                    TextStyle(fontSize: 20, color: Colors.grey),
+                                    const TextStyle(fontSize: 20, color: Colors.grey),
                               ),
                             ),
                           ),
