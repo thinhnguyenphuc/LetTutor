@@ -51,12 +51,15 @@ class ScheduleViewModel with ChangeNotifier {
   }
 
   fetchScheduleAgain() async {
+    isLoaded = false;
+    notifyListeners();
     getTotalLearner();
     schedules = await ApiServices().fetchSchedule();
     nextSchedule.clear();
     _isNotFetchedNextSchedule = true;
     _isNotFetchedNextSchedule = true;
     _fetchNextSchedule();
+    isLoaded = true;
     notifyListeners();
     _fetchHistorySchedule();
   }
@@ -77,7 +80,7 @@ class ScheduleViewModel with ChangeNotifier {
     ServiceMessage totalLearnedTimeStatus =
         await ApiServices().totalLearnedTime();
     int minutes = int.parse(totalLearnedTimeStatus.message);
-    int hours = (minutes / 60).round();
+    int hours = minutes ~/ 60;
     minutes = minutes - hours * 60;
     totalLearnedTimeString = "$hours hours and $minutes minutes";
     notifyListeners();

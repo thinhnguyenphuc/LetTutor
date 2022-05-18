@@ -50,7 +50,7 @@ class WalletPageState extends State<WalletPage> {
         return DataRow(cells: [
           DataCell(Text((position + 1).toString())),
           DataCell(
-              Text(_info.bookingInfo.scheduleDetailInfo.tutorInfo!.name)),
+              Text(_info.bookingInfo.scheduleDetailInfo!.tutorInfo!.name)),
           DataCell(Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
