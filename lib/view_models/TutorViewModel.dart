@@ -8,6 +8,7 @@ import '../models/ScheduleInfoModel.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
+import '../resources/Strings.dart';
 
 class TutorViewModel with ChangeNotifier {
   List<TutorInfo> tutorList = [];

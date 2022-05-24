@@ -22,7 +22,7 @@ class ApiServices {
     return http
         .get(Uri.parse("$baseUrl/tutor/more?perPage=9&page=1"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + tokens.access.token
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -112,7 +112,7 @@ class ApiServices {
       Uri.parse("$baseUrl/booking/list"),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + tokens.access.token
+        'Authorization': 'Bearer ${tokens.access.token}'
       },
     ).then((http.Response response) {
       final String jsonBody = response.body;
@@ -132,7 +132,7 @@ class ApiServices {
           Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + tokens.access.token,
+            'Authorization': 'Bearer ${tokens.access.token}',
           },
         ).then((http.Response response) {
           final String jsonBody = response.body;
@@ -165,7 +165,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/booking/student-request/$bookedId"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + tokens.access.token
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -182,7 +182,7 @@ class ApiServices {
   Future<List<Course>> fetchCourse() {
     return http.get(Uri.parse("$baseUrl/course"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + tokens.access.token
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -205,7 +205,7 @@ class ApiServices {
   Future<List<EBook>> fetchEBook() {
     return http.get(Uri.parse("$baseUrl/e-book"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + tokens.access.token
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -232,7 +232,7 @@ class ApiServices {
         .delete(Uri.parse("$baseUrl/booking"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + tokens.access.token
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -252,7 +252,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/schedule"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + tokens.access.token
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -283,7 +283,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/booking"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + tokens.access.token
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -305,7 +305,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/auth/change-password"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + tokens.access.token
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -321,7 +321,7 @@ class ApiServices {
   Future<ServiceMessage> totalLearnedTime() {
     return http.get(Uri.parse("$baseUrl/call/total"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + tokens.access.token
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
@@ -339,7 +339,7 @@ class ApiServices {
   Future<ServiceMessage> fetchPaymentHistory() {
     return http.get(Uri.parse("$baseUrl/payment/history"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + tokens.access.token
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
@@ -360,7 +360,7 @@ class ApiServices {
   Future<ServiceMessage> fetchUserInfo() {
     return http.get(Uri.parse("$baseUrl/user/info"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + tokens.access.token
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
@@ -381,7 +381,7 @@ class ApiServices {
     return http.post(Uri.parse("$baseUrl/user/manageFavoriteTutor"),
         headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + tokens.access.token
+      'Authorization': 'Bearer ${tokens.access.token}'
     }, body: jsonEncode(request)).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;

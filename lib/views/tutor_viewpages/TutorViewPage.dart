@@ -160,18 +160,19 @@ class _TutorScreenPageState extends State<TutorScreen> {
                 shrinkWrap: true,
                 itemCount: tutorList.length,
                 itemBuilder: (context, position) {
-                  final TutorInfo _tutor = tutorList[position];
+                  final TutorInfo tutor = tutorList[position];
                   return Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => TutorDetailsPage(
-                                  tutor: _tutor,
+                                  tutor: tutor,
+                                  tutorViewModel: tutorListOnProvider,
                                 )));
                       },
                       child: TutorViewItem(
-                        tutor: _tutor,
+                        tutor: tutor,
                         tutorViewModel: tutorListOnProvider,
                       ),
                     ),

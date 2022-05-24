@@ -5,14 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:video_viewer/video_viewer.dart';
 
+import '../../Utils.dart';
 import '../../models/TutorModel.dart';
 import '../../resources/CountryList.dart';
 import '../../resources/Specialties.dart';
+import '../../view_models/TutorViewModel.dart';
 
 class TutorDetailsPage extends StatefulWidget {
   final TutorInfo tutor;
+  final TutorViewModel tutorViewModel;
 
-  const TutorDetailsPage({Key? key, required this.tutor}) : super(key: key);
+  const TutorDetailsPage(
+      {Key? key, required this.tutor, required this.tutorViewModel})
+      : super(key: key);
 
   @override
   _TutorDetailsPageState createState() => _TutorDetailsPageState();
@@ -34,6 +39,9 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
             style: TextStyle(fontSize: 20),
           )
         : const Text("Null");
+
+    bool isFavorite = widget.tutorViewModel.favorites.contains(widget.tutor.userId);
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
@@ -224,14 +232,23 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                 TextButton(
                   onPressed: () {},
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      widget.tutorViewModel
+                          .updateFavorite(widget.tutor.userId)
+                          .then((value) {
+                        Future.delayed(const Duration(milliseconds: 1500), () {
+                          setState(() {
+                          });
+                        });
+                      });
+                    },
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(
                           Icons.favorite,
-                          color: Colors.red,
+                          color: isFavorite ? Colors.red : Colors.grey,
                         ),
-                        Text(
+                        const Text(
                           'Favorite',
                         ),
                       ],
@@ -255,7 +272,9 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                 TextButton(
                   onPressed: () {},
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Utils.showReviewsDialog(context, widget.tutor.feedbacks);
+                    },
                     child: Column(
                       children: const [
                         Icon(Icons.star),
