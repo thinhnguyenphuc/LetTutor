@@ -103,6 +103,25 @@ class TutorViewItem extends StatelessWidget {
                   ]),
                 ],
               ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        tutorViewModel.updateFavorite(tutor.userId);
+                      },
+                      icon: Icon(
+                        Icons.favorite,
+                        color: tutorViewModel.favorites.contains(tutor.userId)
+                            ? Colors.red
+                            : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
           Row(children: [

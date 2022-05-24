@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -16,12 +17,12 @@ import '../models/UserModel.dart';
 class ApiServices {
   static String baseUrl = "https://sandbox.api.lettutor.com";
   static late Tokens tokens;
-  
-  
-  Future<List<TutorInfo>> fetchTutor() {
-    return http.post(Uri.parse("$baseUrl/tutor/search"), headers: {
+
+  Future<ServiceMessage> fetchTutor() {
+    return http
+        .get(Uri.parse("$baseUrl/tutor/more?perPage=9&page=1"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+ tokens.access.token
+      'Authorization': 'Bearer ' + tokens.access.token
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -36,10 +37,19 @@ class ApiServices {
 
       const JsonDecoder decoder = JsonDecoder();
       final tutorContainer = decoder.convert(jsonBody);
-      final List tutors = tutorContainer['rows'];
-      return tutors
-          .map((contactRaw) => TutorInfo.fromJson(contactRaw))
+      final List<TutorInfo> tutors = (tutorContainer['tutors']['rows'] as List)
+          .map((row) => TutorInfo.fromJson(row))
           .toList();
+      final List favoriteJson = tutorContainer['favoriteTutor'];
+      final List favorites = favoriteJson
+          .map((contactRaw) => contactRaw["secondInfo"] != null
+              ? contactRaw["secondId"]
+              : null)
+          .toList();
+      final HashMap res = HashMap<String, List>();
+      res["tutors"] = tutors;
+      res["favoriteTutor"] = favorites;
+      return ServiceMessage(statusCode: 200, message: res);
     });
   }
 
@@ -98,12 +108,11 @@ class ApiServices {
   }
 
   Future<List<Schedule>> fetchSchedule() {
-
     return http.get(
       Uri.parse("$baseUrl/booking/list"),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ tokens.access.token
+        'Authorization': 'Bearer ' + tokens.access.token
       },
     ).then((http.Response response) {
       final String jsonBody = response.body;
@@ -150,7 +159,6 @@ class ApiServices {
 
   Future<ServiceMessage> updateStudentRequest(
       String bookedId, String requestMessage) {
-
     var request = {};
     request['studentRequest'] = requestMessage;
     return http
@@ -172,7 +180,6 @@ class ApiServices {
   }
 
   Future<List<Course>> fetchCourse() {
-
     return http.get(Uri.parse("$baseUrl/course"), headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + tokens.access.token
@@ -196,7 +203,6 @@ class ApiServices {
   }
 
   Future<List<EBook>> fetchEBook() {
-
     return http.get(Uri.parse("$baseUrl/e-book"), headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + tokens.access.token
@@ -220,7 +226,6 @@ class ApiServices {
   }
 
   Future<ServiceMessage> cancelBookedClass(String bookedId) {
-
     var request = {};
     request['scheduleDetailIds'] = [bookedId];
     return http
@@ -241,7 +246,6 @@ class ApiServices {
   }
 
   Future<List<ScheduleInfo>> fetchBookings(String tutorID) {
-
     var request = {};
     request['tutorId'] = tutorID;
     return http
@@ -272,7 +276,6 @@ class ApiServices {
   }
 
   Future<ServiceMessage> bookClass(String classID, String note) {
-
     var request = {};
     request['scheduleDetailIds'] = [classID];
     request['note'] = note;
@@ -295,7 +298,6 @@ class ApiServices {
   }
 
   Future<ServiceMessage> changePassword(String oldPass, String newPass) {
-
     var request = {};
     request['password'] = [oldPass];
     request['newPassword'] = [newPass];
@@ -355,7 +357,7 @@ class ApiServices {
     });
   }
 
-  Future<ServiceMessage> fetchUserInfo(){
+  Future<ServiceMessage> fetchUserInfo() {
     return http.get(Uri.parse("$baseUrl/user/info"), headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + tokens.access.token
@@ -370,6 +372,20 @@ class ApiServices {
       } else {
         return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
       }
+    });
+  }
+
+  Future<ServiceMessage>updateFavorite(String userId)  {
+    var request = {};
+    request['tutorId'] = userId;
+    return http.post(Uri.parse("$baseUrl/user/manageFavoriteTutor"),
+        headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + tokens.access.token
+    }, body: jsonEncode(request)).then((http.Response response) {
+      final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
+      return ServiceMessage(statusCode: statusCode, message: jsonBody);
     });
   }
 }
