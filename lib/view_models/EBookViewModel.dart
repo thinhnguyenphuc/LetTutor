@@ -10,4 +10,9 @@ class EBookViewModel with ChangeNotifier {
     eBookList = await ApiServices().fetchEBook();
     notifyListeners();
   }
+
+  List<EBook> searchEBookList(String name) {
+    List<EBook> res = eBookList.where((book) => book.name.contains(name)).toList();
+    return res;
+  }
 }

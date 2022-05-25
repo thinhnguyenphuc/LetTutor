@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:project/models/ScheduleModel.dart';
-import 'package:project/resources/Strings.dart';
 import 'package:project/view_models/ScheduleViewModel.dart';
 import 'package:project/views/schedule_viewpages/ScheduleViewItem.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_to/swipe_to.dart';
+
+import '../../resources/BaseMixinsWidget.dart';
+import '../../resources/Strings.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({Key? key}) : super(key: key);
@@ -16,7 +18,7 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenPageState extends State<ScheduleScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, StateVariablesMixin {
   final tabs = [
     Tab(text: Strings.upcomingLesson),
     Tab(text: Strings.lessonList),
@@ -40,11 +42,15 @@ class _ScheduleScreenPageState extends State<ScheduleScreen>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final scheduleListOnProvider = Provider.of<ScheduleViewModel>(context);
     final totalLearnedTime = scheduleListOnProvider.isLoaded
         ? Text(
-            "Total lesson time is " +
-                scheduleListOnProvider.totalLearnedTimeString,
+            l10n.totalLessonTime +
+                scheduleListOnProvider.hour +
+                l10n.hours +
+                scheduleListOnProvider.min +
+                l10n.minutes,
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,

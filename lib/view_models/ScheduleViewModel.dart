@@ -11,7 +11,8 @@ class ScheduleViewModel with ChangeNotifier {
   bool isLoaded = false;
   bool _isNotFetchedNextSchedule = true;
   bool _isNotFetchedHistorySchedule = true;
-  String totalLearnedTimeString = "";
+  String hour = "";
+  String min = "";
 
   _fetchNextSchedule() async {
     if (schedules.isNotEmpty && _isNotFetchedNextSchedule) {
@@ -82,7 +83,8 @@ class ScheduleViewModel with ChangeNotifier {
     int minutes = int.parse(totalLearnedTimeStatus.message);
     int hours = minutes ~/ 60;
     minutes = minutes - hours * 60;
-    totalLearnedTimeString = "$hours hours and $minutes minutes";
+    hour = hours.toString();
+    min = minutes.toString();
     notifyListeners();
   }
 }

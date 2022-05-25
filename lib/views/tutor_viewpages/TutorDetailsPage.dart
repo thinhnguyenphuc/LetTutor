@@ -7,6 +7,7 @@ import 'package:video_viewer/video_viewer.dart';
 
 import '../../Utils.dart';
 import '../../models/TutorModel.dart';
+import '../../resources/BaseMixinsWidget.dart';
 import '../../resources/CountryList.dart';
 import '../../resources/Specialties.dart';
 import '../../view_models/TutorViewModel.dart';
@@ -23,13 +24,14 @@ class TutorDetailsPage extends StatefulWidget {
   _TutorDetailsPageState createState() => _TutorDetailsPageState();
 }
 
-class _TutorDetailsPageState extends State<TutorDetailsPage> {
+class _TutorDetailsPageState extends State<TutorDetailsPage> with StateVariablesMixin{
   var titleTextStyle =
       const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
   final VideoViewerController controller = VideoViewerController();
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     var countryName = CountrySingleton().countryHashMap[widget.tutor.country];
     List<String> languages = widget.tutor.getLanguages(context);
 
@@ -128,7 +130,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Education", style: titleTextStyle),
+                      Text(l10n.education, style: titleTextStyle),
                     ],
                   ),
                   Row(children: [
@@ -183,10 +185,10 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                         style: TextStyle(
                             fontSize: 20, color: Colors.grey.shade600),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          "More",
+                          l10n.more,
                           style: TextStyle(fontSize: 20, color: Colors.blue),
                         ),
                       ),
@@ -221,10 +223,10 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                   child: InkWell(
                     onTap: () {},
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(Icons.message),
                         Text(
-                          'Message',
+                          l10n.message,
                         ),
                       ],
                     ),
@@ -248,8 +250,8 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                           Icons.favorite,
                           color: isFavorite ? Colors.red : Colors.grey,
                         ),
-                        const Text(
-                          'Favorite',
+                        Text(
+                          l10n.favorite,
                         ),
                       ],
                     ),
@@ -260,10 +262,10 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                   child: InkWell(
                     onTap: () {},
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(Icons.report_gmailerrorred_sharp),
                         Text(
-                          'Report',
+                          l10n.report,
                         ),
                       ],
                     ),
@@ -276,10 +278,10 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                       Utils.showReviewsDialog(context, widget.tutor.feedbacks);
                     },
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(Icons.star),
                         Text(
-                          'Reviews',
+                          l10n.review,
                         ),
                       ],
                     ),
@@ -297,7 +299,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Video introduce", style: titleTextStyle),
+                              Text(l10n.videoIntro, style: titleTextStyle),
                               const Icon(Icons.arrow_downward_rounded),
                             ],
                           ),
@@ -323,7 +325,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Video introduce",
+                          l10n.videoIntro,
                           style: titleTextStyle,
                         ),
                         const Icon(Icons.arrow_forward),
@@ -338,7 +340,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Languages", style: titleTextStyle),
+                      Text(l10n.languages, style: titleTextStyle),
                     ],
                   ),
                   Row(children: [
@@ -386,7 +388,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Specialties", style: titleTextStyle),
+                      Text(l10n.specialties, style: titleTextStyle),
                     ],
                   ),
                   Row(children: [
@@ -435,7 +437,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Interests", style: titleTextStyle),
+                      Text(l10n.interest, style: titleTextStyle),
                     ],
                   ),
                   Row(children: [
@@ -463,7 +465,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Teaching experience", style: titleTextStyle),
+                      Text(l10n.teachingExp, style: titleTextStyle),
                     ],
                   ),
                   Row(children: [

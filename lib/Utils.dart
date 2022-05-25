@@ -29,8 +29,12 @@ class Utils {
     return DateFormat("hh:mm").parse(str);
   }
 
-  static String parseDateToString(DateTime date) {
+  static String parseDateTimeToString(DateTime date) {
     return DateFormat('yyyy-MM-dd HH:m').format(date);
+  }
+
+  static String parseDateToString(DateTime date) {
+    return DateFormat('yyyy-MM-dd').format(date);
   }
 
   static DateTime combineDateTime(DateTime date, DateTime time) {

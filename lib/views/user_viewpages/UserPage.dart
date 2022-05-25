@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:project/Utils.dart';
 import 'package:project/models/UserModel.dart';
+import 'package:project/provider/locale_provider.dart';
 import 'package:project/views/user_viewpages/UserDetailsInfo.dart';
 import 'package:project/views/user_viewpages/WalletPage.dart';
 import 'package:provider/provider.dart';
 
+import '../../resources/BaseMixinsWidget.dart';
 import '../../view_models/UserViewModel.dart';
 
 class UserPage extends StatefulWidget {
@@ -15,7 +17,7 @@ class UserPage extends StatefulWidget {
   UserPageState createState() => UserPageState();
 }
 
-class UserPageState extends State<UserPage> {
+class UserPageState extends State<UserPage> with StateVariablesMixin {
   @override
   void initState() {
     // TODO: implement initState
@@ -25,6 +27,7 @@ class UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final userInfoProvider = Provider.of<UserViewModel>(context);
     bool isLoaded = userInfoProvider.isFetching;
     UserClass? _userInfo = userInfoProvider.userInfo;
@@ -60,7 +63,7 @@ class UserPageState extends State<UserPage> {
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 ),
-                Text("Level: " + _userInfo.level,
+                Text("${l10n.level}: " + _userInfo.level,
                     style: TextStyle(fontSize: 20)),
               ],
             ),
@@ -103,8 +106,8 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Other review me",
+                            children: [
+                              Text(l10n.review,
                                   style: TextStyle(fontSize: 16)),
                             ],
                           ),
@@ -144,8 +147,8 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Edit my information",
+                            children: [
+                              Text(l10n.editInfo,
                                   style: TextStyle(fontSize: 16)),
                             ],
                           ),
@@ -184,8 +187,9 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("My wallet", style: TextStyle(fontSize: 16)),
+                            children: [
+                              Text(l10n.paymentHistory,
+                                  style: TextStyle(fontSize: 16)),
                             ],
                           ),
                         ),
@@ -198,8 +202,69 @@ class UserPageState extends State<UserPage> {
                     ),
                   ),
                 ),
+
+                //Languages
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20.0)), //this right here
+                            child: SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          l10n.language,
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            context
+                                                .read<LocaleProvider>()
+                                                .setLocale(const Locale("vi"));
+                                          },
+                                          icon: Image.asset(
+                                            "assets/icon/vietnam.png",
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            context
+                                                .read<LocaleProvider>()
+                                                .setLocale(const Locale("en"));
+                                          },
+                                          icon: Image.asset(
+                                            "assets/icon/united-kingdom.png",
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        });
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -218,8 +283,9 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Languages", style: TextStyle(fontSize: 16)),
+                            children: [
+                              Text(l10n.language,
+                                  style: TextStyle(fontSize: 16)),
                             ],
                           ),
                         ),
@@ -232,6 +298,8 @@ class UserPageState extends State<UserPage> {
                     ),
                   ),
                 ),
+
+                //Themes
                 InkWell(
                   onTap: () {},
                   child: Container(
@@ -252,8 +320,8 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Dark theme",
+                            children: [
+                              Text(l10n.chooseThemeTitle,
                                   style: TextStyle(fontSize: 16)),
                             ],
                           ),
@@ -267,6 +335,8 @@ class UserPageState extends State<UserPage> {
                     ),
                   ),
                 ),
+
+                //ChangePassword
                 InkWell(
                   onTap: () {},
                   child: Container(
@@ -287,8 +357,8 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Change password",
+                            children: [
+                              Text(l10n.changePasswordBtnText,
                                   style: TextStyle(fontSize: 16)),
                             ],
                           ),
@@ -302,6 +372,8 @@ class UserPageState extends State<UserPage> {
                     ),
                   ),
                 ),
+
+                //Settings
                 InkWell(
                   onTap: () {},
                   child: Container(
@@ -322,8 +394,9 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Settings", style: TextStyle(fontSize: 16)),
+                            children: [
+                              Text(l10n.settingsTitle,
+                                  style: TextStyle(fontSize: 16)),
                             ],
                           ),
                         ),
@@ -336,6 +409,8 @@ class UserPageState extends State<UserPage> {
                     ),
                   ),
                 ),
+
+                //Logout
                 InkWell(
                   onTap: () {},
                   child: Container(
@@ -356,8 +431,8 @@ class UserPageState extends State<UserPage> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Logout", style: TextStyle(fontSize: 16)),
+                            children: [
+                              Text(l10n.logout, style: TextStyle(fontSize: 16)),
                             ],
                           ),
                         ),

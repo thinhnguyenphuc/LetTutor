@@ -13,7 +13,7 @@ import 'package:project/widgets/CustomCheckBox.dart';
 import 'package:project/widgets/CustomTextField.dart';
 import 'package:project/widgets/CustomTextLink.dart';
 import 'package:project/widgets/HeroAnimation.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 

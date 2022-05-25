@@ -3,9 +3,9 @@ import 'package:project/views/tutor_viewpages/TutorViewItem.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/TutorModel.dart';
+import '../../resources/BaseMixinsWidget.dart';
 import '../../resources/CountryList.dart';
 import '../../resources/Specialties.dart';
-import '../../resources/Strings.dart';
 import '../../view_models/TutorViewModel.dart';
 import 'TutorDetailsPage.dart';
 
@@ -16,7 +16,7 @@ class TutorScreen extends StatefulWidget {
   _TutorScreenPageState createState() => _TutorScreenPageState();
 }
 
-class _TutorScreenPageState extends State<TutorScreen> {
+class _TutorScreenPageState extends State<TutorScreen> with StateVariablesMixin{
   late final TextEditingController searchController;
   String tutorName = "";
 
@@ -45,6 +45,7 @@ class _TutorScreenPageState extends State<TutorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final dropDownSkillChoose = SizedBox(
       width: 150.0,
       child: DropdownButtonHideUnderline(
@@ -174,6 +175,7 @@ class _TutorScreenPageState extends State<TutorScreen> {
                       child: TutorViewItem(
                         tutor: tutor,
                         tutorViewModel: tutorListOnProvider,
+                        l10n: l10n,
                       ),
                     ),
                   );
@@ -183,8 +185,8 @@ class _TutorScreenPageState extends State<TutorScreen> {
     final searchBar = TextField(
       controller: searchController,
       decoration: InputDecoration(
-          labelText: Strings.tutorName,
-          hintText: Strings.search,
+          labelText: l10n.tutorName,
+          hintText: l10n.searchHintText,
           prefixIcon: const Icon(Icons.search),
           suffixIcon: IconButton(
             onPressed: () {

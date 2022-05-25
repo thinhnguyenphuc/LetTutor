@@ -8,6 +8,7 @@ import 'package:swipe_to/swipe_to.dart';
 import '../../Utils.dart';
 import '../../models/CourseModel.dart';
 import '../../models/EBookModel.dart';
+import '../../resources/BaseMixinsWidget.dart';
 import '../../resources/Strings.dart';
 import '../../view_models/EBookViewModel.dart';
 import 'CourseViewItem.dart';
@@ -21,7 +22,7 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenPageState extends State<CourseScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, StateVariablesMixin {
   final tabs = [
     Tab(text: Strings.courses),
     Tab(text: Strings.ebook),
@@ -36,13 +37,25 @@ class _CourseScreenPageState extends State<CourseScreen>
     Provider.of<EBookViewModel>(context, listen: false).getEBookList();
     _tabController = TabController(vsync: this, length: tabs.length);
   }
-
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    const unFocusBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+      borderSide: BorderSide(color: Colors.green),
+    );
+
+    const focusBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+      borderSide: BorderSide(color: Colors.red),
+    );
+    super.build(context);
     final courseListOnProvider = Provider.of<CourseViewModel>(context);
     final eBookListOnProvider = Provider.of<EBookViewModel>(context);
     final courseList = courseListOnProvider.courseList;
-    final eBookList = eBookListOnProvider.eBookList;
+    final eBookList = searchController.text.isEmpty
+        ? eBookListOnProvider.eBookList
+        : eBookListOnProvider.searchEBookList(searchController.text);
     if (courseList.isNotEmpty) {
       courseList.sort((a, b) =>
           a.categories.first.title.compareTo(b.categories.first.title));
@@ -105,23 +118,47 @@ class _CourseScreenPageState extends State<CourseScreen>
           );
 
     final eBookListView = courseList.isNotEmpty
-        ? ListView.builder(
-            physics: const AlwaysScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: eBookList.length,
-            itemBuilder: (context, position) {
-              final EBook _ebook = eBookList[position];
-              return Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: InkWell(
-                    onTap: () {
-                      Utils.launchURL(_ebook.fileUrl);
-                    },
-                    child: EBookViewItem(
-                      eBook: _ebook,
-                    )),
-              );
-            },
+        ? Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(15),
+                child: TextField(
+                  textAlign: TextAlign.start,
+                  decoration: InputDecoration(
+                    focusedBorder: focusBorder,
+                    enabledBorder: unFocusBorder,
+                    hintText: l10n.searchHintText,
+                    label: Text(l10n.searchHintText),
+                  ),
+                  onSubmitted: (value){
+                    setState(() {
+                      searchController.text = value;
+                    });
+                  },
+                  controller: searchController,
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: eBookList.length,
+                  itemBuilder: (context, position) {
+                    final EBook _ebook = eBookList[position];
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: InkWell(
+                          onTap: () {
+                            Utils.launchURL(_ebook.fileUrl);
+                          },
+                          child: EBookViewItem(
+                            eBook: _ebook,
+                          )),
+                    );
+                  },
+                ),
+              ),
+            ],
           )
         : const Center(
             child: SizedBox(

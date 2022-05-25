@@ -7,13 +7,14 @@ import 'package:project/resources/CountryList.dart';
 import 'package:project/resources/Specialties.dart';
 import 'package:project/view_models/TutorViewModel.dart';
 import 'package:project/views/booking_viewpages/BookingPage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TutorViewItem extends StatelessWidget {
   final TutorInfo tutor;
   final TutorViewModel tutorViewModel;
-
+  final AppLocalizations l10n;
   const TutorViewItem(
-      {Key? key, required this.tutor, required this.tutorViewModel})
+      {Key? key, required this.tutor, required this.tutorViewModel, required this.l10n})
       : super(key: key);
 
   @override
@@ -187,9 +188,9 @@ class TutorViewItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30.0))),
                     ),
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(Icons.today_outlined),
-                        Text("Book"),
+                        Text(l10n.book),
                       ],
                     ),
                   ),
@@ -204,9 +205,9 @@ class TutorViewItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30.0))),
                     ),
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(Icons.message_outlined),
-                        Text("Message"),
+                        Text(l10n.message),
                       ],
                     ),
                   ),

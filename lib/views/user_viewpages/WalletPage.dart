@@ -58,7 +58,7 @@ class WalletPageState extends State<WalletPage> {
                       border: Border.all(color: Colors.blue.shade900),
                       color: Colors.lightBlueAccent.shade100),
                   child: Text(
-                    Utils.parseDateToString(_info.createdAt),
+                    Utils.parseDateTimeToString(_info.createdAt),
                     style: TextStyle(
                       color: Colors.blue.shade900,
                     ),

@@ -1,0 +1,93 @@
+{
+  "@TIME": {
+    "description": "Strings for time"
+  },
+  "hour": " giờ ",
+  "hours": " giờ ",
+  "minute": " phút ",
+  "minutes": " phút ",
+  "day": " ngày ",
+  "days": " ngày ",
+
+  "@LOGIN_PAGE": {
+    "description": "Strings for login page"
+  },
+  "usernameHintText": "Tên đăng nhập",
+  "passwordHintText": "Mật khẩu",
+  "rememberMeCheckBoxText": "Ghi nhớ tài khoản",
+  "forgotPassLinkText": "Quên mật khẩu?",
+  "loginBtnText": "Đăng nhập",
+  "toSignUpNormalText": "Chưa có tài khoản?",
+  "toSignUpLinkText": "Đăng ký",
+  "loginDividerText": "Hoặc tiếp tục với",
+
+  "@SIGN_UP_PAGE": {
+    "description": "Strings for sign up page"
+  },
+  "emailHintText": "Email",
+  "reenterPassHintText": "Nhập mật khẩu lần nữa",
+  "signUpBtnText": "Đăng ký",
+  "toLoginNormalText": "Đã có tài khoản?",
+  "toLoginLinkText": "Đăng nhập",
+
+
+  "searchBtnText": "Tìm kiếm",
+  "searchHintText": "Tìm kiếm",
+
+  "@USER_PAGE": {
+    "description": "Strings for user page"
+  },
+  "user" : "Người dùng",
+  "level" : "Cấp độ",
+  "review" : "Đánh giá của người khác",
+  "editInfo" : "Chỉnh sửa thông tin",
+  "paymentHistory": "Lịch sử giao dịch",
+  "language": "Ngôn ngữ",
+  "chooseThemeTitle": "Màu chủ đề",
+  "changePasswordBtnText": "Đổi mật khẩu",
+  "settingsTitle": "Cài đặt",
+  "logout": "Đăng xuất",
+
+
+
+  "@TUTOR_PAGE": {
+    "description": "Strings for tutor page"
+  },
+  "tutor": "Người hướng dẫn",
+  "tutorName": "Tên giảng viên",
+  "book": "Đặt lịch",
+  "message": "Nhắn tin",
+  "education": "Giáo dục",
+  "videoIntro": "Video giới thiệu",
+  "languages" : "Ngôn ngữ có thể sử dụng",
+  "favorite": "Yêu thích",
+  "report": "Tố cáo",
+  "more": "Xem thêm",
+  "specialties": "Chuyên ngành",
+  "interest": "Sở thích",
+  "teachingExp" : "Kinh nghiệm giảng dạy",
+  "bookAClass": "Đặt lịch ngày này",
+
+
+  "@SCHEDULE_PAGE": {
+    "description": "Strings for schedule page"
+  },
+  "schedule": "Lịch học",
+  "upComingLesson": "Tiết học sắp diễn ra",
+  "lessonList": "Danh sách khoá học đã đăng ký",
+  "lessonHistory": "Lịch sử khoá học",
+  "totalLessonTime": "Tổng thời gian đã học là ",
+  "and": "và",
+
+
+  "@CONFERENCE_PAGE": {
+    "description": "Strings for conference page"
+  },
+  "conference": "Phòng học",
+
+
+  "@COURSE_PAGE": {
+    "description": "Strings for course page"
+  },
+  "course": "Khoá học"
+}
