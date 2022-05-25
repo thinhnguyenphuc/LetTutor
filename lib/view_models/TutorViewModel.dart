@@ -8,7 +8,6 @@ import '../models/ScheduleInfoModel.dart';
 import '../models/ServiceMessageModel.dart';
 import '../models/TutorModel.dart';
 import '../resources/CountryList.dart';
-import '../resources/Strings.dart';
 
 class TutorViewModel with ChangeNotifier {
   List<TutorInfo> tutorList = [];
@@ -49,8 +48,10 @@ class TutorViewModel with ChangeNotifier {
 
   getTutorList() async {
     ServiceMessage response = await ApiServices().fetchTutor();
-    tutorList = (response.message as HashMap<String, List>)["tutors"] as List<TutorInfo>;
-    favorites = (response.message as HashMap<String, List>)["favoriteTutor"]!.cast<String>();
+    tutorList = (response.message as HashMap<String, List>)["tutors"]
+        as List<TutorInfo>;
+    favorites = (response.message as HashMap<String, List>)["favoriteTutor"]!
+        .cast<String>();
     notifyListeners();
   }
 
@@ -71,8 +72,8 @@ class TutorViewModel with ChangeNotifier {
   }
 
   updateFavorite(String userId) async {
-    await ApiServices().updateFavorite(userId).then((value){
-      if(value.statusCode == 200 ){
+    await ApiServices().updateFavorite(userId).then((value) {
+      if (value.statusCode == 200) {
         getTutorList();
       }
     });

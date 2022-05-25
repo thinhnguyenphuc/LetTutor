@@ -42,9 +42,8 @@ class ApiServices {
           .toList();
       final List favoriteJson = tutorContainer['favoriteTutor'];
       final List favorites = favoriteJson
-          .map((contactRaw) => contactRaw["secondInfo"] != null
-              ? contactRaw["secondId"]
-              : null)
+          .map((contactRaw) =>
+              contactRaw["secondInfo"] != null ? contactRaw["secondId"] : null)
           .toList();
       final HashMap res = HashMap<String, List>();
       res["tutors"] = tutors;
@@ -375,14 +374,17 @@ class ApiServices {
     });
   }
 
-  Future<ServiceMessage>updateFavorite(String userId)  {
+  Future<ServiceMessage> updateFavorite(String userId) {
     var request = {};
     request['tutorId'] = userId;
-    return http.post(Uri.parse("$baseUrl/user/manageFavoriteTutor"),
-        headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${tokens.access.token}'
-    }, body: jsonEncode(request)).then((http.Response response) {
+    return http
+        .post(Uri.parse("$baseUrl/user/manageFavoriteTutor"),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ${tokens.access.token}'
+            },
+            body: jsonEncode(request))
+        .then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
       return ServiceMessage(statusCode: statusCode, message: jsonBody);

@@ -44,7 +44,7 @@ class ScheduleInfo {
         startTimestamp: json["startTimestamp"],
         endTimestamp: json["endTimestamp"],
         createdAt: DateTime.parse(json["createdAt"]),
-        isBooked: json["isBooked"]??false,
+        isBooked: json["isBooked"] ?? false,
         scheduleDetails: json["scheduleDetails"] == null
             ? []
             : List<ScheduleDetailInfo>.from(json["scheduleDetails"]

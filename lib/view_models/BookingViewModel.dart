@@ -7,8 +7,9 @@ import '../models/ServiceMessageModel.dart';
 class BookingViewModel with ChangeNotifier {
   List<BookingInfo> bookingList = [];
 
-  Future<ServiceMessage> bookAClass(String scheduleDetailId, String  note) async {
-    ServiceMessage res =  await ApiServices().bookClass(scheduleDetailId, note);
+  Future<ServiceMessage> bookAClass(
+      String scheduleDetailId, String note) async {
+    ServiceMessage res = await ApiServices().bookClass(scheduleDetailId, note);
     return res;
   }
 
@@ -16,4 +17,3 @@ class BookingViewModel with ChangeNotifier {
     return bookingList.where((o) => o.isDeleted).toList();
   }
 }
-

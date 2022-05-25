@@ -25,7 +25,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider<EBookViewModel>(
             create: (context) => EBookViewModel()),
         ChangeNotifierProvider<WalletViewModel>(
-          create: (context) => WalletViewModel()),
+            create: (context) => WalletViewModel()),
         ChangeNotifierProvider<UserViewModel>(
             create: (context) => UserViewModel()),
       ],

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'FeedBackModel.dart';
 import 'TutorModel.dart';
 
 class Tokens {
@@ -190,58 +191,6 @@ class UserClass {
       };
 }
 
-class Feedback {
-  Feedback({
-    required this.id,
-    required this.bookingId,
-    required this.firstId,
-    required this.secondId,
-    required this.rating,
-    required this.content,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.firstInfo,
-    required this.secondInfo,
-  });
-
-  final String id;
-  final String bookingId;
-  final String firstId;
-  final String secondId;
-  final double rating;
-  final String content;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final Info firstInfo;
-  final Info secondInfo;
-
-  factory Feedback.fromJson(Map<String, dynamic> json) => Feedback(
-        id: json["id"],
-        bookingId: json["bookingId"],
-        firstId: json["firstId"],
-        secondId: json["secondId"],
-        rating: json["rating"].toDouble(),
-        content: json["content"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        firstInfo: Info.fromJson(json["firstInfo"]),
-        secondInfo: Info.fromJson(json["secondInfo"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "bookingId": bookingId,
-        "firstId": firstId,
-        "secondId": secondId,
-        "rating": rating,
-        "content": content,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "firstInfo": firstInfo.toJson(),
-        "secondInfo": secondInfo.toJson(),
-      };
-}
-
 class Info {
   Info({
     required this.id,
@@ -303,7 +252,10 @@ class Info {
         country: json["country"],
         phone: json["phone"],
         language: json["language"],
-        birthday: DateTime.parse(json["birthday"]),
+        birthday: json["birthday"] == null
+            ? DateTime.parse("2000-01-01")
+            : DateTime.tryParse(json["birthday"]) ??
+                DateTime.parse("2000-01-01"),
         requestPassword: json["requestPassword"],
         isActivated: json["isActivated"],
         isPhoneActivated: json["isPhoneActivated"],

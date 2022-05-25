@@ -36,11 +36,12 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
     final localNameView = countryName != null
         ? Text(
             countryName,
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           )
         : const Text("Null");
 
-    bool isFavorite = widget.tutorViewModel.favorites.contains(widget.tutor.userId);
+    bool isFavorite =
+        widget.tutorViewModel.favorites.contains(widget.tutor.userId);
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -237,8 +238,7 @@ class _TutorDetailsPageState extends State<TutorDetailsPage> {
                           .updateFavorite(widget.tutor.userId)
                           .then((value) {
                         Future.delayed(const Duration(milliseconds: 1500), () {
-                          setState(() {
-                          });
+                          setState(() {});
                         });
                       });
                     },

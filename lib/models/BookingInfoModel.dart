@@ -67,7 +67,9 @@ class BookingInfo {
             : DateTime.parse(json["updatedAt"]),
         recordUrl: json["recordUrl"],
         isDeleted: json["isDeleted"],
-        userInfo:json["userInfo"] == null ? null : UserClass.fromJson(json["userInfo"]),
+        userInfo: json["userInfo"] == null
+            ? null
+            : UserClass.fromJson(json["userInfo"]),
       );
 
   Map<String, dynamic> toJson() => {

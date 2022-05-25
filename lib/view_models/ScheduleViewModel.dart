@@ -15,7 +15,7 @@ class ScheduleViewModel with ChangeNotifier {
 
   _fetchNextSchedule() async {
     if (schedules.isNotEmpty && _isNotFetchedNextSchedule) {
-      schedules
+      nextSchedule = schedules
           .where((schedule) => DateTime.fromMicrosecondsSinceEpoch(
                   schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000)
               .isAfter(DateTime.now()))
@@ -26,7 +26,7 @@ class ScheduleViewModel with ChangeNotifier {
 
   _fetchHistorySchedule() async {
     if (schedules.isNotEmpty && _isNotFetchedHistorySchedule) {
-      schedules
+      historySchedule = schedules
           .where((schedule) => DateTime.fromMicrosecondsSinceEpoch(
                   schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000)
               .isBefore(DateTime.now()))

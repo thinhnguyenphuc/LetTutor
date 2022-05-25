@@ -3,17 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:project/models/UserModel.dart';
 
 import '../../resources/CountryList.dart';
-import '../../resources/UserInfoSingleton.dart';
 import '../../themes/Themes.dart';
 
 class UserDetailsInfo extends StatelessWidget {
-  const UserDetailsInfo({Key? key}) : super(key: key);
+  final UserClass? user;
+
+  const UserDetailsInfo({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final UserClass _user =
-        UserInfoLazyInitializedSingleton().getUserInfo().user;
-
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -34,7 +32,7 @@ class UserDetailsInfo extends StatelessWidget {
                           width: 300,
                           height: 300,
                           child: CachedNetworkImage(
-                            imageUrl: _user.avatar,
+                            imageUrl: user!.avatar,
                             placeholder: (context, url) =>
                                 const CircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
@@ -48,18 +46,20 @@ class UserDetailsInfo extends StatelessWidget {
                   children: [
                     //UserName
                     Align(
-                      child: Hero(tag: "name", child: Text(_user.name,
-                          style: const TextStyle(
-                              color: Color.fromRGBO(50, 50, 93, 1),
-                              fontSize: 28.0,
-                              fontWeight: FontWeight.bold))),
                       alignment: Alignment.center,
+                      child: Hero(
+                          tag: "name",
+                          child: Text(user!.name,
+                              style: const TextStyle(
+                                  color: Color.fromRGBO(50, 50, 93, 1),
+                                  fontSize: 28.0,
+                                  fontWeight: FontWeight.bold))),
                     ),
                     //UserLevel
                     Padding(
                       padding: const EdgeInsets.only(left: 32.0, right: 32.0),
                       child: Align(
-                        child: Text(_user.level,
+                        child: Text(user!.level,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Color.fromRGBO(82, 95, 127, 1),
@@ -69,7 +69,7 @@ class UserDetailsInfo extends StatelessWidget {
                     //Region
                     Align(
                       child: Text(
-                          CountrySingleton().countryHashMap[_user.country]!,
+                          CountrySingleton().countryHashMap[user!.country]!,
                           style: const TextStyle(
                               color: Color.fromRGBO(50, 50, 93, 1),
                               fontSize: 18.0)),
@@ -81,15 +81,15 @@ class UserDetailsInfo extends StatelessWidget {
             ),
             //Account ID
             Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
               child: Text(
-                "Account ID: " + _user.id.toString(),
+                "Account ID: ${user!.id}",
                 style: const TextStyle(
                     color: ArgonColors.black,
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold),
               ),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 30, right: 30),

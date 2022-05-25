@@ -210,7 +210,9 @@ class _TutorScreenPageState extends State<TutorScreen> {
               padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: isFilter ? MediaQuery.of(context).size.height / 9 : MediaQuery.of(context).size.height / 14,
+                height: isFilter
+                    ? MediaQuery.of(context).size.height / 9
+                    : MediaQuery.of(context).size.height / 14,
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: Column(

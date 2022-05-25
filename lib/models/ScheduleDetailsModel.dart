@@ -52,7 +52,9 @@ class ScheduleDetailInfo {
             ? null
             : ScheduleInfo.fromJson(json["scheduleInfo"]),
         isBooked: json["isBooked"] ?? false,
-        tutorInfo:json["tutorInfo"] == null ? null :TutorInfo.fromJson(json["tutorInfo"]),
+        tutorInfo: json["tutorInfo"] == null
+            ? null
+            : TutorInfo.fromJson(json["tutorInfo"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -68,6 +70,6 @@ class ScheduleDetailInfo {
             List<BookingInfo>.from(bookingInfo!.map((x) => x.toJson())),
         "scheduleInfo": scheduleInfo!.toJson(),
         "isBooked": isBooked,
-        "tutorInfo":tutorInfo != null ? null : tutorInfo!.toJson(),
+        "tutorInfo": tutorInfo != null ? null : tutorInfo!.toJson(),
       };
 }

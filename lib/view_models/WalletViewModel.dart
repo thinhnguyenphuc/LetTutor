@@ -8,7 +8,9 @@ class WalletViewModel with ChangeNotifier {
   List<PaymentInfo> walletHistory = [];
 
   fetchWalletHistory() async {
-    await ApiServices().fetchPaymentHistory().then((value) => walletHistory = value.message);
+    await ApiServices()
+        .fetchPaymentHistory()
+        .then((value) => walletHistory = value.message);
     isFetching = true;
     notifyListeners();
   }

@@ -325,8 +325,8 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                                     : widget.isDone
                                         ? Strings.emptyStudentRequestsWhenDone
                                         : Strings.emptyStudentRequests,
-                                style:
-                                    const TextStyle(fontSize: 20, color: Colors.grey),
+                                style: const TextStyle(
+                                    fontSize: 20, color: Colors.grey),
                               ),
                             ),
                           ),

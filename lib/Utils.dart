@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../models/TutorModel.dart' as tutor_model;
+import 'models/FeedBackModel.dart' as feed_back;
 
 class Utils {
   static void showSnackBar(BuildContext context, String text, Color color) {
@@ -40,8 +40,8 @@ class Utils {
   }
 
   static void showReviewsDialog(
-      BuildContext context, List<tutor_model.Feedback> feedbacks) {
-    feedbacks.sort((a,b) => a.createdAt.isAfter(b.createdAt)? 1 : 0);
+      BuildContext context, List<feed_back.Feedback> feedbacks) {
+    feedbacks.sort((a, b) => a.createdAt.isAfter(b.createdAt) ? 1 : 0);
     showGeneralDialog(
       context: context,
       barrierLabel: "Barrier",
@@ -59,7 +59,7 @@ class Utils {
               shrinkWrap: true,
               itemCount: feedbacks.length,
               itemBuilder: (context, position) {
-                final tutor_model.Feedback feedback = feedbacks[position];
+                final feed_back.Feedback feedback = feedbacks[position];
                 return Container(
                   padding: const EdgeInsets.all(10),
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -78,11 +78,11 @@ class Utils {
                                 width: 70,
                                 height: 70,
                                 child: CachedNetworkImage(
-                                  imageUrl: feedback.firstInfo.avatar,
+                                  imageUrl: feedback.firstInfo!.avatar,
                                   placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
+                                      const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                                      const Icon(Icons.error),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -93,6 +93,27 @@ class Utils {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Wrap(
+                                direction: Axis.horizontal,
+                                children: [
+                                  RichText(
+                                    textAlign: TextAlign.left,
+                                    softWrap: true,
+                                    text: TextSpan(children: <TextSpan>[
+                                      TextSpan(
+                                          text: feedback.createdAt
+                                              .toIso8601String(),
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                    ]),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -119,12 +140,12 @@ class Utils {
                                   RichText(
                                     textAlign: TextAlign.left,
                                     softWrap: true,
-                                    text: TextSpan(children: <TextSpan>
-                                    [
-                                      TextSpan(text: feedback.content,
-                                          style: TextStyle(color: Colors.black)),
-                                    ]
-                                    ),
+                                    text: TextSpan(children: <TextSpan>[
+                                      TextSpan(
+                                          text: feedback.content,
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                    ]),
                                   ),
                                 ],
                               ),

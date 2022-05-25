@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
+import 'FeedBackModel.dart';
+
 List<TutorInfo> tutorFromJson(String str) =>
     List<TutorInfo>.from(json.decode(str).map((x) => TutorInfo.fromJson(x)));
 
@@ -102,7 +104,8 @@ class TutorInfo {
         phone: json["phone"],
         language: json["language"],
         birthday: json["birthday"] == null
-            ? DateTime.parse("2000-01-01T00:00:00") : DateTime.parse(json["birthday"]),
+            ? DateTime.parse("2000-01-01T00:00:00")
+            : DateTime.parse(json["birthday"]),
         requestPassword: json["requestPassword"],
         isActivated: json["isActivated"],
         isPhoneActivated: json["isPhoneActivated"],
@@ -110,10 +113,12 @@ class TutorInfo {
         timezone: json["timezone"],
         phoneAuth: json["phoneAuth"],
         isPhoneAuthActivated: json["isPhoneAuthActivated"],
-        createdAt:json["createdAt"] == null
-            ? DateTime.parse("2000-01-01T00:00:00") :  DateTime.parse(json["createdAt"]),
-        updatedAt:json["updatedAt"] == null
-            ? DateTime.parse("2000-01-01T00:00:00") :  DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null
+            ? DateTime.parse("2000-01-01T00:00:00")
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? DateTime.parse("2000-01-01T00:00:00")
+            : DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"],
         feedbacks: json["feedbacks"] != null
             ? List<Feedback>.from(
@@ -182,7 +187,7 @@ class TutorInfo {
       };
 
   double getRating() {
-    int sumRating = 0;
+    double sumRating = 0;
     for (Feedback feedback in feedbacks) {
       sumRating += feedback.rating;
     }
@@ -197,54 +202,6 @@ class TutorInfo {
     }
     return res;
   }
-}
-
-class Feedback {
-  Feedback({
-    required this.id,
-    required this.bookingId,
-    required this.firstId,
-    required this.secondId,
-    required this.rating,
-    required this.content,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.firstInfo,
-  });
-
-  final String id;
-  final String? bookingId;
-  final String firstId;
-  final String secondId;
-  final int rating;
-  final String content;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final FirstInfo firstInfo;
-
-  factory Feedback.fromJson(Map<String, dynamic> json) => Feedback(
-        id: json["id"],
-        bookingId: json["bookingId"],
-        firstId: json["firstId"],
-        secondId: json["secondId"],
-        rating: json["rating"],
-        content: json["content"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        firstInfo: FirstInfo.fromJson(json["firstInfo"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "bookingId": bookingId,
-        "firstId": firstId,
-        "secondId": secondId,
-        "rating": rating,
-        "content": content,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "firstInfo": firstInfo.toJson(),
-      };
 }
 
 class FirstInfo {

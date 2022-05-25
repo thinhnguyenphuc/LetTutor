@@ -9,7 +9,6 @@ import 'package:project/models/TutorModel.dart';
 import 'package:project/resources/CountryList.dart';
 import 'package:project/view_models/BookingViewModel.dart';
 
-
 class BookingClassDetails extends StatefulWidget {
   final List<ScheduleDetailInfo> schedules;
   final TutorInfo tutor;
@@ -34,7 +33,8 @@ class BookingClassDetailsState extends State<BookingClassDetails> {
 
   @override
   Widget build(BuildContext context) {
-    widget.schedules.sort((a,b)=>a.startPeriodTimestamp.compareTo(b.startPeriodTimestamp));
+    widget.schedules.sort(
+        (a, b) => a.startPeriodTimestamp.compareTo(b.startPeriodTimestamp));
 
     var countryName = CountrySingleton().countryHashMap[widget.tutor.country];
     final localNameView = countryName != null
@@ -75,9 +75,9 @@ class BookingClassDetailsState extends State<BookingClassDetails> {
                                 child: CachedNetworkImage(
                                   imageUrl: widget.tutor.avatar,
                                   placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
+                                      const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                                      const Icon(Icons.error),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -133,7 +133,7 @@ class BookingClassDetailsState extends State<BookingClassDetails> {
               Text(
                 DateFormat('dd-MM-yyyy')
                     .format(DateTime.fromMillisecondsSinceEpoch(
-                    widget.schedules.first.startPeriodTimestamp))
+                        widget.schedules.first.startPeriodTimestamp))
                     .toString(),
                 style: titleStyle,
               ),
@@ -153,26 +153,26 @@ class BookingClassDetailsState extends State<BookingClassDetails> {
                                 "From: " +
                                     DateFormat('HH:mm:ss')
                                         .format(
-                                        DateTime.fromMillisecondsSinceEpoch(
-                                            schedule.startPeriodTimestamp))
+                                            DateTime.fromMillisecondsSinceEpoch(
+                                                schedule.startPeriodTimestamp))
                                         .toString(),
                                 style: style,
                               ),
                               Text(
                                   "To: " +
                                       DateFormat('HH:mm:ss')
-                                          .format(
-                                          DateTime.fromMillisecondsSinceEpoch(
-                                              schedule.endPeriodTimestamp))
+                                          .format(DateTime
+                                              .fromMillisecondsSinceEpoch(
+                                                  schedule.endPeriodTimestamp))
                                           .toString(),
                                   style: style),
                               Checkbox(
                                 value: chosenID == schedule.id,
                                 fillColor: schedule.isBooked!
                                     ? MaterialStateProperty.all<Color>(
-                                    Colors.grey)
+                                        Colors.grey)
                                     : MaterialStateProperty.all<Color>(
-                                    Colors.lightBlue),
+                                        Colors.lightBlue),
                                 onChanged: (bool? newValue) {
                                   if (schedule.isBooked!) {
                                     null;
@@ -198,13 +198,20 @@ class BookingClassDetailsState extends State<BookingClassDetails> {
               ElevatedButton(
                   onPressed: () {
                     if (chosenID == "") {
-                      Utils.showSnackBar(context, "No class was chosen", Colors.red);
+                      Utils.showSnackBar(
+                          context, "No class was chosen", Colors.red);
                     } else {
-                      _bookingViewModel.bookAClass(chosenID, "").then((value) => {
-                        Utils.showSnackBar(context, value.message,
-                            value.statusCode == 200 ? Colors.green : Colors.red),
-                        Navigator.pop(context, true)
-                      });
+                      _bookingViewModel
+                          .bookAClass(chosenID, "")
+                          .then((value) => {
+                                Utils.showSnackBar(
+                                    context,
+                                    value.message,
+                                    value.statusCode == 200
+                                        ? Colors.green
+                                        : Colors.red),
+                                Navigator.pop(context, true)
+                              });
                     }
                   },
                   child: Text(
@@ -214,8 +221,8 @@ class BookingClassDetailsState extends State<BookingClassDetails> {
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          )))),
+                    borderRadius: BorderRadius.circular(18.0),
+                  )))),
             ],
           ),
         ),

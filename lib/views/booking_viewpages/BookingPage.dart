@@ -40,7 +40,7 @@ class BookingPageState extends State<BookingPage> {
         widget.tutorViewModel.schedulesMap;
     bool isReadyLoaded = schedulesMap.containsKey(widget.tutor.userId);
 
-    if(!isLoaded) {
+    if (!isLoaded) {
       widget.tutorViewModel.fetchBookings(widget.tutor.userId).then((value) {
         setState(() {
           isLoaded = true;
@@ -178,19 +178,19 @@ class BookingPageState extends State<BookingPage> {
               visible: isReadyLoaded,
               child: ElevatedButton(
                 onPressed: () async {
-                  if(canBook){
+                  if (canBook) {
                     await Navigator.of(context)
                         .push(MaterialPageRoute(
-                        builder: (context) => BookingClassDetails(
-                          tutor: widget.tutor,
-                          schedules: schedulesListChosen,
-                        )))
+                            builder: (context) => BookingClassDetails(
+                                  tutor: widget.tutor,
+                                  schedules: schedulesListChosen,
+                                )))
                         .then((value) => setState(() {
-                      if (value) {
-                        widget.tutorViewModel.schedulesMap.clear();
-                        isLoaded = false;
-                      }
-                    }));
+                              if (value) {
+                                widget.tutorViewModel.schedulesMap.clear();
+                                isLoaded = false;
+                              }
+                            }));
                   }
                 },
                 child: const Text(

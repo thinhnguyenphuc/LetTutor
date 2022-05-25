@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:project/Utils.dart';
 import 'package:project/models/UserModel.dart';
 import 'package:project/views/user_viewpages/UserDetailsInfo.dart';
 import 'package:project/views/user_viewpages/WalletPage.dart';
@@ -82,10 +83,7 @@ class UserPageState extends State<UserPage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
+                    Utils.showReviewsDialog(context, _userInfo!.feedbacks);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -125,7 +123,8 @@ class UserPageState extends State<UserPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
+                            builder: (context) =>
+                                UserDetailsInfo(user: _userInfo)));
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -200,12 +199,7 @@ class UserPageState extends State<UserPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -239,12 +233,7 @@ class UserPageState extends State<UserPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -279,12 +268,7 @@ class UserPageState extends State<UserPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -319,12 +303,7 @@ class UserPageState extends State<UserPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -358,12 +337,7 @@ class UserPageState extends State<UserPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UserDetailsInfo()));
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),

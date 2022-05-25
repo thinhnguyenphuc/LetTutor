@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:project/models/CourseModel.dart';
 import 'package:project/resources/Strings.dart';
 
-
 class CourseDetailViewPage extends StatefulWidget {
   final Course course;
 
@@ -133,8 +132,8 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                           ],
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.only(left: 25, top: 10, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              left: 25, top: 10, bottom: 10),
                           child: Text(widget.course.reason,
                               style: const TextStyle(fontSize: 18)),
                         ),
@@ -148,8 +147,8 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                           ],
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.only(left: 25, top: 10, bottom: 10),
+                          padding: const EdgeInsets.only(
+                              left: 25, top: 10, bottom: 10),
                           child: Text(widget.course.purpose,
                               style: const TextStyle(fontSize: 18)),
                         ),
@@ -175,7 +174,8 @@ class _CourseDetailsViewPageState extends State<CourseDetailViewPage> {
                         ),
                         Row(
                           children: [
-                            const Icon(Icons.topic_outlined, color: Colors.blue),
+                            const Icon(Icons.topic_outlined,
+                                color: Colors.blue),
                             Text(
                                 widget.course.topics.length.toString() +
                                     " topics",
