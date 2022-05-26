@@ -310,6 +310,27 @@
             </list>
           </value>
         </entry>
+        <entry key="jitsi_meet">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="jitsi_meet_platform_interface">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet_platform_interface-2.0.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="jitsi_meet_web_plugin">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet_web_plugin-2.0.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="js">
           <value>
             <list>
@@ -864,6 +885,9 @@
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/import_sorter-4.6.0/lib" />
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet_platform_interface-2.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet_web_plugin-2.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.4/lib" />
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/lints-2.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.dartlang.org/liquid_swipe-2.1.1/lib" />

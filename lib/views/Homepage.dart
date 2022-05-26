@@ -6,6 +6,7 @@ import 'package:project/views/user_viewpages/UserPage.dart';
 import 'package:project/widgets/HeroAnimation.dart';
 import '../resources/BaseMixinsWidget.dart';
 import '../widgets/CustomAppBar.dart';
+import 'conference/ConferenceViewPage.dart';
 import 'course_viewpages/CourseViewPage.dart';
 import 'schedule_viewpages/ScheduleViewPage.dart';
 import 'tutor_viewpages/TutorViewPage.dart';
@@ -25,10 +26,7 @@ class _HomePageState extends State<HomePage> with StateVariablesMixin{
     return [
       const TutorScreen(),
       const ScheduleScreen(),
-      const Icon(
-        Icons.chat,
-        size: 150,
-      ),
+      const ConferenceScreen(),
       const CourseScreen(),
       const UserPage(),
     ];

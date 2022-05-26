@@ -8,6 +8,7 @@ import '../../models/TutorModel.dart';
 import '../../resources/CountryList.dart';
 import '../../resources/Strings.dart';
 import '../../view_models/ScheduleViewModel.dart';
+import '../conference/ConferenceJitsiPage.dart';
 
 class ScheduleViewItem extends StatefulWidget {
   final Schedule schedule;
@@ -390,7 +391,10 @@ class _ScheduleViewItemState extends State<ScheduleViewItem> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => Meeting(schedule: widget.schedule)));
+                          },
                           style: OutlinedButton.styleFrom(
                             side:
                                 const BorderSide(width: 1, color: Colors.blue),

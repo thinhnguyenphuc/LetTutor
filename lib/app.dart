@@ -45,7 +45,7 @@ class App extends StatelessWidget {
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
                     ],
-                    locale: provider.locale ?? const Locale("en"),
+                    locale: provider.locale ?? const Locale("vi"),
                     supportedLocales: L10n.support,
                     home: AnimatedSplashScreen(
                         duration: 2000,

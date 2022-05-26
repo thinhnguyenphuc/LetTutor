@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.window:window:1.0.0-beta04@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/584a4129747e6b98a1b0b3f2603217f1/transformed/jetified-window-1.0.0-beta04/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/584a4129747e6b98a1b0b3f2603217f1/transformed/jetified-window-1.0.0-beta04/res" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/584a4129747e6b98a1b0b3f2603217f1/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7cd9622fb2109843d5a7b1e2c1beb0fe/transformed/jetified-window-1.0.0-beta04/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7cd9622fb2109843d5a7b1e2c1beb0fe/transformed/jetified-window-1.0.0-beta04/res" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7cd9622fb2109843d5a7b1e2c1beb0fe/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

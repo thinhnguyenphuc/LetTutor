@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.loader:loader:1.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-2/files-2.1/7075e6a89c7374f4614df0d05e6ba7cd/loader-1.0.0/res" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/e68bd84e89a1199c0e0bb7915ca54e8d/transformed/loader-1.0.0/res" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/e68bd84e89a1199c0e0bb7915ca54e8d/transformed/loader-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/e68bd84e89a1199c0e0bb7915ca54e8d/transformed/loader-1.0.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/8c6bfc3dadc5b1e728248d2bb0afb554/transformed/loader-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/8c6bfc3dadc5b1e728248d2bb0afb554/transformed/loader-1.0.0/res" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/8c6bfc3dadc5b1e728248d2bb0afb554/transformed/loader-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
