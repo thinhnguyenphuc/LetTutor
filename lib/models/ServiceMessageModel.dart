@@ -12,7 +12,7 @@ class ServiceMessage {
   });
 
   final int statusCode;
-  final String message;
+  final dynamic message;
 
   factory ServiceMessage.fromJson(Map<String, dynamic> json) => ServiceMessage(
         statusCode: json["statusCode"],

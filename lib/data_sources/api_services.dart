@@ -1,26 +1,29 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/models/CourseModel.dart';
 
-import '../models/ScheduleInfoModel.dart';
 import '../models/EBookModel.dart';
+import '../models/PaymentInfoModel.dart';
+import '../models/ScheduleInfoModel.dart';
 import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
+import '../models/TestPreparation.dart';
 import '../models/TutorModel.dart';
 import '../models/UserModel.dart';
-import '../resources/UserInfoSingleton.dart';
 
 class ApiServices {
   static String baseUrl = "https://sandbox.api.lettutor.com";
+  static late Tokens tokens;
 
-  Future<List<TutorInfo>> fetchTutor() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
-    return http.post(Uri.parse("$baseUrl/tutor/search"), headers: {
+  Future<ServiceMessage> fetchTutor() {
+    return http
+        .get(Uri.parse("$baseUrl/tutor/more?perPage=9&page=1"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -35,10 +38,18 @@ class ApiServices {
 
       const JsonDecoder decoder = JsonDecoder();
       final tutorContainer = decoder.convert(jsonBody);
-      final List tutors = tutorContainer['rows'];
-      return tutors
-          .map((contactRaw) => TutorInfo.fromJson(contactRaw))
+      final List<TutorInfo> tutors = (tutorContainer['tutors']['rows'] as List)
+          .map((row) => TutorInfo.fromJson(row))
           .toList();
+      final List favoriteJson = tutorContainer['favoriteTutor'];
+      final List favorites = favoriteJson
+          .map((contactRaw) =>
+              contactRaw["secondInfo"] != null ? contactRaw["secondId"] : null)
+          .toList();
+      final HashMap res = HashMap<String, List>();
+      res["tutors"] = tutors;
+      res["favoriteTutor"] = favorites;
+      return ServiceMessage(statusCode: 200, message: res);
     });
   }
 
@@ -63,9 +74,8 @@ class ApiServices {
         return serviceMessage;
       } else {
         const JsonDecoder decoder = JsonDecoder();
-        final userContainer = decoder.convert(jsonBody);
-        final User user = User.fromJson(userContainer);
-        UserInfoLazyInitializedSingleton().setUserInfo(user);
+        final tokenContainer = decoder.convert(jsonBody);
+        tokens = Tokens.fromJson(tokenContainer["tokens"]);
         return ServiceMessage(statusCode: 200, message: "SUCCESS");
       }
     });
@@ -98,12 +108,11 @@ class ApiServices {
   }
 
   Future<List<Schedule>> fetchSchedule() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     return http.get(
       Uri.parse("$baseUrl/booking/list"),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer ${tokens.access.token}'
       },
     ).then((http.Response response) {
       final String jsonBody = response.body;
@@ -123,7 +132,7 @@ class ApiServices {
           Uri.parse("$baseUrl/booking/list/student?page=1&perPage=$count"),
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer $token',
+            'Authorization': 'Bearer ${tokens.access.token}',
           },
         ).then((http.Response response) {
           final String jsonBody = response.body;
@@ -150,14 +159,13 @@ class ApiServices {
 
   Future<ServiceMessage> updateStudentRequest(
       String bookedId, String requestMessage) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['studentRequest'] = requestMessage;
     return http
         .post(Uri.parse("$baseUrl/booking/student-request/$bookedId"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -172,10 +180,9 @@ class ApiServices {
   }
 
   Future<List<Course>> fetchCourse() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     return http.get(Uri.parse("$baseUrl/course"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -196,10 +203,9 @@ class ApiServices {
   }
 
   Future<List<EBook>> fetchEBook() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     return http.get(Uri.parse("$baseUrl/e-book"), headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer ${tokens.access.token}'
     }).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -220,14 +226,13 @@ class ApiServices {
   }
 
   Future<ServiceMessage> cancelBookedClass(String bookedId) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['scheduleDetailIds'] = [bookedId];
     return http
         .delete(Uri.parse("$baseUrl/booking"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -241,14 +246,13 @@ class ApiServices {
   }
 
   Future<List<ScheduleInfo>> fetchBookings(String tutorID) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['tutorId'] = tutorID;
     return http
         .post(Uri.parse("$baseUrl/schedule"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -272,7 +276,6 @@ class ApiServices {
   }
 
   Future<ServiceMessage> bookClass(String classID, String note) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['scheduleDetailIds'] = [classID];
     request['note'] = note;
@@ -280,7 +283,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/booking"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -295,7 +298,6 @@ class ApiServices {
   }
 
   Future<ServiceMessage> changePassword(String oldPass, String newPass) {
-    String token = UserInfoLazyInitializedSingleton().getToken();
     var request = {};
     request['password'] = [oldPass];
     request['newPassword'] = [newPass];
@@ -303,7 +305,7 @@ class ApiServices {
         .post(Uri.parse("$baseUrl/auth/change-password"),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token'
+              'Authorization': 'Bearer ${tokens.access.token}'
             },
             body: jsonEncode(request))
         .then((http.Response response) {
@@ -317,14 +319,10 @@ class ApiServices {
   }
 
   Future<ServiceMessage> totalLearnedTime() {
-    String token = UserInfoLazyInitializedSingleton().getToken();
-    return http
-        .get(Uri.parse("$baseUrl/call/total"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        })
-        .then((http.Response response) {
+    return http.get(Uri.parse("$baseUrl/call/total"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${tokens.access.token}'
+    }).then((http.Response response) {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
       if (statusCode == 200) {
@@ -338,6 +336,105 @@ class ApiServices {
     });
   }
 
+  Future<ServiceMessage> fetchPaymentHistory() {
+    return http.get(Uri.parse("$baseUrl/payment/history"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${tokens.access.token}'
+    }).then((http.Response response) {
+      final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
+      if (statusCode == 200) {
+        const JsonDecoder decoder = JsonDecoder();
+        final paymentHistory = decoder.convert(jsonBody);
+        final List paymentHistoryJson = paymentHistory["data"]["rows"];
+        final List<PaymentInfo> paymentHistories = paymentHistoryJson
+            .map((contactRaw) => PaymentInfo.fromJson(contactRaw))
+            .toList();
+        return ServiceMessage(statusCode: 200, message: paymentHistories);
+      } else {
+        return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
+      }
+    });
+  }
+
+  Future<ServiceMessage> fetchUserInfo() {
+    return http.get(Uri.parse("$baseUrl/user/info"), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${tokens.access.token}'
+    }).then((http.Response response) {
+      final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
+      if (statusCode == 200) {
+        const JsonDecoder decoder = JsonDecoder();
+        final userContainer = decoder.convert(jsonBody);
+        final User userInfo = User.fromJson(userContainer);
+        return ServiceMessage(statusCode: 200, message: userInfo);
+      } else {
+        return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
+      }
+    });
+  }
+
+  Future<ServiceMessage> updateFavorite(String userId) {
+    var request = {};
+    request['tutorId'] = userId;
+    return http
+        .post(Uri.parse("$baseUrl/user/manageFavoriteTutor"),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ${tokens.access.token}'
+            },
+            body: jsonEncode(request))
+        .then((http.Response response) {
+      final int statusCode = response.statusCode;
+      final String jsonBody = response.body;
+      return ServiceMessage(statusCode: statusCode, message: jsonBody);
+    });
+  }
+
+  Future<ServiceMessage> updateUserInfo(
+      String name,
+      String country,
+      String phone,
+      String birthday,
+      String level,
+      List<LearnTopic> learnTopics,
+      List<TestPreparation> testPreparations) {
+    var request = {};
+    request['name'] = name;
+    request['country'] = country;
+    request['phone'] = phone;
+    request['birthday'] = birthday;
+    request['level'] = level;
+
+    List<int> learnTopicsID = [];
+    for(LearnTopic learnTopic in learnTopics){
+      learnTopicsID.add(learnTopic.id);
+    }
+    List<int> testPreparationsID = [];
+    for(TestPreparation testPreparation in testPreparations){
+      testPreparationsID.add(testPreparation.id);
+    }
+
+    request['learnTopics'] = learnTopicsID;
+    request['testPreparations'] = testPreparationsID;
+
+    return http
+        .put(Uri.parse("$baseUrl/user/info"),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ${tokens.access.token}'
+            },
+            body: jsonEncode(request))
+        .then((http.Response response) {
+      final int statusCode = response.statusCode;
+      if (statusCode == 200) {
+        return ServiceMessage(statusCode: 200, message: "SUCCESS");
+      } else {
+        return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
+      }
+    });
+  }
 }
 
 class FetchDataException implements Exception {

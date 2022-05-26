@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":jitsi_meet:unitTest" external.linked.project.path="$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.type="sourceSet" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="JVM 1.8" allPlatforms="JVM [1.8]" useProjectSettings="false">
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xallow-no-source-files" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../../../build/jitsi_meet/tmp/kotlin-classes/debugUnitTest" />
+          <option name="classpath" value="$MODULE_DIR$/../../../../build/jitsi_meet/intermediates/compile_library_classes_jar/debug/classes.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/dbfd2cb84b05cd91ab19e090f82b1388/transformed/jetified-flutter_embedding_debug-1.0.0-7274f79325b72c53ae76203edc307fce5712888b.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common-java8/2.2.0/cd3478503da69b1a7e0319bd2d1389943db9b364/lifecycle-common-java8-2.2.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/258a8be061e0575fdf7f8ae52d680063/transformed/jetified-jitsi-meet-sdk-3.10.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/e1612d0b1313a31af251a209077ed7c0/transformed/jetified-react-native-amplitude-2.3.3-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/cfeec4ea0f6d7024b3555030103f6e94/transformed/jetified-react-native-device-info-8.0.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/392ae436b7e815340b699f7c20741700/transformed/jetified-react-native-google-signin-3.0.1-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/f76812dff67ffbcda51235b75c5a2ca9/transformed/jetified-react-native-async-storage-1.15.5-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a051b18ad6bd193b889ded0af31e6d03/transformed/jetified-react-native-background-timer-2.4.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a5f644d74561d2dbb397914f14b97e6e/transformed/jetified-react-native-calendar-events-2.0.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/4aafa99a313991d17b65efff15d59a84/transformed/jetified-react-native-community_netinfo-4.1.5-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/d00ac1d9f9d7465b5847698f5b753708/transformed/jetified-react-native-default-preference-1.4.2-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/9db5c6c47493c73576096aacb405f1e7/transformed/jetified-react-native-immersive-2.0.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/be25f4d4fc82dad2bdbcf5cb2da6904e/transformed/jetified-react-native-keep-awake-4.0.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/03e40514c59b7e4f8a8f1111ba57163a/transformed/jetified-react-native-performance-2.0.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/8b3be52cf13b627c128a557c77180440/transformed/jetified-react-native-slider-3.0.3-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/972eff2e5ae601dbca00a2cae4053d0a/transformed/jetified-react-native-sound-0.11.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/64921201c1285947a2f7d3a848798fb6/transformed/jetified-react-native-splash-screen-3.2.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/516f52c8289a24da989aac35d6bd63de/transformed/jetified-react-native-svg-12.1.0-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/1747f7015c311e7b0f5319d5337891e4/transformed/jetified-react-native-video-5.1.1-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/786763c5d7f348bd91439111e9d3ceec/transformed/jetified-react-native-webrtc-1.92.1-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/dfe20b8bc6fdd444ab7bc775b640a747/transformed/jetified-react-native-webview-11.0.2-jitsi-8602449-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7b9510b71e3801a110ddffbf9ead7420/transformed/jetified-react-native-0.61.5-jitsi.2-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/fbee365fb62f1b05c2429bcf3498c874/transformed/appcompat-1.2.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/ad20d9e8e1158f3fb6a6894fe615d850/transformed/jetified-play-services-auth-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/f006d6c9b1d34b8da1ac91ae14f1ef5c/transformed/jetified-play-services-iid-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/2d3714929bad82dec81817e668a61f4c/transformed/jetified-play-services-auth-api-phone-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/6637e19e67d3318e737234d05c778d28/transformed/jetified-play-services-auth-base-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/e990b72814316da262aca0ab14464cf1/transformed/jetified-play-services-base-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/38fc386777e675e772bda6d26df6782c/transformed/jetified-play-services-stats-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/bdc13dafd8c37133f6d119572bb94c81/transformed/jetified-play-services-tasks-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/91dff72f0c84459605aecd833037c16c/transformed/jetified-play-services-basement-17.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b04b0d145e4ef7d6df36b8c3333fb3ca/transformed/fragment-1.2.5-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/6dfcc73dbde1d0661f09bfe4ad343b42/transformed/swiperefreshlayout-1.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/e4bbb67c0deb25740d6907fd6e57d0f1/transformed/viewpager-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/ce246128b7220cbc403d3fca481f2562/transformed/legacy-support-core-utils-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/860c22d775488beec91ce848e9e64284/transformed/loader-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/5922e36b259c0b243dc3dd584af76629/transformed/jetified-activity-1.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b665315c9d5c61c2170da0baec7c3dce/transformed/jetified-appcompat-resources-1.2.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/5d5fada1a74ded20303b7f437a34bd36/transformed/drawerlayout-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a95775af3c132334622914a2ad7cab94/transformed/customview-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/baa10e0c2b6339733177c01b6f761030/transformed/vectordrawable-animated-1.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/2f501181373bb7d0cd98895403bf808d/transformed/vectordrawable-1.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/33437b997d256a2fd58c75cf8a49518e/transformed/core-1.6.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/07d0da5369e4119dfe85eb1d82867192/transformed/lifecycle-runtime-2.2.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/fb611989855edf3651e5509940e0d19d/transformed/jetified-lifecycle-viewmodel-savedstate-2.2.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/1187abb4b6eeebf286c49febc91a5664/transformed/lifecycle-livedata-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a309f1f461133963cf85353e9c26d06a/transformed/lifecycle-livedata-core-2.2.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/2d31c3855408719542547f6ffca6027b/transformed/jetified-savedstate-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.2.0/4ef09a745007778eef83b92f8f23987a8ea59496/lifecycle-common-2.2.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/c00ec2d751a11b95de0d125b5a3c0ee8/transformed/localbroadcastmanager-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/05050f518ad7ece2c32d1a3a1b1e52d6/transformed/core-runtime-2.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7ea69f97163dcffb5b3ffd448a04d248/transformed/versionedparcelable-1.1.1-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/f102856acb543fc51ef81d869c18ec8c/transformed/lifecycle-viewmodel-2.2.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/80088e04447fe0c51c002807f740086e/transformed/cursoradapter-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/4205a53ab19b8914baaf35cec78923b2/transformed/interpolator-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/aa96898cd80a1916fe6b4190b0bda5a1/transformed/documentfile-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/c31b7ceb6617dbce0288d3a87c3c1d6f/transformed/print-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/3966aa1f536e6e708c6010db72305308/transformed/jetified-annotation-experimental-1.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/13cdb62c25da215ce1e86885cb68ad29/transformed/jetified-tracing-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/60cf0c1f135ed382b37053eb1a3db0a8/transformed/jetified-window-java-1.0.0-beta04-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/2730a58f7b0cee1ce4ced0718b4373ad/transformed/jetified-window-1.0.0-beta04-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/80b398401165204d33783411494b1cc4/transformed/jetified-kotlinx-coroutines-android-1.5.2.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/61b9b4ee09deaf8c4ea75838d8ec03fd/transformed/jetified-kotlinx-coroutines-core-jvm-1.5.2.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/5d3c6852e04c339f02384f9ffb5db9bb/transformed/jetified-kotlin-stdlib-jdk8-1.5.30.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/dcebd44cafd5e6d5d6cd0fc01190a917/transformed/jetified-kotlin-stdlib-jdk7-1.6.21.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/af6b30ac48694e87aca5f586b200bc2c/transformed/jetified-kotlin-stdlib-1.6.21.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a60df55a8c356cad94b62d12924f9444/transformed/jetified-kotlin-stdlib-common-1.6.21.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b49d1bd904b9472389fc70f19ff4dd12/transformed/jetified-timber-4.7.1-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/6f7d2371deae09cf524d225a45d79763/transformed/jetified-annotations-16.0.1.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/c54848a6b74b4f386d683369eb11366b/transformed/jetified-infer-annotation-0.11.2.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/72bb65203447ec06644bb1dfc279474d/transformed/jetified-jsr305-3.0.2.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/1ba47d929a4dfe0c612caca855c046be/transformed/jetified-javax.inject-1.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b2cfb9143db44b895938d9f5d7dc5298/transformed/jetified-fresco-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a5b82ff484bacce9f70433106653162b/transformed/jetified-fbcore-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/3febd040c2366af8fa0b72dc1909a605/transformed/jetified-drawee-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/57e05fbada8da19b4e04a4d64057b949/transformed/jetified-imagepipeline-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/d6e31bda8f8138a594005e6f75559198/transformed/jetified-imagepipeline-base-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/25b1f0af9ba7de5bf2e4a327e45dfeba/transformed/jetified-soloader-0.6.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/5e0bd02e5a5d57ec6ed6f21373bb3f19/transformed/jetified-nativeimagefilters-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/0ac8debe6c69f38f22b915b015dd2df1/transformed/jetified-nativeimagetranscoder-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/84a4cbe73dafd4ede8426fb9c88d08ae/transformed/jetified-imagepipeline-okhttp3-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/8d3f93a3533beed081ce71bf6b17ab32/transformed/jetified-okhttp-urlconnection-3.12.1.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/6b7ccfb35f7457093d27795f5345a6db/transformed/jetified-okhttp-3.12.1.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/bb55425c29cd2417f2e5a30ac8a5d0d9/transformed/jetified-okio-1.15.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/c29c1c8630012fb30d5f91a850f775a5/transformed/jetified-android-jsc-r245459-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/ae911677d5eadd7f1099834ac9635346/transformed/jetified-dropbox-core-sdk-4.0.1.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/29f998975fe27f05f7dcab9f40649956/transformed/jetified-jackson-core-2.7.4.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/f5c52a13f19ff23daada89fb2d9dc656/transformed/jetified-duktape-android-1.3.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/4ce1fcc77446c982f4d5595aa486fc5e/transformed/jetified-gson-2.8.6.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/01ab4c080f360f67d16dc08de6e97f66/transformed/jetified-android-sdk-2.30.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/78972056d3d82dac6b9b0c1e10722752/transformed/jetified-installreferrer-1.1.2-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/c1454e4a7b50569370dd039111f5c257/transformed/jetified-android-scalablevideoview-1.0.4-api.jar;C:/Users/thinh/AppData/Local/Android/sdk/platforms/android-29/android.jar;C:/Users/thinh/AppData/Local/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar" />
+          <option name="noStdlib" value="true" />
+          <option name="moduleName" value="jitsi_meet_debug" />
+          <option name="friendPaths">
+            <array>
+              <option value="$MODULE_DIR$/../../../../build/jitsi_meet/tmp/kotlin-classes/debug" />
+              <option value="$MODULE_DIR$/../../../../build/jitsi_meet/intermediates/javac/debug/classes" />
+              <option value="$MODULE_DIR$/../../../../build/jitsi_meet/intermediates/compile_library_classes_jar/debug/classes.jar" />
+            </array>
+          </option>
+          <option name="languageVersion" value="1.6" />
+          <option name="apiVersion" value="1.6" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array />
+          </option>
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/main/res;file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/debug/res;file://$MODULE_DIR$/../../../../build/jitsi_meet/generated/res/rs/debug;file://$MODULE_DIR$/../../../../build/jitsi_meet/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/androidTest/res;file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/androidTestDebug/res;file://$MODULE_DIR$/../../../../build/jitsi_meet/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../../build/jitsi_meet/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/test" />
+    <content url="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/jitsi_meet-4.0.0/android/src/testDebug" />
+    <content url="file://$MODULE_DIR$/../../../../build/jitsi_meet/generated/ap_generated_sources/debugUnitTest/out" />
+    <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="android.jitsi_meet.main" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-7274f79325b72c53ae76203edc307fce5712888b" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-common-java8:2.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-common:2.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.annotation:annotation:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.30" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:16.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.infer.annotation:infer-annotation:0.11.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okhttp3:okhttp-urlconnection:3.12.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okhttp3:okhttp:3.12.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okio:okio:1.15.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.dropbox.core:dropbox-core-sdk:4.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.7.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jitsi.react:jitsi-meet-sdk:3.10.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-amplitude:2.3.3-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-device-info:8.0.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-google-signin:3.0.1-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-async-storage:1.15.5-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-background-timer:2.4.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-calendar-events:2.0.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-community_netinfo:4.1.5-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-default-preference:1.4.2-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-immersive:2.0.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-keep-awake:4.0.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-performance:2.0.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-slider:3.0.3-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-sound:0.11.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-splash-screen:3.2.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-svg:12.1.0-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-video:5.1.1-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-webrtc:1.92.1-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native-webview:11.0.2-jitsi-8602449@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.react:react-native:0.61.5-jitsi.2@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.appcompat:appcompat:1.2.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-auth:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-iid:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-auth-api-phone:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-auth-base:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-base:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-stats:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-tasks:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-basement:17.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.fragment:fragment:1.2.5@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.1.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.legacy:legacy-support-core-utils:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.activity:activity:1.1.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.appcompat:appcompat-resources:1.2.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.vectordrawable:vectordrawable:1.1.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.core:core:1.6.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.2.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.arch.core:core-runtime:2.1.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.1@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.2.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.documentfile:documentfile:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.tracing:tracing:1.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.window:window-java:1.0.0-beta04@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.window:window:1.0.0-beta04@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.jakewharton.timber:timber:4.7.1@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:fresco:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:fbcore:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:drawee:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:imagepipeline:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:imagepipeline-base:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.soloader:soloader:0.6.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:nativeimagefilters:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:nativeimagetranscoder:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.facebook.fresco:imagepipeline-okhttp3:2.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.webkit:android-jsc:r245459@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.duktape:duktape-android:1.3.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.amplitude:android-sdk:2.30.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.installreferrer:installreferrer:1.1.2@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.yqritc:android-scalablevideoview:1.0.4@aar" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="android.jitsi_meet.main" />
+</module>

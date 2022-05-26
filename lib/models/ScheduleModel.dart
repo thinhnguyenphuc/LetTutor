@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:project/models/ScheduleInfoModel.dart';
-
 import 'ScheduleDetailsModel.dart';
 import 'StudentMaterialsModel.dart';
 

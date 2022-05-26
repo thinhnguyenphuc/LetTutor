@@ -4,13 +4,41 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.iml" filepath="$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1538536216/android.path_provider_android.iml" filepath="$PROJECT_DIR$/.idea/modules/1538536216/android.path_provider_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-194475734/android.flutter_keyboard_visibility.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.iml" filepath="$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-854155407/android.jitsi_meet.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-2076372710/android.path_provider_android.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.iml" filepath="$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1623657892/android.url_launcher_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1623657892/android.url_launcher_android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-95253266/android.video_player_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-95253266/android.video_player_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-371694852/android.sqflite.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-943599522/android.url_launcher_android.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.iml" filepath="$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.main.iml" filepath="$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/584805104/android.video_player_android.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.iml" filepath="$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1872600916/android.volume_watcher.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.iml" filepath="$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.main.iml" filepath="$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/2137564652/android.wakelock.unitTest.iml" />
     </modules>
   </component>
 </project>

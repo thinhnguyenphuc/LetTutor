@@ -11,32 +11,27 @@ class ScheduleViewModel with ChangeNotifier {
   bool isLoaded = false;
   bool _isNotFetchedNextSchedule = true;
   bool _isNotFetchedHistorySchedule = true;
-  String totalLearnedTimeString = "";
+  String hour = "";
+  String min = "";
 
   _fetchNextSchedule() async {
-    DateTime now = DateTime.now();
     if (schedules.isNotEmpty && _isNotFetchedNextSchedule) {
-      for (Schedule schedule in schedules) {
-        var date = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000);
-        if (date.isAfter(now)) {
-          nextSchedule.add(schedule);
-        }
-      }
+      nextSchedule = schedules
+          .where((schedule) => DateTime.fromMicrosecondsSinceEpoch(
+                  schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000)
+              .isAfter(DateTime.now()))
+          .toList();
       _isNotFetchedNextSchedule = false;
     }
   }
 
   _fetchHistorySchedule() async {
-    DateTime now = DateTime.now();
     if (schedules.isNotEmpty && _isNotFetchedHistorySchedule) {
-      for (Schedule schedule in schedules) {
-        var date = DateTime.fromMicrosecondsSinceEpoch(
-            schedule.scheduleDetailInfo!.startPeriodTimestamp* 1000);
-        if (date.isBefore(now)) {
-          historySchedule.add(schedule);
-        }
-      }
+      historySchedule = schedules
+          .where((schedule) => DateTime.fromMicrosecondsSinceEpoch(
+                  schedule.scheduleDetailInfo!.startPeriodTimestamp * 1000)
+              .isBefore(DateTime.now()))
+          .toList();
       _isNotFetchedHistorySchedule = false;
     }
   }
@@ -57,12 +52,15 @@ class ScheduleViewModel with ChangeNotifier {
   }
 
   fetchScheduleAgain() async {
+    isLoaded = false;
+    notifyListeners();
     getTotalLearner();
     schedules = await ApiServices().fetchSchedule();
     nextSchedule.clear();
     _isNotFetchedNextSchedule = true;
     _isNotFetchedNextSchedule = true;
     _fetchNextSchedule();
+    isLoaded = true;
     notifyListeners();
     _fetchHistorySchedule();
   }
@@ -81,11 +79,12 @@ class ScheduleViewModel with ChangeNotifier {
 
   getTotalLearner() async {
     ServiceMessage totalLearnedTimeStatus =
-    await ApiServices().totalLearnedTime();
+        await ApiServices().totalLearnedTime();
     int minutes = int.parse(totalLearnedTimeStatus.message);
-    int hours = (minutes / 60).round();
+    int hours = minutes ~/ 60;
     minutes = minutes - hours * 60;
-    totalLearnedTimeString = "$hours hours and $minutes minutes";
+    hour = hours.toString();
+    min = minutes.toString();
     notifyListeners();
   }
 }

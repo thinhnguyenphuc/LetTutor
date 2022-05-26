@@ -4,32 +4,8 @@
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":wakelock" />
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="4.1.3" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" />
         <option name="LAST_KNOWN_AGP_VERSION" value="7.1.3" />
-      </configuration>
-    </facet>
-    <facet type="kotlin-language" name="Kotlin">
-      <configuration version="4" platform="JVM 1.8" allPlatforms="JVM [1.8]" useProjectSettings="false">
-        <compilerSettings>
-          <option name="additionalArguments" value="-Xallow-no-source-files" />
-        </compilerSettings>
-        <compilerArguments>
-          <option name="destination" value="$MODULE_DIR$/../../../../build/wakelock/tmp/kotlin-classes/debug" />
-          <option name="classpath" value="$MODULE_DIR$/../../../../build/wakelock/intermediates/compile_r_class_jar/debug/R.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/36431e2cb66afff1f5246f646bb8f2b6/transformed/jetified-flutter_embedding_debug-1.0.0-b4cc382cb26b3cf045a9b65e1c1e4178c47c77c1.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common-java8/2.2.0/cd3478503da69b1a7e0319bd2d1389943db9b364/lifecycle-common-java8-2.2.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7f94d9c6aa218d806343d0948d27cd75/transformed/fragment-1.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/aefa198e1d6a749ceb1a371477596963/transformed/viewpager-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a189d958ea2aa439b793dac0a0ffa1e3/transformed/loader-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a33e2ba4e8c98ae77a63a49ff46cec3b/transformed/jetified-activity-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/8fd187fa5e70ff7517e5c02134e31c40/transformed/customview-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/6b414ecb03fcbc6527d02ea293ba7b1d/transformed/core-1.6.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/97feb71eaca4557dc7a2661e55cb2d5b/transformed/lifecycle-runtime-2.2.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/5022dc92237212d12cd99818c7a03979/transformed/jetified-savedstate-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/0ae56b3289697ccfd2975279fd2d827c/transformed/lifecycle-livedata-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/cfc737553abff9b7d6ae678469e802a9/transformed/lifecycle-livedata-core-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.2.0/4ef09a745007778eef83b92f8f23987a8ea59496/lifecycle-common-2.2.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/d4b4c2cfd4da8c8669273f07d6a11b3d/transformed/core-runtime-2.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/4fd76752a4d28ae0900f9d8286c069c2/transformed/versionedparcelable-1.1.1-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/63152734100153d5da0df1487ce02a92/transformed/lifecycle-viewmodel-2.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/06735bad3b71d52f3ae6d4850e609471/transformed/jetified-annotation-experimental-1.1.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/15a926fbce3a222dbbf0415b1cee064f/transformed/jetified-tracing-1.0.0-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a91ca37a014e88ed1251b9dbc3e28b38/transformed/jetified-window-java-1.0.0-beta04-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/afe7c4cdc4a2a0678f70545ed2e98bd3/transformed/jetified-window-1.0.0-beta04-api.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b6bdd0a6c6825b8bbfb23a6c4757eaa9/transformed/jetified-kotlinx-coroutines-android-1.5.2.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b6367e06849c4436feeb53c16c2d73b0/transformed/jetified-kotlinx-coroutines-core-jvm-1.5.2.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a447b09fb2bd49f25801a8c904ceef4e/transformed/jetified-kotlin-stdlib-jdk8-1.5.30.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/a62ef75ae3795e510a05d7ae8618cdb9/transformed/jetified-kotlin-stdlib-jdk7-1.6.21.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/ee92b02c188a1e60eab75fb6d2ea87e0/transformed/jetified-kotlin-stdlib-1.6.21.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/3078086d93931f3d845cf8d3f4ece0e1/transformed/jetified-kotlin-stdlib-common-1.6.21.jar;C:/Users/thinh/.jdks/openjdk-17.0.1/bin/caches/transforms-3/8399fd6fec205fd6e5cf9c839976bf21/transformed/jetified-annotations-13.0.jar;C:/Users/thinh/AppData/Local/Android/sdk/platforms/android-29/android.jar;C:/Users/thinh/AppData/Local/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar" />
-          <option name="noStdlib" value="true" />
-          <option name="moduleName" value="wakelock_debug" />
-          <option name="languageVersion" value="1.6" />
-          <option name="apiVersion" value="1.6" />
-          <option name="pluginOptions">
-            <array />
-          </option>
-          <option name="pluginClasspaths">
-            <array />
-          </option>
-          <option name="errors">
-            <ArgumentParseErrors />
-          </option>
-        </compilerArguments>
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -55,60 +31,9 @@
     <output-test url="file://$MODULE_DIR$/../../../../build/wakelock/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/wakelock-0.5.6/android">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/wakelock-0.5.6/android/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/wakelock-0.5.6/android/src/main/kotlin" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/wakelock-0.5.6/android/.gradle" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/aidl_source_output_dir/debug/out" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/aidl_source_output_dir/debugAndroidTest/out" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/ap_generated_sources/debug/out">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../build/wakelock/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/ap_generated_sources/debugAndroidTest/out" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/ap_generated_sources/debugUnitTest/out" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/renderscript_source_output_dir/debug/out" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/renderscript_source_output_dir/debugAndroidTest/out" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/res/resValues/androidTest/debug" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/res/resValues/debug">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../build/wakelock/generated/res/resValues/debug" type="java-resource" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/res/rs/androidTest/debug" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/res/rs/debug" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/source/buildConfig/androidTest/debug" />
-    <content url="file://$MODULE_DIR$/../../../../build/wakelock/generated/source/buildConfig/debug">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../build/wakelock/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-b4cc382cb26b3cf045a9b65e1c1e4178c47c77c1" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common-java8:2.2.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.2.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.2.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.2" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.30" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.21" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.core:core:1.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.tracing:tracing:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.window:window-java:1.0.0-beta04@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.window:window:1.0.0-beta04@aar" level="project" />
   </component>
 </module>

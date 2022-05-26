@@ -32,6 +32,7 @@ class CountrySingleton {
 }
 
 String jsonList = "["
+    "{\"name\": \"ALL\", \"code\": \"ALL\"},"
     "{\"name\": \"Afghanistan\", \"code\": \"AF\"},"
     "{\"name\": \"Åland Islands\", \"code\": \"AX\"},"
     "{\"name\": \"Albania\", \"code\": \"AL\"},"

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.test:core:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/941df78549b367e4c896f31765c6d15a/transformed/jetified-core-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/941df78549b367e4c896f31765c6d15a/transformed/jetified-core-1.0.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/941df78549b367e4c896f31765c6d15a/transformed/jetified-core-1.0.0/res" />
+      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7c95c01b1ae1ed33c94afe26a62550c6/transformed/jetified-core-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7c95c01b1ae1ed33c94afe26a62550c6/transformed/jetified-core-1.0.0/res" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/7c95c01b1ae1ed33c94afe26a62550c6/transformed/jetified-core-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/modules-2/files-2.1/androidx.test/core/1.0.0/fb3d5e80a838f741ea0f7c223c127efbc9fc4ada/core-1.0.0-javadoc.jar!/" />

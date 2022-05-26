@@ -14,6 +14,7 @@ class Strings {
   static String email = "Email";
   static String search = "Search";
   static String tutor = "Tutor";
+  static String tutorName = "Tutor name";
   static String noUpcoming = "You have no upcoming lesson, click below to book";
   static String bookLesson = "Book a lesson";
   static String findTutor = "Group tutor by skill";
@@ -45,4 +46,9 @@ class Strings {
   static String learnedBooks = "Learned Books";
 
   static String lessonDetails = "Lesson Details";
+
+  static String successBookingStatus = "Success booking";
+  static String failedBookingStatus = "Failed booking";
+  static String cancelBookingStatus = "Canceled booking";
+  static String studyBookingStatus = "Study";
 }

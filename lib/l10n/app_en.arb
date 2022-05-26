@@ -1,0 +1,92 @@
+{
+  "@TIME": {
+    "description": "Strings for time"
+  },
+  "hour": " hour",
+  "hours": " hours",
+  "minute": " minute",
+  "minutes": " minutes",
+  "day": " day",
+  "days": " days",
+
+  "@LOGIN_PAGE": {
+    "description": "Strings for login page"
+  },
+  "usernameHintText": "Username",
+  "passwordHintText": "Password",
+  "rememberMeCheckBoxText": "Remember me",
+  "forgotPassLinkText": "Forgot password?",
+  "loginBtnText": "Login",
+  "toSignUpNormalText": "Don't have an account?",
+  "toSignUpLinkText": "Sign Up",
+  "loginDividerText": "Or continued with",
+
+  "@SIGN_UP_PAGE": {
+    "description": "Strings for sign up page"
+  },
+  "emailHintText": "Email",
+  "reenterPassHintText": "Enter password again",
+  "signUpBtnText": "Sign Up",
+  "toLoginNormalText": "Already have an account?",
+  "toLoginLinkText": "Login",
+
+
+
+
+  "searchBtnText": "Search",
+  "searchHintText": "Search",
+
+  "@USER_PAGE": {
+    "description": "Strings for user page"
+  },
+  "user" : "User",
+  "review" : "Other review me",
+  "editInfo" : "Edit my information",
+  "paymentHistory": "Payment History",
+  "language": "Language",
+  "chooseThemeTitle": "Themes",
+  "changePasswordBtnText": "Change password",
+  "settingsTitle": "Settings",
+  "logout": "Logout",
+
+
+
+  "@TUTOR_PAGE": {
+    "description": "Strings for tutor page"
+  },
+  "tutor": "Tutor",
+  "level" : "Level",
+  "tutorName": "Tutor name",
+  "book": "Book",
+  "message": "Message",
+  "education": "Education",
+  "videoIntro": "Video introduce",
+  "languages" : "Languages",
+  "favorite": "favorite",
+  "report": "Report",
+  "more": "More",
+  "specialties": "Specialties",
+  "interest": "Interests",
+  "teachingExp" : "Teaching Experience",
+  "bookAClass": "Booking this day",
+
+  "@SCHEDULE_PAGE": {
+    "description": "Strings for schedule page"
+  },
+  "schedule": "Schedule",
+  "upComingLesson": "Upcoming lesson",
+  "lessonList": "Lesson List",
+  "lessonHistory": "Lesson History",
+  "totalLessonTime": "Total lesson time is ",
+  "and": "and",
+
+  "@CONFERENCE_PAGE": {
+    "description": "Strings for conference page"
+  },
+  "conference": "Conference",
+
+  "@COURSE_PAGE": {
+    "description": "Strings for course page"
+  },
+  "course": "Course"
+}

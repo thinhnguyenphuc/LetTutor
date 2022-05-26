@@ -29,22 +29,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations: # Add this line
+    sdk: flutter         # Add this line
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.4
   swipe_to: 1.0.2
   liquid_swipe: ^2.1.1
-  cached_network_image: ^3.2.0
+  cached_network_image: ^3.2.1
   sticky_grouped_list: ^2.1.0
-  url_launcher: ^6.1.0
+  url_launcher: ^6.1.2
   persistent_bottom_nav_bar: ^4.0.2
   expandable: ^5.0.1
   flutter_localized_locales: ^2.0.3
   video_viewer: ^1.2.7
-  syncfusion_flutter_calendar: ^20.1.51
-  provider: ^6.0.2
+  syncfusion_flutter_calendar: ^20.1.57
+  provider: ^6.0.3
+  data_tables: ^1.4.0
+  jitsi_meet: ^4.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,7 +57,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
   cupertino_icons: ^1.0.4
   custom_navigator: ^0.3.0
   flutter_icons: ^1.1.0
@@ -64,9 +67,9 @@ dev_dependencies:
   flutter_keyboard_visibility: ^5.2.0
   font_awesome_flutter: ^10.1.0
   flag: ^6.0.0
-  flutter_rating_bar: ^4.0.0
+  flutter_rating_bar: ^4.0.1
   import_sorter: ^4.6.0
-  video_player: ^2.4.0
+  video_player: ^2.4.2
 flutter_launcher_name:
     name: "LetTutor"
 # For information on the generic Dart part of this file, see the
@@ -74,8 +77,10 @@ flutter_launcher_name:
 
 # The following section is specific to Flutter.
 flutter:
+  generate: true
   assets:
     - assets/images/
+    - assets/icon/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.core:core:1.6.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b3413770f91b553945ec39d743ccef10/transformed/core-1.6.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/065da5db9c9cad184b6c9d82193e78a3/transformed/core-1.6.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b3413770f91b553945ec39d743ccef10/transformed/core-1.6.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b3413770f91b553945ec39d743ccef10/transformed/core-1.6.0/res" />
-      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/b3413770f91b553945ec39d743ccef10/transformed/core-1.6.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/065da5db9c9cad184b6c9d82193e78a3/transformed/core-1.6.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/065da5db9c9cad184b6c9d82193e78a3/transformed/core-1.6.0/res" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-17.0.1/bin/caches/transforms-3/065da5db9c9cad184b6c9d82193e78a3/transformed/core-1.6.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
