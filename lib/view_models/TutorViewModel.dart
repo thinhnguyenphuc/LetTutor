@@ -11,7 +11,7 @@ import '../resources/CountryList.dart';
 
 class TutorViewModel with ChangeNotifier {
   List<TutorInfo> tutorList = [];
-  List<String> favorites = [];
+  List<String?> favorites = [];
   Map<String, List<ScheduleDetailInfo>> schedulesMap =
       <String, List<ScheduleDetailInfo>>{};
 
@@ -50,8 +50,11 @@ class TutorViewModel with ChangeNotifier {
     ServiceMessage response = await ApiServices().fetchTutor();
     tutorList = (response.message as HashMap<String, List>)["tutors"]
         as List<TutorInfo>;
-    favorites = (response.message as HashMap<String, List>)["favoriteTutor"]!
-        .cast<String>();
+    if((response.message as HashMap<String, List>)["favoriteTutor"]!=null){
+      favorites = (response.message as HashMap<String, List>)["favoriteTutor"]!
+        .cast<String?>();
+    }
+
     notifyListeners();
   }
 

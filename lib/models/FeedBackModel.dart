@@ -27,15 +27,17 @@ class Feedback {
 
   factory Feedback.fromJson(Map<String, dynamic> json) => Feedback(
         id: json["id"],
-        bookingId: json["bookingId"],
-        firstId: json["firstId"],
-        secondId: json["secondId"],
+        bookingId: json["bookingId"]??"",
+        firstId: json["firstId"]??"",
+        secondId: json["secondId"]??"",
         rating: json["rating"].toDouble(),
-        content: json["content"],
+        content: json["content"]??"",
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         firstInfo:
-            json["firstInfo"] == null ? null : Info.fromJson(json["firstInfo"]),
+            (json["firstInfo"] == null || json["firstInfo"]["id"]==null)
+                ? null
+                : Info.fromJson(json["firstInfo"]),
         secondInfo: json["secondInfo"] == null
             ? null
             : Info.fromJson(json["secondInfo"]),

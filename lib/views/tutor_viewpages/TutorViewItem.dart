@@ -115,7 +115,7 @@ class TutorViewItem extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.favorite,
-                        color: tutorViewModel.favorites.contains(tutor.userId)
+                        color:(tutorViewModel.favorites.contains(tutor.userId))
                             ? Colors.red
                             : Colors.grey,
                       ),

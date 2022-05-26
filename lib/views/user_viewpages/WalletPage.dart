@@ -31,7 +31,7 @@ class WalletPageState extends State<WalletPage> {
 
     List<DataColumn> paymentColumns = [
       const DataColumn(label: Text("No")),
-      const DataColumn(label: Text("Tutor")),
+      const DataColumn(label: Text("Id")),
       const DataColumn(label: Text("Time")),
       const DataColumn(label: Text("Status")),
       const DataColumn(label: Text("Type")),
@@ -50,7 +50,7 @@ class WalletPageState extends State<WalletPage> {
               return DataRow(cells: [
                 DataCell(Text((position + 1).toString())),
                 DataCell(Text(
-                    _info.bookingInfo.scheduleDetailInfo!.tutorInfo!.name)),
+                    _info.bookingInfo.scheduleDetailInfo!.id)),
                 DataCell(Container(
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(

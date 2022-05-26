@@ -49,7 +49,7 @@ class BookingInfo {
         createdAtTimeStamp: json["createdAtTimeStamp"],
         updatedAtTimeStamp: json["updatedAtTimeStamp"],
         id: json["id"],
-        userId: json["userId"],
+        userId: json["userId"]??"",
         scheduleDetailId: json["scheduleDetailId"],
         scheduleDetailInfo: json["scheduleDetailInfo"] == null
             ? null

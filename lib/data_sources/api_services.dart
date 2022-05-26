@@ -11,6 +11,7 @@ import '../models/PaymentInfoModel.dart';
 import '../models/ScheduleInfoModel.dart';
 import '../models/ScheduleModel.dart';
 import '../models/ServiceMessageModel.dart';
+import '../models/TestPreparation.dart';
 import '../models/TutorModel.dart';
 import '../models/UserModel.dart';
 
@@ -388,6 +389,50 @@ class ApiServices {
       final int statusCode = response.statusCode;
       final String jsonBody = response.body;
       return ServiceMessage(statusCode: statusCode, message: jsonBody);
+    });
+  }
+
+  Future<ServiceMessage> updateUserInfo(
+      String name,
+      String country,
+      String phone,
+      String birthday,
+      String level,
+      List<LearnTopic> learnTopics,
+      List<TestPreparation> testPreparations) {
+    var request = {};
+    request['name'] = name;
+    request['country'] = country;
+    request['phone'] = phone;
+    request['birthday'] = birthday;
+    request['level'] = level;
+
+    List<int> learnTopicsID = [];
+    for(LearnTopic learnTopic in learnTopics){
+      learnTopicsID.add(learnTopic.id);
+    }
+    List<int> testPreparationsID = [];
+    for(TestPreparation testPreparation in testPreparations){
+      testPreparationsID.add(testPreparation.id);
+    }
+
+    request['learnTopics'] = learnTopicsID;
+    request['testPreparations'] = testPreparationsID;
+
+    return http
+        .put(Uri.parse("$baseUrl/user/info"),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ${tokens.access.token}'
+            },
+            body: jsonEncode(request))
+        .then((http.Response response) {
+      final int statusCode = response.statusCode;
+      if (statusCode == 200) {
+        return ServiceMessage(statusCode: 200, message: "SUCCESS");
+      } else {
+        return ServiceMessage(statusCode: 201, message: "UNSUCCESSFUL");
+      }
     });
   }
 }

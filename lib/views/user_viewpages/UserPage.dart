@@ -30,9 +30,9 @@ class UserPageState extends State<UserPage> with StateVariablesMixin {
     super.build(context);
     final userInfoProvider = Provider.of<UserViewModel>(context);
     bool isLoaded = userInfoProvider.isFetching;
-    UserClass? _userInfo = userInfoProvider.userInfo;
+    UserClass? userInfo = userInfoProvider.userInfo;
 
-    final _userContainer = isLoaded && _userInfo != null
+    final _userContainer = isLoaded && userInfo != null
         ? Container(
             margin: const EdgeInsets.only(top: 30, bottom: 20),
             child: Column(
@@ -47,7 +47,7 @@ class UserPageState extends State<UserPage> with StateVariablesMixin {
                           width: 300,
                           height: 300,
                           child: CachedNetworkImage(
-                            imageUrl: _userInfo.avatar,
+                            imageUrl: userInfo.avatar,
                             placeholder: (context, url) =>
                                 const CircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
@@ -59,11 +59,11 @@ class UserPageState extends State<UserPage> with StateVariablesMixin {
                     )),
                 Hero(
                   tag: "name",
-                  child: Text(_userInfo.name,
+                  child: Text(userInfo.name,
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 ),
-                Text("${l10n.level}: " + _userInfo.level,
+                Text("${l10n.level}: " + userInfo.level,
                     style: TextStyle(fontSize: 20)),
               ],
             ),
@@ -86,7 +86,7 @@ class UserPageState extends State<UserPage> with StateVariablesMixin {
               children: [
                 InkWell(
                   onTap: () {
-                    Utils.showReviewsDialog(context, _userInfo!.feedbacks);
+                    Utils.showReviewsDialog(context, userInfo!.feedbacks);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -127,7 +127,7 @@ class UserPageState extends State<UserPage> with StateVariablesMixin {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                UserDetailsInfo(user: _userInfo)));
+                                const UserDetailsInfo()));
                   },
                   child: Container(
                     decoration: BoxDecoration(

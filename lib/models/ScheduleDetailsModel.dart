@@ -35,7 +35,7 @@ class ScheduleDetailInfo {
         startPeriodTimestamp: json["startPeriodTimestamp"],
         endPeriodTimestamp: json["endPeriodTimestamp"],
         id: json["id"],
-        scheduleId: json["scheduleId"],
+        scheduleId: json["scheduleId"]??"",
         startPeriod: json["startPeriod"],
         endPeriod: json["endPeriod"],
         createdAt: json["createdAt"] == null
@@ -52,7 +52,7 @@ class ScheduleDetailInfo {
             ? null
             : ScheduleInfo.fromJson(json["scheduleInfo"]),
         isBooked: json["isBooked"] ?? false,
-        tutorInfo: json["tutorInfo"] == null
+        tutorInfo: (json["tutorInfo"] == null||json["tutorInfo"]["level"] == null)
             ? null
             : TutorInfo.fromJson(json["tutorInfo"]),
       );

@@ -82,7 +82,11 @@ class Utils {
                                 width: 70,
                                 height: 70,
                                 child: CachedNetworkImage(
-                                  imageUrl: feedback.firstInfo!.avatar,
+                                  imageUrl: feedback.firstInfo != null
+                                      ? feedback.firstInfo!.avatar
+                                      : feedback.secondInfo != null
+                                          ? feedback.secondInfo!.avatar
+                                          : "https://www.sragenkab.go.id/assets/images/demo/user-1.jpg",
                                   placeholder: (context, url) =>
                                       const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>

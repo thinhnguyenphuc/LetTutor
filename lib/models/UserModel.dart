@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'FeedBackModel.dart';
+import 'TestPreparation.dart';
 import 'TutorModel.dart';
 
 class Tokens {
@@ -107,7 +108,7 @@ class UserClass {
   final dynamic requireNote;
   final String level;
   final List<LearnTopic> learnTopics;
-  final List<LearnTopic> testPreparations;
+  final List<TestPreparation> testPreparations;
   final bool isPhoneActivated;
   final int timezone;
   final ReferralInfo? referralInfo;
@@ -119,15 +120,15 @@ class UserClass {
         email: json["email"],
         name: json["name"],
         avatar: json["avatar"],
-        country: json["country"],
-        phone: json["phone"],
+        country: json["country"]??"",
+        phone: json["phone"]??"",
         roles: json["roles"] == null
             ? []
             : List<String>.from(json["roles"].map((x) => x)),
-        language: json["language"],
+        language: json["language"]??"",
         birthday: DateTime.parse(json["birthday"] ?? "2000-01-01"),
-        isActivated: json["isActivated"],
-        tutorInfo: json["tutorInfo"] == null
+        isActivated: json["isActivated"]??false,
+        tutorInfo: (json["tutorInfo"] == null || json["tutorInfo"]["level"] == null)
             ? null
             : TutorInfo.fromJson(json["tutorInfo"]),
         walletInfo: json["walletInfo"] == null
@@ -140,18 +141,18 @@ class UserClass {
         courses: json["courses"] == null
             ? []
             : List<dynamic>.from(json["courses"].map((x) => x)),
-        requireNote: json["requireNote"],
-        level: json["level"],
+        requireNote: json["requireNote"]??"",
+        level: json["level"]??"",
         learnTopics: json["learnTopics"] == null
             ? []
             : List<LearnTopic>.from(
                 json["learnTopics"].map((x) => LearnTopic.fromJson(x))),
         testPreparations: json["testPreparations"] == null
             ? []
-            : List<LearnTopic>.from(
+            : List<TestPreparation>.from(
                 json["testPreparations"].map((x) => LearnTopic.fromJson(x))),
-        isPhoneActivated: json["isPhoneActivated"],
-        timezone: json["timezone"],
+        isPhoneActivated: json["isPhoneActivated"]??false,
+        timezone: json["timezone"]??7,
         referralInfo: json["referralInfo"] == null
             ? null
             : ReferralInfo.fromJson(json["referralInfo"]),
@@ -241,7 +242,7 @@ class Info {
   final dynamic deletedAt;
 
   factory Info.fromJson(Map<String, dynamic> json) => Info(
-        id: json["id"],
+        id: json["id"]??"",
         level: json["level"],
         email: json["email"],
         google: json["google"],
